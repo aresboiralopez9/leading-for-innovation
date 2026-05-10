@@ -10,3 +10,76 @@ fragment PostParts on Post {
   frameworkName
   body
 }
+
+fragment HomePageParts on HomePage {
+  __typename
+  heroBadgeText
+  heroHeadline
+  heroHeadlineAccent
+  heroSubtext
+  heroPrimaryButtonText
+  heroPrimaryButtonHref
+  heroSecondaryButtonText
+  positioningItems {
+    __typename
+    icon
+    label
+    desc
+  }
+  featuredSectionLabel
+  featuredSectionHeading
+  frameworksSectionLabel
+  frameworksSectionHeading
+  latestSectionLabel
+  latestSectionHeading
+}
+
+fragment AboutPageParts on AboutPage {
+  __typename
+  seoTitle
+  seoDescription
+  sectionLabel
+  headline
+  headlineAccent
+  intro
+  primaryButtonText
+  primaryButtonHref
+  secondaryButtonText
+  body
+}
+
+fragment SiteSettingsParts on SiteSettings {
+  __typename
+  siteName
+  siteTagline
+  linkedInUrl
+  betaBadge
+  navItems {
+    __typename
+    label
+    href
+  }
+  siteMetaTitle
+  siteMetaDescription
+}
+
+fragment NewsletterCTAParts on NewsletterCTA {
+  __typename
+  badgeText
+  headline
+  subtext
+  emailPlaceholder
+  buttonText
+  successMessage
+  linkedInNudge
+}
+
+fragment FooterParts on Footer {
+  __typename
+  brandTagline
+  staySectionLabel
+  staySectionText
+  linkedInButtonText
+  copyrightSuffix
+  builtByLine
+}

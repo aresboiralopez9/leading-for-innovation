@@ -56,10 +56,25 @@ type Query {
   document(collection: String, relativePath: String): DocumentNode!
   post(relativePath: String): Post!
   postConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: PostFilter): PostConnection!
+  homePage(relativePath: String): HomePage!
+  homePageConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: HomePageFilter): HomePageConnection!
+  aboutPage(relativePath: String): AboutPage!
+  aboutPageConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: AboutPageFilter): AboutPageConnection!
+  siteSettings(relativePath: String): SiteSettings!
+  siteSettingsConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: SiteSettingsFilter): SiteSettingsConnection!
+  newsletterCTA(relativePath: String): NewsletterCTA!
+  newsletterCTAConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: NewsletterCTAFilter): NewsletterCTAConnection!
+  footer(relativePath: String): Footer!
+  footerConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: FooterFilter): FooterConnection!
 }
 
 input DocumentFilter {
   post: PostFilter
+  homePage: HomePageFilter
+  aboutPage: AboutPageFilter
+  siteSettings: SiteSettingsFilter
+  newsletterCTA: NewsletterCTAFilter
+  footer: FooterFilter
 }
 
 type DocumentConnectionEdges {
@@ -85,7 +100,7 @@ type Collection {
   documents(before: String, after: String, first: Float, last: Float, sort: String, filter: DocumentFilter, folder: String): DocumentConnection!
 }
 
-union DocumentNode = Post | Folder
+union DocumentNode = Post | HomePage | AboutPage | SiteSettings | NewsletterCTA | Footer | Folder
 
 type Post implements Node & Document {
   title: String!
@@ -151,6 +166,216 @@ type PostConnection implements Connection {
   edges: [PostConnectionEdges]
 }
 
+type HomePagePositioningItems {
+  icon: String
+  label: String
+  desc: String
+}
+
+type HomePage implements Node & Document {
+  heroBadgeText: String
+  heroHeadline: String
+  heroHeadlineAccent: String
+  heroSubtext: String
+  heroPrimaryButtonText: String
+  heroPrimaryButtonHref: String
+  heroSecondaryButtonText: String
+  positioningItems: [HomePagePositioningItems]
+  featuredSectionLabel: String
+  featuredSectionHeading: String
+  frameworksSectionLabel: String
+  frameworksSectionHeading: String
+  latestSectionLabel: String
+  latestSectionHeading: String
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input HomePagePositioningItemsFilter {
+  icon: StringFilter
+  label: StringFilter
+  desc: StringFilter
+}
+
+input HomePageFilter {
+  heroBadgeText: StringFilter
+  heroHeadline: StringFilter
+  heroHeadlineAccent: StringFilter
+  heroSubtext: StringFilter
+  heroPrimaryButtonText: StringFilter
+  heroPrimaryButtonHref: StringFilter
+  heroSecondaryButtonText: StringFilter
+  positioningItems: HomePagePositioningItemsFilter
+  featuredSectionLabel: StringFilter
+  featuredSectionHeading: StringFilter
+  frameworksSectionLabel: StringFilter
+  frameworksSectionHeading: StringFilter
+  latestSectionLabel: StringFilter
+  latestSectionHeading: StringFilter
+}
+
+type HomePageConnectionEdges {
+  cursor: String!
+  node: HomePage
+}
+
+type HomePageConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [HomePageConnectionEdges]
+}
+
+type AboutPage implements Node & Document {
+  seoTitle: String
+  seoDescription: String
+  sectionLabel: String
+  headline: String
+  headlineAccent: String
+  intro: String
+  primaryButtonText: String
+  primaryButtonHref: String
+  secondaryButtonText: String
+  body: JSON
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input AboutPageFilter {
+  seoTitle: StringFilter
+  seoDescription: StringFilter
+  sectionLabel: StringFilter
+  headline: StringFilter
+  headlineAccent: StringFilter
+  intro: StringFilter
+  primaryButtonText: StringFilter
+  primaryButtonHref: StringFilter
+  secondaryButtonText: StringFilter
+  body: RichTextFilter
+}
+
+type AboutPageConnectionEdges {
+  cursor: String!
+  node: AboutPage
+}
+
+type AboutPageConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [AboutPageConnectionEdges]
+}
+
+type SiteSettingsNavItems {
+  label: String
+  href: String
+}
+
+type SiteSettings implements Node & Document {
+  siteName: String
+  siteTagline: String
+  linkedInUrl: String
+  betaBadge: Boolean
+  navItems: [SiteSettingsNavItems]
+  siteMetaTitle: String
+  siteMetaDescription: String
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input SiteSettingsNavItemsFilter {
+  label: StringFilter
+  href: StringFilter
+}
+
+input SiteSettingsFilter {
+  siteName: StringFilter
+  siteTagline: StringFilter
+  linkedInUrl: StringFilter
+  betaBadge: BooleanFilter
+  navItems: SiteSettingsNavItemsFilter
+  siteMetaTitle: StringFilter
+  siteMetaDescription: StringFilter
+}
+
+type SiteSettingsConnectionEdges {
+  cursor: String!
+  node: SiteSettings
+}
+
+type SiteSettingsConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [SiteSettingsConnectionEdges]
+}
+
+type NewsletterCTA implements Node & Document {
+  badgeText: String
+  headline: String
+  subtext: String
+  emailPlaceholder: String
+  buttonText: String
+  successMessage: String
+  linkedInNudge: String
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input NewsletterCTAFilter {
+  badgeText: StringFilter
+  headline: StringFilter
+  subtext: StringFilter
+  emailPlaceholder: StringFilter
+  buttonText: StringFilter
+  successMessage: StringFilter
+  linkedInNudge: StringFilter
+}
+
+type NewsletterCTAConnectionEdges {
+  cursor: String!
+  node: NewsletterCTA
+}
+
+type NewsletterCTAConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [NewsletterCTAConnectionEdges]
+}
+
+type Footer implements Node & Document {
+  brandTagline: String
+  staySectionLabel: String
+  staySectionText: String
+  linkedInButtonText: String
+  copyrightSuffix: String
+  builtByLine: String
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input FooterFilter {
+  brandTagline: StringFilter
+  staySectionLabel: StringFilter
+  staySectionText: StringFilter
+  linkedInButtonText: StringFilter
+  copyrightSuffix: StringFilter
+  builtByLine: StringFilter
+}
+
+type FooterConnectionEdges {
+  cursor: String!
+  node: Footer
+}
+
+type FooterConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [FooterConnectionEdges]
+}
+
 type Mutation {
   addPendingDocument(collection: String!, relativePath: String!, template: String): DocumentNode!
   updateDocument(collection: String, relativePath: String!, params: DocumentUpdateMutation!): DocumentNode!
@@ -159,15 +384,35 @@ type Mutation {
   createFolder(collection: String, relativePath: String!): DocumentNode!
   updatePost(relativePath: String!, params: PostMutation!): Post!
   createPost(relativePath: String!, params: PostMutation!): Post!
+  updateHomePage(relativePath: String!, params: HomePageMutation!): HomePage!
+  createHomePage(relativePath: String!, params: HomePageMutation!): HomePage!
+  updateAboutPage(relativePath: String!, params: AboutPageMutation!): AboutPage!
+  createAboutPage(relativePath: String!, params: AboutPageMutation!): AboutPage!
+  updateSiteSettings(relativePath: String!, params: SiteSettingsMutation!): SiteSettings!
+  createSiteSettings(relativePath: String!, params: SiteSettingsMutation!): SiteSettings!
+  updateNewsletterCTA(relativePath: String!, params: NewsletterCTAMutation!): NewsletterCTA!
+  createNewsletterCTA(relativePath: String!, params: NewsletterCTAMutation!): NewsletterCTA!
+  updateFooter(relativePath: String!, params: FooterMutation!): Footer!
+  createFooter(relativePath: String!, params: FooterMutation!): Footer!
 }
 
 input DocumentUpdateMutation {
   post: PostMutation
+  homePage: HomePageMutation
+  aboutPage: AboutPageMutation
+  siteSettings: SiteSettingsMutation
+  newsletterCTA: NewsletterCTAMutation
+  footer: FooterMutation
   relativePath: String
 }
 
 input DocumentMutation {
   post: PostMutation
+  homePage: HomePageMutation
+  aboutPage: AboutPageMutation
+  siteSettings: SiteSettingsMutation
+  newsletterCTA: NewsletterCTAMutation
+  footer: FooterMutation
 }
 
 input PostMutation {
@@ -180,6 +425,76 @@ input PostMutation {
   framework: Boolean
   frameworkName: String
   body: JSON
+}
+
+input HomePagePositioningItemsMutation {
+  icon: String
+  label: String
+  desc: String
+}
+
+input HomePageMutation {
+  heroBadgeText: String
+  heroHeadline: String
+  heroHeadlineAccent: String
+  heroSubtext: String
+  heroPrimaryButtonText: String
+  heroPrimaryButtonHref: String
+  heroSecondaryButtonText: String
+  positioningItems: [HomePagePositioningItemsMutation]
+  featuredSectionLabel: String
+  featuredSectionHeading: String
+  frameworksSectionLabel: String
+  frameworksSectionHeading: String
+  latestSectionLabel: String
+  latestSectionHeading: String
+}
+
+input AboutPageMutation {
+  seoTitle: String
+  seoDescription: String
+  sectionLabel: String
+  headline: String
+  headlineAccent: String
+  intro: String
+  primaryButtonText: String
+  primaryButtonHref: String
+  secondaryButtonText: String
+  body: JSON
+}
+
+input SiteSettingsNavItemsMutation {
+  label: String
+  href: String
+}
+
+input SiteSettingsMutation {
+  siteName: String
+  siteTagline: String
+  linkedInUrl: String
+  betaBadge: Boolean
+  navItems: [SiteSettingsNavItemsMutation]
+  siteMetaTitle: String
+  siteMetaDescription: String
+}
+
+input NewsletterCTAMutation {
+  badgeText: String
+  headline: String
+  subtext: String
+  emailPlaceholder: String
+  buttonText: String
+  successMessage: String
+  linkedInNudge: String
+}
+
+input FooterMutation {
+  brandTagline: String
+  staySectionLabel: String
+  staySectionText: String
+  linkedInButtonText: String
+  copyrightSuffix: String
+  builtByLine: String
 }
 
 schema {
