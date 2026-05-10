@@ -3,16 +3,17 @@
 import Link from 'next/link'
 import { useTheme } from './ThemeProvider'
 import { useState } from 'react'
+import type { SiteSettingsData } from '@/lib/content'
 
-export function Header() {
+interface HeaderProps {
+  settings: SiteSettingsData
+}
+
+export function Header({ settings }: HeaderProps) {
   const { theme, toggle } = useTheme()
   const [menuOpen, setMenuOpen] = useState(false)
 
-  const nav = [
-    { href: '/blog', label: 'All Posts' },
-    { href: '/blog?category=frameworks', label: 'Frameworks' },
-    { href: '/about', label: 'About' },
-  ]
+  const { siteName, betaBadge, navItems, linkedInUrl } = settings
 
   return (
     <header className="sticky top-0 z-50 border-b border-gray-200 dark:border-gray-800 bg-canvas/80 dark:bg-[#0c0c0e]/80 backdrop-blur-md">
@@ -20,16 +21,18 @@ export function Header() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group">
           <span className="text-xl font-black tracking-tight text-ink dark:text-white group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
-            LEADING FOR INNOVATION
+            {siteName}
           </span>
-          <span className="hidden sm:inline-block px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider rounded bg-brand-500 text-white">
-            Beta
-          </span>
+          {betaBadge && (
+            <span className="hidden sm:inline-block px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider rounded bg-brand-500 text-white">
+              Beta
+            </span>
+          )}
         </Link>
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-6">
-          {nav.map((item) => (
+          {navItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
@@ -39,7 +42,7 @@ export function Header() {
             </Link>
           ))}
           <a
-            href="https://linkedin.com"
+            href={linkedInUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="text-sm font-semibold px-4 py-2 rounded-full bg-brand-500 text-white hover:bg-brand-600 transition-colors"
@@ -51,11 +54,7 @@ export function Header() {
             aria-label="Toggle theme"
             className="p-2 rounded-lg text-ink-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
           >
-            {theme === 'dark' ? (
-              <SunIcon />
-            ) : (
-              <MoonIcon />
-            )}
+            {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
           </button>
         </nav>
 
@@ -77,7 +76,7 @@ export function Header() {
       {menuOpen && (
         <div className="md:hidden border-t border-gray-200 dark:border-gray-800 bg-canvas dark:bg-[#0c0c0e]">
           <nav className="max-w-5xl mx-auto px-4 py-4 flex flex-col gap-3">
-            {nav.map((item) => (
+            {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
@@ -88,7 +87,7 @@ export function Header() {
               </Link>
             ))}
             <a
-              href="https://linkedin.com"
+              href={linkedInUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm font-semibold px-4 py-2 rounded-full bg-brand-500 text-white text-center"

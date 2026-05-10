@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { getPost, getAllPostSlugs } from '@/lib/posts'
 import { formatDate } from '@/lib/utils'
-import { NewsletterCTA } from '@/components/NewsletterCTA'
+import { NewsletterCTAWrapper } from '@/components/NewsletterCTAWrapper'
 import type { Metadata } from 'next'
 
 interface Props {
@@ -108,7 +108,7 @@ export default async function PostPage({ params }: Props) {
       </div>
 
       {/* Newsletter CTA */}
-      <NewsletterCTA />
+      <NewsletterCTAWrapper />
 
     </div>
   )

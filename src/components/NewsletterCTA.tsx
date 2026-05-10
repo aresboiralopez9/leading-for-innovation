@@ -1,8 +1,14 @@
 'use client'
 
 import { useState } from 'react'
+import type { NewsletterCTAData } from '@/lib/content'
 
-export function NewsletterCTA() {
+interface NewsletterCTAProps {
+  data: NewsletterCTAData
+  linkedInUrl: string
+}
+
+export function NewsletterCTA({ data, linkedInUrl }: NewsletterCTAProps) {
   const [email, setEmail] = useState('')
   const [submitted, setSubmitted] = useState(false)
 
@@ -22,20 +28,19 @@ export function NewsletterCTA() {
 
       <div className="relative max-w-2xl">
         <span className="inline-block mb-4 text-xs font-bold uppercase tracking-[0.15em] text-brand-200">
-          Stay sharp
+          {data.badgeText}
         </span>
         <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight mb-3">
-          Get the translation, not the textbook.
+          {data.headline}
         </h2>
         <p className="text-brand-100 text-base sm:text-lg mb-8 leading-relaxed">
-          Join practitioners getting concrete frameworks, research breakdowns, and
-          actionable systems — delivered without the academic fluff.
+          {data.subtext}
         </p>
 
         {submitted ? (
           <div className="flex items-center gap-3 bg-white/10 rounded-2xl p-4 w-fit">
             <CheckCircleIcon />
-            <p className="text-white font-semibold">You&apos;re in! Check your inbox.</p>
+            <p className="text-white font-semibold">{data.successMessage}</p>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md">
@@ -44,29 +49,29 @@ export function NewsletterCTA() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              placeholder="your@email.com"
+              placeholder={data.emailPlaceholder}
               className="flex-1 px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-brand-200 focus:outline-none focus:ring-2 focus:ring-white/40 text-sm"
             />
             <button
               type="submit"
               className="px-6 py-3 rounded-xl bg-white text-brand-700 font-bold text-sm hover:bg-brand-50 transition-colors whitespace-nowrap"
             >
-              Subscribe →
+              {data.buttonText}
             </button>
           </form>
         )}
 
         <p className="mt-4 text-xs text-brand-200">
-          Also follow on{' '}
+          {data.linkedInNudge.split('LinkedIn')[0]}
           <a
-            href="https://linkedin.com"
+            href={linkedInUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="underline hover:text-white transition-colors"
           >
             LinkedIn
-          </a>{' '}
-          for daily sharp takes.
+          </a>
+          {data.linkedInNudge.split('LinkedIn')[1]}
         </p>
       </div>
     </section>

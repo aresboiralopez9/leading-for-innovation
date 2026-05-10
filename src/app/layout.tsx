@@ -4,6 +4,7 @@ import './globals.css'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import { ThemeProvider } from '@/components/ThemeProvider'
+import { getSiteSettings, getFooterData } from '@/lib/content'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -11,19 +12,21 @@ const inter = Inter({
   display: 'swap',
 })
 
-export const metadata: Metadata = {
-  title: {
-    default: 'Leading for Innovation | Research → Reality',
-    template: '%s | Leading for Innovation',
-  },
-  description:
-    'We transform dense academic research into clear, opinionated, and immediately usable systems for real-world teams. Sharp insights. Concrete frameworks. Zero fluff.',
-  keywords: ['organizational design', 'innovation', 'leadership', 'frameworks', 'management', 'creativity'],
-  openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    siteName: 'Leading for Innovation',
-  },
+export async function generateMetadata(): Promise<Metadata> {
+  const settings = getSiteSettings()
+  return {
+    title: {
+      default: settings.siteMetaTitle,
+      template: `%s | ${settings.siteName}`,
+    },
+    description: settings.siteMetaDescription,
+    keywords: ['organizational design', 'innovation', 'leadership', 'frameworks', 'management', 'creativity'],
+    openGraph: {
+      type: 'website',
+      locale: 'en_US',
+      siteName: settings.siteName,
+    },
+  }
 }
 
 export default function RootLayout({
@@ -31,14 +34,17 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const settings = getSiteSettings()
+  const footer = getFooterData()
+
   return (
     <html lang="en" suppressHydrationWarning className={inter.variable}>
       <body className={inter.className}>
         <ThemeProvider>
           <div className="min-h-screen flex flex-col">
-            <Header />
+            <Header settings={settings} />
             <main className="flex-1">{children}</main>
-            <Footer />
+            <Footer footer={footer} settings={settings} />
           </div>
         </ThemeProvider>
       </body>
