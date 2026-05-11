@@ -48,13 +48,15 @@ export function Header({ settings }: HeaderProps) {
             className="text-sm font-semibold px-4 py-2 rounded-full bg-brand-500 text-white hover:bg-brand-600 transition-colors"
           >
             Follow Ares on LinkedIn
+          </a>  
           <a
            href={linkedInUrl2}
             target="_blank"
             rel="noopener noreferrer"
             className="text-sm font-semibold px-4 py-2 rounded-full bg-brand-500 text-white hover:bg-brand-600 transition-colors"
-           </a>
+           >
             Follow Sam on LinkedIn>
+          </a>
           <button
             onClick={toggle}
             aria-label="Toggle theme"
@@ -99,6 +101,7 @@ export function Header({ settings }: HeaderProps) {
               className="text-sm font-semibold px-4 py-2 rounded-full bg-brand-500 text-white text-center"
             >
               Follow Ares on LinkedIn
+            </a>
             <a
                href={linkedInUrl2}
               target="_blank"
