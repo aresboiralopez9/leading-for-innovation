@@ -1,12 +1,13 @@
-﻿import Link from 'next/link'
+import Link from 'next/link'
 import { getAllPosts, getFeaturedPosts, getFrameworkPosts } from '@/lib/posts'
 import { getHomePageData } from '@/lib/content'
 import { PostCard } from '@/components/PostCard'
 
 export default async function HomePage() {
-  const featured = getFeaturedPosts().slice(0, 3)
+  const featured = getFeaturedPosts().slice(0, 2)
+  const moreBlog = getAllPosts().slice(0, 3)
   const frameworks = getFrameworkPosts().slice(0, 3)
-  const latest = getAllPosts().slice(0, 6)
+  const latest = getAllPosts().slice(3, 5)
   const cms = getHomePageData()
 
   return (
@@ -28,45 +29,21 @@ export default async function HomePage() {
             <span className="text-brand-500">{cms.heroHeadlineAccent}</span>
           </h1>
 
-          <p className="text-lg sm:text-xl text-ink-muted dark:text-gray-400 leading-relaxed max-w-2xl mb-10">
+          <p className="text-lg sm:text-xl text-ink-muted dark:text-gray-400 leading-relaxed max-w-2xl">
             {cms.heroSubtext}
           </p>
-
-          {/* Only show button if text is provided */}
-          {(cms.heroPrimaryButtonText || cms.heroSecondaryButtonText) && (
-            <div className="flex flex-wrap gap-4">
-              {cms.heroPrimaryButtonText && (
-                <Link
-                  href={cms.heroPrimaryButtonHref}
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-ink dark:bg-white text-white dark:text-ink font-bold text-sm hover:opacity-80 transition-opacity"
-                >
-                  {cms.heroPrimaryButtonText}
-                </Link>
-              )}
-              {cms.heroSecondaryButtonText && (
-                <a
-                  href="#"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-gray-300 dark:border-gray-700 text-ink dark:text-white font-semibold text-sm hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
-                >
-                  {cms.heroSecondaryButtonText}
-                </a>
-              )}
-            </div>
-          )}
         </div>
       </section>
 
       {/* Positioning Strip - Enlarged */}
       {cms.positioningItems.length > 0 && (
-        <section className="border-y border-gray-200 dark:border-gray-800 py-12 mb-20">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+        <section className="border-y border-gray-200 dark:border-gray-800 py-16 mb-20">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-12">
             {cms.positioningItems.map((item) => (
-              <div key={item.label} className="flex items-start gap-4">
-                <span className="text-3xl">{item.icon}</span>
+              <div key={item.label} className="flex flex-col items-start gap-4">
+                <span className="text-4xl">{item.icon}</span>
                 <div>
-                  <p className="font-bold text-ink dark:text-white text-base mb-1">{item.label}</p>
+                  <p className="font-bold text-ink dark:text-white text-xl mb-2">{item.label}</p>
                   <p className="text-base text-ink-muted dark:text-gray-400 leading-relaxed">{item.desc}</p>
                 </div>
               </div>
@@ -80,15 +57,24 @@ export default async function HomePage() {
         <section className="mb-20">
           <div className="mb-8">
             <p className="section-title">{cms.featuredSectionLabel}</p>
-            {cms.featuredSectionHeading && (
-              <h2 className="text-2xl font-black tracking-tight text-ink dark:text-white mt-1">
-                {cms.featuredSectionHeading}
-              </h2>
-            )}
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {featured.map((post, i) => (
               <PostCard key={post.slug} post={post} featured={i === 0} />
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* More from the Blog */}
+      {moreBlog.length > 0 && (
+        <section className="mb-20">
+          <div className="mb-8">
+            <p className="section-title">{cms.moreBlogSectionLabel}</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {moreBlog.map((post) => (
+              <PostCard key={post.slug} post={post} />
             ))}
           </div>
         </section>
@@ -99,11 +85,6 @@ export default async function HomePage() {
         <section className="mb-20">
           <div className="mb-8">
             <p className="section-title">{cms.frameworksSectionLabel}</p>
-            {cms.frameworksSectionHeading && (
-              <h2 className="text-2xl font-black tracking-tight text-ink dark:text-white mt-1">
-                {cms.frameworksSectionHeading}
-              </h2>
-            )}
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {frameworks.map((post) => (
@@ -114,21 +95,18 @@ export default async function HomePage() {
       )}
 
       {/* Latest Posts */}
-      <section className="mb-20">
-        <div className="mb-8">
-          <p className="section-title">{cms.latestSectionLabel}</p>
-          {cms.latestSectionHeading && (
-            <h2 className="text-2xl font-black tracking-tight text-ink dark:text-white mt-1">
-              {cms.latestSectionHeading}
-            </h2>
-          )}
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {latest.map((post) => (
-            <PostCard key={post.slug} post={post} />
-          ))}
-        </div>
-      </section>
+      {latest.length > 0 && (
+        <section className="mb-20">
+          <div className="mb-8">
+            <p className="section-title">{cms.latestSectionLabel}</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {latest.map((post) => (
+              <PostCard key={post.slug} post={post} />
+            ))}
+          </div>
+        </section>
+      )}
 
     </div>
   )

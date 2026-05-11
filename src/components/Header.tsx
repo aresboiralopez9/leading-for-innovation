@@ -55,7 +55,7 @@ export function Header({ settings }: HeaderProps) {
             rel="noopener noreferrer"
             className="text-sm font-semibold px-4 py-2 rounded-full bg-brand-500 text-white hover:bg-brand-600 transition-colors"
            >
-            Follow Sam on LinkedIn>
+            Follow Sam on LinkedIn
           </a>
           <button
             onClick={toggle}

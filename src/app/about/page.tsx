@@ -43,22 +43,28 @@ export default async function AboutPage() {
         />
 
         {/* CTA buttons */}
-        <div className="flex flex-wrap gap-4 mb-16">
-          <Link
-            href={cms.primaryButtonHref}
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-ink dark:bg-white text-white dark:text-ink font-bold text-sm hover:opacity-80 transition-opacity"
-          >
-            {cms.primaryButtonText}
-          </Link>
-          <a
-            href={settings.linkedInUrl1}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-gray-300 dark:border-gray-700 text-ink dark:text-white font-semibold text-sm hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
-          >
-            {cms.secondaryButtonText}
-          </a>
-        </div>
+        {(cms.primaryButtonText || cms.secondaryButtonText) && (
+          <div className="flex flex-wrap gap-4 mb-16">
+            {cms.primaryButtonText && (
+              <Link
+                href={cms.primaryButtonHref}
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-ink dark:bg-white text-white dark:text-ink font-bold text-sm hover:opacity-80 transition-opacity"
+              >
+                {cms.primaryButtonText}
+              </Link>
+            )}
+            {cms.secondaryButtonText && (
+              <a
+                href={settings.linkedInUrl1}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-gray-300 dark:border-gray-700 text-ink dark:text-white font-semibold text-sm hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+              >
+                {cms.secondaryButtonText}
+              </a>
+            )}
+          </div>
+        )}
 
       </div>
     </div>

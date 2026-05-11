@@ -7,8 +7,6 @@ betaBadge: false
 navItems:
   - label: All Posts
     href: /blog
-  - label: Frameworks
-    href: /blog?category=frameworks
   - label: About
     href: /about
 siteMetaTitle: Leading for Innovation | Research to Reality

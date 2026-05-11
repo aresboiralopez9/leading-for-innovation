@@ -1,5 +1,5 @@
 ---
-seoTitle: "About & Manifesto"
+seoTitle: "About"
 seoDescription: "Who we are, what we believe, and why the gap between research and reality needs to close."
 sectionLabel: "Who We Are"
 headline: "Translators."
@@ -7,7 +7,7 @@ headlineAccent: "Not Curators."
 intro: "We sit at the intersection of creativity and innovation — and we're done watching great research die in journals while organizations keep making the same avoidable mistakes."
 primaryButtonText: "Read the Blog →"
 primaryButtonHref: "/blog"
-secondaryButtonText: "Follow on LinkedIn"
+secondaryButtonText: ""
 ---
 
 ## The Problem We're Solving

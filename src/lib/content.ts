@@ -45,9 +45,10 @@ export interface HomePageData {
   heroHeadline: string
   heroHeadlineAccent: string
   heroSubtext: string
+  positioningItems: PositioningItem[]
   featuredSectionLabel: string
   frameworksSectionLabel: string
-  secondlatestSectionLabel: string
+  moreBlogSectionLabel: string
   latestSectionLabel: string
 }
 
@@ -60,9 +61,9 @@ export function getHomePageData(): HomePageData {
     heroSubtext: (data.heroSubtext as string) ?? '',
     positioningItems: (data.positioningItems as PositioningItem[]) ?? [],
     featuredSectionLabel: (data.featuredSectionLabel as string) ?? "FEATURED THIS WEEK",
-    frameworksSectionLabel: (data.frameworksSectionLabel as string) ?? 'MORE FROM THE BLOG',
-    secondlatestSectionLabel: (data.latestSectionLabel as string) ?? 'OUR NAMED FRAMEWORKS',
-    latestSectionLabel: (data.latestSectionHeading as string) ?? 'SAME TOPIC · TWO ANGLES · THIS WEEK',
+    frameworksSectionLabel: (data.frameworksSectionLabel as string) ?? 'OUR NAMED FRAMEWORKS',
+    moreBlogSectionLabel: (data.secondlatestSectionLabel as string) ?? 'MORE FROM THE BLOG',
+    latestSectionLabel: (data.latestSectionLabel as string) ?? 'SAME TOPIC · TWO ANGLES · THIS WEEK',
   }
 }
 
@@ -87,7 +88,7 @@ export async function getAboutPageData(): Promise<AboutPageData> {
   const { data, content } = readMd('content/pages/about.md')
   const bodyHtml = await mdToHtml(content)
   return {
-    seoTitle: (data.seoTitle as string) ?? 'About & Manifesto',
+    seoTitle: (data.seoTitle as string) ?? 'About',
     seoDescription: (data.seoDescription as string) ?? '',
     sectionLabel: (data.sectionLabel as string) ?? 'Who We Are',
     headline: (data.headline as string) ?? 'Translators.',
@@ -95,7 +96,7 @@ export async function getAboutPageData(): Promise<AboutPageData> {
     intro: (data.intro as string) ?? '',
     primaryButtonText: (data.primaryButtonText as string) ?? 'Read the Blog →',
     primaryButtonHref: (data.primaryButtonHref as string) ?? '/blog',
-    secondaryButtonText: (data.secondaryButtonText as string) ?? 'Follow on LinkedIn',
+    secondaryButtonText: (data.secondaryButtonText as string) ?? '',
     bodyHtml,
   }
 }
@@ -125,8 +126,8 @@ export function getSiteSettings(): SiteSettingsData {
   return {
     siteName: (data.siteName as string) ?? 'LEADING FOR INNOVATION',
     siteTagline: (data.siteTagline as string) ?? 'Research → Reality',
-    linkedInUrl1: (data.linkedInUrl as string) ?? 'https://www.linkedin.com/in/aresboiralopez/',
-    linkedInUrl2: (data.linkedInUrl as string) ?? 'https://www.linkedin.com/in/samantha-england-phd-9a614b149/',
+    linkedInUrl1: (data.linkedInUrl1 as string) ?? 'https://www.linkedin.com/in/aresboiralopez/',
+    linkedInUrl2: (data.linkedInUrl2 as string) ?? 'https://www.linkedin.com/in/samantha-england-phd-9a614b149/',
     betaBadge: (data.betaBadge as boolean) ?? true,
     navItems: (data.navItems as NavItem[]) ?? [
       { label: 'All Posts', href: '/blog' },
@@ -157,6 +158,6 @@ export function getFooterData(): FooterData {
     staySectionLabel: (data.staySectionLabel as string) ?? 'Stay Sharp',
     staySectionText: (data.staySectionText as string) ?? '',
     copyrightSuffix: (data.copyrightSuffix as string) ?? 'LEADING FOR INNOVATION. All rights reserved.',
-    builtByLine: (data.builtByLine as string) ?? 'Built for practitioners, by practitioners.',
+    builtByLine: (data.builtByLine as string) ?? '',
   }
 }

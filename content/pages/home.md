@@ -16,10 +16,12 @@ positioningItems:
   - icon: "🏗️"
     label: Build
     desc: 'Frameworks, systems, and methods you can actually use'
-featuredSectionLabel: SAME TOPIC · TWO ANGLES · THIS WEEK
+featuredSectionLabel: FEATURED THIS WEEK
 featuredSectionHeading: ""
 frameworksSectionLabel: OUR NAMED FRAMEWORKS
 frameworksSectionHeading: ""
-latestSectionLabel: MORE FROM THE BLOG
+latestSectionLabel: SAME TOPIC · TWO ANGLES · THIS WEEK
 latestSectionHeading: ""
+secondlatestSectionLabel: MORE FROM THE BLOG
+secondlatestSectionHeading: ""
 ---
