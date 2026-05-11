@@ -1,8 +1,8 @@
 ---
 siteName: LEADING FOR INNOVATION
 siteTagline: Research → Reality
-linkedInUrl: 'https://www.linkedin.com/in/aresboiralopez/'
-linkedInUrl: 'https://www.linkedin.com/in/samantha-england-phd-9a614b149/'
+linkedInUrl1: 'https://www.linkedin.com/in/aresboiralopez/'
+linkedInUrl2: 'https://www.linkedin.com/in/samantha-england-phd-9a614b149/'
 betaBadge: false
 navItems:
   - label: All Posts
