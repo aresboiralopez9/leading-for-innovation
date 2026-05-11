@@ -3,9 +3,9 @@ heroBadgeText: Research to Reality
 heroHeadline: The gap between what feels right and what actually works is where most teams get stuck.
 heroHeadlineAccent: We close it.
 heroSubtext: 'Good innovation practice rarely feels natural. We take the research seriously, challenge what intuition gets backwards, and turn the findings into methods you can actually use.'
-heroPrimaryButtonText: Read the Blog
-heroPrimaryButtonHref: /blog
-heroSecondaryButtonText: Follow on LinkedIn
+heroPrimaryButtonText: ''
+heroPrimaryButtonHref: ''
+heroSecondaryButtonText: ''
 positioningItems:
   - icon: "\U0001F52C"
     label: Translate
