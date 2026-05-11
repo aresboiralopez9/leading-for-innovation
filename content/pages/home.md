@@ -14,10 +14,8 @@ positioningItems:
     label: Build
     desc: 'Frameworks, systems, and methods you can actually use'
 featuredSectionLabel: FEATURED THIS WEEK
-featuredSectionHeading: ''
-frameworksSectionLabel: MORE FROM THE BLOG
-frameworksSectionHeading: ''
-latestSectionLabel: OUR NAMED FRAMEWORKS
-latestSectionHeading: ''
+moreSectionLabel: MORE FROM THE BLOG
+frameworksSectionLabel: OUR NAMED FRAMEWORKS
+sametopictwoanglesLabel: SAME TOPIC · TWO ANGLES · THIS WEEK
 ---
 
