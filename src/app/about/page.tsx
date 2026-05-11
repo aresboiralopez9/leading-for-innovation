@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { NewsletterCTAWrapper } from '@/components/NewsletterCTAWrapper'
 import { getAboutPageData, getSiteSettings } from '@/lib/content'
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -52,7 +51,7 @@ export default async function AboutPage() {
             {cms.primaryButtonText}
           </Link>
           <a
-            href={settings.linkedInUrl}
+            href={settings.linkedInUrl1}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-gray-300 dark:border-gray-700 text-ink dark:text-white font-semibold text-sm hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
@@ -62,8 +61,6 @@ export default async function AboutPage() {
         </div>
 
       </div>
-
-      <NewsletterCTAWrapper />
     </div>
   )
 }
