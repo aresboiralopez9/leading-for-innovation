@@ -161,3 +161,30 @@ export function getFooterData(): FooterData {
     builtByLine: (data.builtByLine as string) ?? '',
   }
 }
+
+// ─────────────────────────────────────────────────────────────────
+// NEWSLETTER CTA
+// ─────────────────────────────────────────────────────────────────
+
+export interface NewsletterCTAData {
+  badgeText: string
+  headline: string
+  subtext: string
+  emailPlaceholder: string
+  buttonText: string
+  successMessage: string
+  linkedInNudge: string
+}
+
+export function getNewsletterCTAData(): NewsletterCTAData {
+  const { data } = readMd('content/globals/newsletter.md')
+  return {
+    badgeText: (data.badgeText as string) ?? 'Stay Sharp',
+    headline: (data.headline as string) ?? 'Get new insights delivered weekly',
+    subtext: (data.subtext as string) ?? 'Join our community of practitioners who care about impact.',
+    emailPlaceholder: (data.emailPlaceholder as string) ?? 'Your email',
+    buttonText: (data.buttonText as string) ?? 'Subscribe',
+    successMessage: (data.successMessage as string) ?? 'Thanks for subscribing!',
+    linkedInNudge: (data.linkedInNudge as string) ?? 'Or follow us on LinkedIn for daily insights',
+  }
+}
