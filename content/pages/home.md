@@ -13,11 +13,11 @@ positioningItems:
   - icon: "\U0001F3D7️"
     label: Build
     desc: 'Frameworks, systems, and methods you can actually use'
-featuredSectionLabel: Editor's Pick
-featuredSectionHeading: Essential Reading
-frameworksSectionLabel: Named Frameworks
-frameworksSectionHeading: Our Signature Systems
-latestSectionLabel: Fresh Off the Press
-latestSectionHeading: Latest Thinking
+featuredSectionLabel: FEATURED THIS WEEK
+featuredSectionHeading: ''
+frameworksSectionLabel: MORE FROM THE BLOG
+frameworksSectionHeading: ''
+latestSectionLabel: OUR NAMED FRAMEWORKS
+latestSectionHeading: ''
 ---
 
