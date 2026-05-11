@@ -1,8 +1,7 @@
-import Link from 'next/link'
+﻿import Link from 'next/link'
 import { getAllPosts, getFeaturedPosts, getFrameworkPosts } from '@/lib/posts'
 import { getHomePageData } from '@/lib/content'
 import { PostCard } from '@/components/PostCard'
-import { NewsletterCTAWrapper } from '@/components/NewsletterCTAWrapper'
 
 export default async function HomePage() {
   const featured = getFeaturedPosts().slice(0, 3)
@@ -13,7 +12,7 @@ export default async function HomePage() {
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6">
 
-      {/* ── Hero ── */}
+      {/* Hero */}
       <section className="pt-16 pb-20 sm:pt-24 sm:pb-28">
         <div className="max-w-3xl">
           <div className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full bg-brand-50 dark:bg-brand-900/30 border border-brand-100 dark:border-brand-800">
@@ -33,35 +32,42 @@ export default async function HomePage() {
             {cms.heroSubtext}
           </p>
 
-          <div className="flex flex-wrap gap-4">
-            <Link
-              href={cms.heroPrimaryButtonHref}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-ink dark:bg-white text-white dark:text-ink font-bold text-sm hover:opacity-80 transition-opacity"
-            >
-              {cms.heroPrimaryButtonText}
-            </Link>
-            <a
-              href="#"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-gray-300 dark:border-gray-700 text-ink dark:text-white font-semibold text-sm hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
-            >
-              {cms.heroSecondaryButtonText}
-            </a>
-          </div>
+          {/* Only show button if text is provided */}
+          {(cms.heroPrimaryButtonText || cms.heroSecondaryButtonText) && (
+            <div className="flex flex-wrap gap-4">
+              {cms.heroPrimaryButtonText && (
+                <Link
+                  href={cms.heroPrimaryButtonHref}
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-ink dark:bg-white text-white dark:text-ink font-bold text-sm hover:opacity-80 transition-opacity"
+                >
+                  {cms.heroPrimaryButtonText}
+                </Link>
+              )}
+              {cms.heroSecondaryButtonText && (
+                <a
+                  href="#"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-gray-300 dark:border-gray-700 text-ink dark:text-white font-semibold text-sm hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                >
+                  {cms.heroSecondaryButtonText}
+                </a>
+              )}
+            </div>
+          )}
         </div>
       </section>
 
-      {/* ── Positioning Strip ── */}
+      {/* Positioning Strip - Enlarged */}
       {cms.positioningItems.length > 0 && (
-        <section className="border-y border-gray-200 dark:border-gray-800 py-8 mb-20">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+        <section className="border-y border-gray-200 dark:border-gray-800 py-12 mb-20">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
             {cms.positioningItems.map((item) => (
-              <div key={item.label} className="flex items-start gap-3">
-                <span className="text-2xl">{item.icon}</span>
+              <div key={item.label} className="flex items-start gap-4">
+                <span className="text-3xl">{item.icon}</span>
                 <div>
-                  <p className="font-bold text-ink dark:text-white text-sm">{item.label}</p>
-                  <p className="text-sm text-ink-muted dark:text-gray-400">{item.desc}</p>
+                  <p className="font-bold text-ink dark:text-white text-base mb-1">{item.label}</p>
+                  <p className="text-base text-ink-muted dark:text-gray-400 leading-relaxed">{item.desc}</p>
                 </div>
               </div>
             ))}
@@ -69,19 +75,16 @@ export default async function HomePage() {
         </section>
       )}
 
-      {/* ── Featured Posts ── */}
+      {/* Featured Posts */}
       {featured.length > 0 && (
         <section className="mb-20">
-          <div className="flex items-center justify-between mb-8">
-            <div>
-              <p className="section-title mb-1">{cms.featuredSectionLabel}</p>
-              <h2 className="text-2xl font-black tracking-tight text-ink dark:text-white">
+          <div className="mb-8">
+            <p className="section-title">{cms.featuredSectionLabel}</p>
+            {cms.featuredSectionHeading && (
+              <h2 className="text-2xl font-black tracking-tight text-ink dark:text-white mt-1">
                 {cms.featuredSectionHeading}
               </h2>
-            </div>
-            <Link href="/blog" className="text-sm font-semibold text-brand-600 dark:text-brand-400 hover:underline">
-              All posts →
-            </Link>
+            )}
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {featured.map((post, i) => (
@@ -91,19 +94,16 @@ export default async function HomePage() {
         </section>
       )}
 
-      {/* ── Frameworks Section ── */}
+      {/* Frameworks Section */}
       {frameworks.length > 0 && (
         <section className="mb-20">
-          <div className="flex items-center justify-between mb-8">
-            <div>
-              <p className="section-title mb-1">{cms.frameworksSectionLabel}</p>
-              <h2 className="text-2xl font-black tracking-tight text-ink dark:text-white">
+          <div className="mb-8">
+            <p className="section-title">{cms.frameworksSectionLabel}</p>
+            {cms.frameworksSectionHeading && (
+              <h2 className="text-2xl font-black tracking-tight text-ink dark:text-white mt-1">
                 {cms.frameworksSectionHeading}
               </h2>
-            </div>
-            <Link href="/blog?category=frameworks" className="text-sm font-semibold text-brand-600 dark:text-brand-400 hover:underline">
-              All frameworks →
-            </Link>
+            )}
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {frameworks.map((post) => (
@@ -113,21 +113,15 @@ export default async function HomePage() {
         </section>
       )}
 
-      {/* ── Newsletter CTA ── */}
-      <NewsletterCTAWrapper />
-
-      {/* ── Latest Posts ── */}
+      {/* Latest Posts */}
       <section className="mb-20">
-        <div className="flex items-center justify-between mb-8">
-          <div>
-            <p className="section-title mb-1">{cms.latestSectionLabel}</p>
-            <h2 className="text-2xl font-black tracking-tight text-ink dark:text-white">
+        <div className="mb-8">
+          <p className="section-title">{cms.latestSectionLabel}</p>
+          {cms.latestSectionHeading && (
+            <h2 className="text-2xl font-black tracking-tight text-ink dark:text-white mt-1">
               {cms.latestSectionHeading}
             </h2>
-          </div>
-          <Link href="/blog" className="text-sm font-semibold text-brand-600 dark:text-brand-400 hover:underline">
-            View all →
-          </Link>
+          )}
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {latest.map((post) => (
