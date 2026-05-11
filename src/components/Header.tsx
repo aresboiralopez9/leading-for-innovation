@@ -13,7 +13,7 @@ export function Header({ settings }: HeaderProps) {
   const { theme, toggle } = useTheme()
   const [menuOpen, setMenuOpen] = useState(false)
 
-  const { siteName, betaBadge, navItems, linkedInUrl } = settings
+  const { siteName, betaBadge, navItems, linkedInUrl1, linkedInUrl2 } = settings
 
   return (
     <header className="sticky top-0 z-50 border-b border-gray-200 dark:border-gray-800 bg-canvas/80 dark:bg-[#0c0c0e]/80 backdrop-blur-md">
@@ -42,13 +42,19 @@ export function Header({ settings }: HeaderProps) {
             </Link>
           ))}
           <a
-            href={linkedInUrl}
+            href={linkedInUrl1}
             target="_blank"
             rel="noopener noreferrer"
             className="text-sm font-semibold px-4 py-2 rounded-full bg-brand-500 text-white hover:bg-brand-600 transition-colors"
           >
-            Follow on LinkedIn
-          </a>
+            Follow Ares on LinkedIn
+          <a
+           href={linkedInUrl2}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm font-semibold px-4 py-2 rounded-full bg-brand-500 text-white hover:bg-brand-600 transition-colors"
+           </a>
+            Follow Sam on LinkedIn>
           <button
             onClick={toggle}
             aria-label="Toggle theme"
@@ -87,12 +93,19 @@ export function Header({ settings }: HeaderProps) {
               </Link>
             ))}
             <a
-              href={linkedInUrl}
+              href={linkedInUrl1}
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm font-semibold px-4 py-2 rounded-full bg-brand-500 text-white text-center"
             >
-              Follow on LinkedIn
+              Follow Ares on LinkedIn
+            <a
+               href={linkedInUrl2}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm font-semibold px-4 py-2 rounded-full bg-brand-500 text-white text-center"
+            >
+              Follow Sam on LinkedIn
             </a>
           </nav>
         </div>
