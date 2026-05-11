@@ -11,5 +11,5 @@ import { NewsletterCTA } from './NewsletterCTA'
 export function NewsletterCTAWrapper() {
   const data = getNewsletterCTAData()
   const settings = getSiteSettings()
-  return <NewsletterCTA data={data} linkedInUrl={settings.linkedInUrl} />
+  return <NewsletterCTA data={data} linkedInUrl={settings.linkedInUrl1} />
 }
