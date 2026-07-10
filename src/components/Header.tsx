@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useTheme } from './ThemeProvider'
 import { useState } from 'react'
 import type { SiteSettingsData } from '@/lib/content'
@@ -13,102 +14,138 @@ export function Header({ settings }: HeaderProps) {
   const { theme, toggle } = useTheme()
   const [menuOpen, setMenuOpen] = useState(false)
 
-  const { siteName, betaBadge, navItems, linkedInUrl1, linkedInUrl2 } = settings
+  const { betaBadge, navItems, linkedInUrl1, linkedInUrl2 } = settings
+
+  const primaryButtonClass =
+    'text-sm font-semibold px-4 py-2 rounded-full bg-lfi-blue text-white hover:bg-lfi-green transition-colors shadow-sm'
+
+  const secondaryButtonClass =
+    'text-sm font-semibold px-4 py-2 rounded-full border border-lfi-green text-lfi-green hover:bg-lfi-mint hover:text-lfi-green transition-colors'
+
+  const mobilePrimaryButtonClass =
+    'text-sm font-semibold px-4 py-2 rounded-full bg-lfi-blue text-white text-center hover:bg-lfi-green transition-colors'
+
+  const mobileSecondaryButtonClass =
+    'text-sm font-semibold px-4 py-2 rounded-full border border-lfi-green text-lfi-green text-center hover:bg-lfi-mint transition-colors'
 
   return (
-    <header className="sticky top-0 z-50 border-b border-gray-200 dark:border-gray-800 bg-canvas/80 dark:bg-[#0c0c0e]/80 backdrop-blur-md">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 group">
-          <span className="text-xl font-black tracking-tight text-ink dark:text-white group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
-            {siteName}
-          </span>
+    <header className="sticky top-0 z-50 border-b border-gray-200 dark:border-gray-800 bg-lfi-white/90 dark:bg-[#0c0c0e]/90 backdrop-blur-md">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+        <Link href="/" className="flex items-center gap-3 group" aria-label="Leading for Innovation home">
+          <Image
+            src="/lfi-horizontal-logo.png"
+            alt="Leading for Innovation"
+            width={250}
+            height={80}
+            priority
+            className="hidden sm:block h-10 w-auto"
+          />
+
+          <Image
+            src="/lfi-icon.png"
+            alt="Leading for Innovation"
+            width={42}
+            height={42}
+            priority
+            className="sm:hidden h-10 w-10 rounded-md"
+          />
+
           {betaBadge && (
-            <span className="hidden sm:inline-block px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider rounded bg-brand-500 text-white">
+            <span className="hidden lg:inline-block px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider rounded-full bg-lfi-yellow text-black">
               Beta
             </span>
           )}
         </Link>
 
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-6">
+        <nav className="hidden md:flex items-center gap-5">
           {navItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="text-sm font-medium text-ink-muted dark:text-gray-400 hover:text-ink dark:hover:text-white transition-colors"
+              className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-lfi-blue dark:hover:text-lfi-yellow transition-colors"
             >
               {item.label}
             </Link>
           ))}
+
           <a
             href={linkedInUrl1}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm font-semibold px-4 py-2 rounded-full bg-brand-500 text-white hover:bg-brand-600 transition-colors"
+            className={primaryButtonClass}
           >
-            Follow Ares on LinkedIn
-          </a>  
+            Ares on LinkedIn
+          </a>
+
           <a
-           href={linkedInUrl2}
+            href={linkedInUrl2}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm font-semibold px-4 py-2 rounded-full bg-brand-500 text-white hover:bg-brand-600 transition-colors"
-           >
-            Follow Sam on LinkedIn
+            className={secondaryButtonClass}
+          >
+            Sam on LinkedIn
           </a>
+
           <button
             onClick={toggle}
             aria-label="Toggle theme"
-            className="p-2 rounded-lg text-ink-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+            className="p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-lfi-mint/40 dark:hover:bg-gray-800 transition-colors"
           >
             {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
           </button>
         </nav>
 
-        {/* Mobile */}
         <div className="flex md:hidden items-center gap-2">
-          <button onClick={toggle} className="p-2 rounded-lg text-ink-muted dark:text-gray-400">
+          <button
+            onClick={toggle}
+            aria-label="Toggle theme"
+            className="p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-lfi-mint/40 dark:hover:bg-gray-800 transition-colors"
+          >
             {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
           </button>
+
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="p-2 rounded-lg text-ink-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800"
+            aria-label="Open menu"
+            className="p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-lfi-mint/40 dark:hover:bg-gray-800 transition-colors"
           >
             {menuOpen ? <XIcon /> : <MenuIcon />}
           </button>
         </div>
       </div>
 
-      {/* Mobile menu */}
       {menuOpen && (
-        <div className="md:hidden border-t border-gray-200 dark:border-gray-800 bg-canvas dark:bg-[#0c0c0e]">
-          <nav className="max-w-5xl mx-auto px-4 py-4 flex flex-col gap-3">
+        <div className="md:hidden border-t border-gray-200 dark:border-gray-800 bg-lfi-white dark:bg-[#0c0c0e]">
+          <nav className="max-w-6xl mx-auto px-4 py-4 flex flex-col gap-3">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 onClick={() => setMenuOpen(false)}
-                className="text-sm font-medium text-ink-muted dark:text-gray-400 hover:text-ink dark:hover:text-white"
+                className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-lfi-blue dark:hover:text-lfi-yellow"
               >
                 {item.label}
               </Link>
             ))}
+
             <a
               href={linkedInUrl1}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm font-semibold px-4 py-2 rounded-full bg-brand-500 text-white text-center"
+              onClick={() => setMenuOpen(false)}
+              className={mobilePrimaryButtonClass}
             >
-              Follow Ares on LinkedIn
+              Ares on LinkedIn
             </a>
+
             <a
-               href={linkedInUrl2}
+              href={linkedInUrl2}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm font-semibold px-4 py-2 rounded-full bg-brand-500 text-white text-center"
+              onClick={() => setMenuOpen(false)}
+              className={mobileSecondaryButtonClass}
             >
-              Follow Sam on LinkedIn
+              Sam on LinkedIn
             </a>
           </nav>
         </div>
