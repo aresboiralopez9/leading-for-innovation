@@ -99,7 +99,7 @@ export default async function PostPage({ params }: Props) {
             href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`https://yourblog.com/blog/${post.slug}`)}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#0077b5] text-white text-sm font-semibold hover:bg-[#006097] transition-colors"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-lfi-blue text-white text-sm font-semibold hover:bg-lfi-green transition-colors"
           >
             Share on LinkedIn
           </a>

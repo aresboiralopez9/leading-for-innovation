@@ -14,19 +14,19 @@ export default function AdminPage() {
         <p className="text-gray-500 dark:text-gray-400 mb-8 text-sm leading-relaxed">
           To write or edit posts, run the blog locally on your computer. 
           The visual editor will be available at{" "}
-          <code className="bg-gray-100 dark:bg-gray-700 px-1.5 py-0.5 rounded text-blue-600 dark:text-blue-400 text-xs">
+          <code className="bg-gray-100 dark:bg-gray-700 px-1.5 py-0.5 rounded text-lfi-blue dark:text-lfi-yellow text-xs">
             localhost:3000/admin
           </code>
         </p>
         <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4 text-left mb-6">
           <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Run this command:</p>
-          <code className="text-sm text-green-600 dark:text-green-400 font-mono">
+          <code className="text-sm text-lfi-green dark:text-lfi-mint font-mono">
             npm run dev
           </code>
         </div>
         <a
           href="/"
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-blue-600 text-white text-sm font-semibold hover:bg-blue-700 transition-colors"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-lfi-blue text-white text-sm font-semibold hover:bg-lfi-green transition-colors"
         >
           ← Back to Blog
         </a>
