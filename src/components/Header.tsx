@@ -10,23 +10,19 @@ interface HeaderProps {
   settings: SiteSettingsData
 }
 
+const LINKEDIN_URL = 'https://www.linkedin.com/in/leadingforinnovation/'
+
 export function Header({ settings }: HeaderProps) {
   const { theme, toggle } = useTheme()
   const [menuOpen, setMenuOpen] = useState(false)
 
-  const { betaBadge, navItems, linkedInUrl1, linkedInUrl2 } = settings
+  const { betaBadge, navItems } = settings
 
   const primaryButtonClass =
     'text-sm font-semibold px-4 py-2 rounded-full bg-lfi-blue text-white hover:bg-lfi-green transition-colors shadow-sm'
 
-  const secondaryButtonClass =
-    'text-sm font-semibold px-4 py-2 rounded-full border border-lfi-green text-lfi-green hover:bg-lfi-mint hover:text-lfi-green transition-colors'
-
   const mobilePrimaryButtonClass =
     'text-sm font-semibold px-4 py-2 rounded-full bg-lfi-blue text-white text-center hover:bg-lfi-green transition-colors'
-
-  const mobileSecondaryButtonClass =
-    'text-sm font-semibold px-4 py-2 rounded-full border border-lfi-green text-lfi-green text-center hover:bg-lfi-mint transition-colors'
 
   return (
     <header className="sticky top-0 z-50 border-b border-gray-200 dark:border-gray-800 bg-lfi-white/90 dark:bg-[#0c0c0e]/90 backdrop-blur-md">
@@ -69,21 +65,12 @@ export function Header({ settings }: HeaderProps) {
           ))}
 
           <a
-            href={linkedInUrl1}
+            href={LINKEDIN_URL}
             target="_blank"
             rel="noopener noreferrer"
             className={primaryButtonClass}
           >
-            Ares on LinkedIn
-          </a>
-
-          <a
-            href={linkedInUrl2}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={secondaryButtonClass}
-          >
-            Sam on LinkedIn
+            LinkedIn
           </a>
 
           <button
@@ -129,23 +116,13 @@ export function Header({ settings }: HeaderProps) {
             ))}
 
             <a
-              href={linkedInUrl1}
+              href={LINKEDIN_URL}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setMenuOpen(false)}
               className={mobilePrimaryButtonClass}
             >
-              Ares on LinkedIn
-            </a>
-
-            <a
-              href={linkedInUrl2}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => setMenuOpen(false)}
-              className={mobileSecondaryButtonClass}
-            >
-              Sam on LinkedIn
+              LinkedIn
             </a>
           </nav>
         </div>
