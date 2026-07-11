@@ -30,24 +30,24 @@ export function Header({ settings }: HeaderProps) {
 
   return (
     <header className="sticky top-0 z-50 border-b border-gray-200 dark:border-gray-800 bg-lfi-white/90 dark:bg-[#0c0c0e]/90 backdrop-blur-md">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-3 group" aria-label="Leading for Innovation home">
           <Image
             src="/lfi-horizontal-logo.png"
             alt="Leading for Innovation"
-            width={250}
-            height={80}
+            width={1943}
+            height={647}
             priority
-            className="hidden sm:block h-10 w-auto"
+            className="hidden sm:block h-14 w-auto"
           />
 
           <Image
             src="/lfi-icon.png"
             alt="Leading for Innovation"
-            width={42}
-            height={42}
+            width={56}
+            height={56}
             priority
-            className="sm:hidden h-10 w-10 rounded-md"
+            className="sm:hidden h-12 w-12 rounded-md"
           />
 
           {betaBadge && (
