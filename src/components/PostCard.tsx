@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import type { PostMeta } from '@/lib/posts'
 import { formatDate } from '@/lib/utils'
+import { Byline } from '@/components/Byline'
 
 interface PostCardProps {
   post: PostMeta
@@ -40,6 +41,13 @@ export function PostCard({ post, featured = false }: PostCardProps) {
           {post.excerpt}
         </p>
 
+        {/* Byline */}
+        {post.author && (
+          <div className="mb-4">
+            <Byline authorId={post.author} size="sm" linked={false} />
+          </div>
+        )}
+
         {/* Footer */}
         <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-100 dark:border-gray-800">
           <div className="flex flex-wrap gap-1.5">
@@ -54,7 +62,6 @@ export function PostCard({ post, featured = false }: PostCardProps) {
             {post.readingTime} min
           </div>
         </div>
-
         <div className="mt-3 text-xs text-ink-subtle dark:text-gray-500">
           {formatDate(post.date)}
         </div>
