@@ -3,6 +3,8 @@ import Link from 'next/link'
 import { getPost, getAllPostSlugs } from '@/lib/posts'
 import { formatDate } from '@/lib/utils'
 import { NewsletterCTAWrapper } from '@/components/NewsletterCTAWrapper'
+import { Byline } from '@/components/Byline'
+import { CompanionPiece } from '@/components/CompanionPiece'
 import type { Metadata } from 'next'
 
 interface Props {
@@ -56,6 +58,13 @@ export default async function PostPage({ params }: Props) {
             {post.excerpt}
           </p>
 
+          {/* Byline */}
+          {post.author && (
+            <div className="mb-6">
+              <Byline authorId={post.author} size="md" />
+            </div>
+          )}
+
           {/* Meta bar */}
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2 py-4 border-y border-gray-200 dark:border-gray-800 text-sm text-ink-muted dark:text-gray-400">
             <div className="flex items-center gap-1.5">
@@ -88,6 +97,9 @@ export default async function PostPage({ params }: Props) {
             prose-a:text-brand-600 dark:prose-a:text-brand-400"
           dangerouslySetInnerHTML={{ __html: post.contentHtml }}
         />
+
+        {/* Companion piece */}
+        {post.companionSlug && <CompanionPiece slug={post.companionSlug} />}
 
         {/* Share / CTA strip */}
         <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800 flex flex-col sm:flex-row items-start sm:items-center gap-4 justify-between">
