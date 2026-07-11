@@ -17,6 +17,10 @@ export interface PostMeta {
   featured?: boolean
   framework?: boolean
   frameworkName?: string
+  /** Author id, matching a key in lib/authors.ts (e.g. 'ares' | 'sam') */
+  author?: string
+  /** Slug of the paired "same topic, different angle" post, if any */
+  companionSlug?: string
 }
 
 export interface Post extends PostMeta {
@@ -43,7 +47,6 @@ export function getAllPosts(): PostMeta[] {
   const posts = slugs
     .map((slug) => getPostMeta(slug))
     .filter(Boolean) as PostMeta[]
-
   return posts.sort((a, b) => (a.date < b.date ? 1 : -1))
 }
 
@@ -91,10 +94,18 @@ export function getPostMeta(slug: string): PostMeta | null {
       featured: data.featured || false,
       framework: data.framework || false,
       frameworkName: data.frameworkName || '',
+      author: data.author || '',
+      companionSlug: data.companionSlug || '',
     }
   } catch {
     return null
   }
+}
+
+/** Convenience helper: resolves a post's paired "companion" post, if it has one. */
+export function getCompanionPost(post: PostMeta): PostMeta | null {
+  if (!post.companionSlug) return null
+  return getPostMeta(post.companionSlug)
 }
 
 export async function getPost(slug: string): Promise<Post | null> {
@@ -104,10 +115,8 @@ export async function getPost(slug: string): Promise<Post | null> {
     const filePath = fs.existsSync(mdPath) ? mdPath : mdxPath
     const raw = fs.readFileSync(filePath, 'utf8')
     const { data, content } = matter(raw)
-
     const processed = await remark().use(html).process(content)
     const contentHtml = processed.toString()
-
     return {
       slug,
       title: data.title || slug,
@@ -119,6 +128,8 @@ export async function getPost(slug: string): Promise<Post | null> {
       featured: data.featured || false,
       framework: data.framework || false,
       frameworkName: data.frameworkName || '',
+      author: data.author || '',
+      companionSlug: data.companionSlug || '',
       content,
       contentHtml,
     }
