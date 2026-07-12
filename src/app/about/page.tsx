@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import Image from 'next/image'
 import { getAboutPageData, getSiteSettings } from '@/lib/content'
+import { getAllAuthors } from '@/lib/authors'
 
 export async function generateMetadata(): Promise<Metadata> {
   const cms = await getAboutPageData()
@@ -13,11 +15,11 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function AboutPage() {
   const cms = await getAboutPageData()
   const settings = getSiteSettings()
+  const authors = getAllAuthors()
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 py-16">
       <div className="max-w-2xl mx-auto">
-
         {/* Header */}
         <div className="mb-14">
           <p className="section-title mb-3">{cms.sectionLabel}</p>
@@ -65,7 +67,45 @@ export default async function AboutPage() {
             )}
           </div>
         )}
+      </div>
 
+      {/* Who's behind it */}
+      <div className="max-w-4xl mx-auto border-t border-gray-200 dark:border-gray-800 pt-14">
+        <p className="section-title mb-3">The People</p>
+        <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-ink dark:text-white mb-8">
+          Two voices, one system
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          {authors.map((author) => (
+            <Link
+              key={author.id}
+              href={`/about/${author.id}`}
+              className="group block bg-white dark:bg-[#111114] border border-gray-200 dark:border-gray-800 rounded-2xl p-6 card-hover"
+            >
+              <span
+                className={`relative flex items-center justify-center rounded-full overflow-hidden w-14 h-14 mb-4 ${author.color} text-white font-bold text-lg`}
+              >
+                {author.photo ? (
+                  <Image src={author.photo} alt={author.name} fill className="object-cover" sizes="56px" />
+                ) : (
+                  author.initials
+                )}
+              </span>
+              <h3 className="text-lg font-bold text-ink dark:text-white mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
+                {author.name}
+              </h3>
+              <p className="text-xs font-semibold text-ink-subtle dark:text-gray-500 uppercase tracking-wide mb-3">
+                {author.role}
+              </p>
+              <p className="text-sm text-ink-muted dark:text-gray-400 leading-relaxed mb-4">
+                {author.bio}
+              </p>
+              <span className="text-xs font-semibold text-brand-600 dark:text-brand-400">
+                Read {author.name}&rsquo;s posts →
+              </span>
+            </Link>
+          ))}
+        </div>
       </div>
     </div>
   )
