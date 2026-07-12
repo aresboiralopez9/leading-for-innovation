@@ -23,7 +23,7 @@ export const authors: Record<string, Author> = {
     bio: 'Writes on systems, organizational design, and turning research into repeatable practice.',
     longBio:
       'Ares focuses on the structural side of innovation — how teams are organized, how decisions actually get made, and where research on organizational design gets misapplied in practice. His pieces tend to start from a system and work down to what a manager should do differently on Monday.',
-    photo: '',
+    photo: '/authors/ares.jpg',
     linkedInUrl: 'https://www.linkedin.com/in/aresboiralopez/',
     color: 'bg-lfi-blue',
     initials: 'A',
@@ -35,7 +35,7 @@ export const authors: Record<string, Author> = {
     bio: 'Writes on creativity, team performance, and challenging conventional wisdom.',
     longBio:
       'Sam focuses on the human side of innovation — creativity, motivation, and the everyday habits that make or break a team\u2019s ability to do original work. His pieces tend to start from a misconception and work up to a concrete method for fixing it.',
-    photo: '',
+    photo: '/authors/sam.jpg',
     linkedInUrl: 'https://www.linkedin.com/in/samsurname/',
     color: 'bg-lfi-green',
     initials: 'S',
