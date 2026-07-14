@@ -1,125 +1,170 @@
-import { getAllPosts, getAllCategories, getAllTags } from '@/lib/posts'
+import Link from 'next/link'
+import { getAllPosts } from '@/lib/posts'
 import { PostCard } from '@/components/PostCard'
 
 interface Props {
-  searchParams: { category?: string; tag?: string }
+  searchParams: {
+    category?: string
+    tag?: string
+  }
 }
+
+const categories = [
+  'Research to Practice',
+  'Debate',
+  'Hot Takes',
+  'Expert Lens',
+  'Myth Buster',
+  'Innovation Spotlight',
+]
+
+const topics = ['Foundations', 'Process', 'Conditions', 'AI']
 
 export const metadata = {
   title: 'Blog',
-  description: 'All posts — research translated into frameworks and systems for real-world teams.',
+  description:
+    'All posts from Leading for Innovation, including research to practice pieces, debates, hot takes, expert lenses, myth busters, and innovation spotlights.',
 }
 
 export default function BlogPage({ searchParams }: Props) {
   const allPosts = getAllPosts()
-  const categories = getAllCategories()
-  const tags = getAllTags()
 
   const activeCategory = searchParams.category || ''
   const activeTag = searchParams.tag || ''
 
   const filtered = allPosts.filter((post) => {
-    if (activeCategory && post.category.toLowerCase() !== activeCategory.toLowerCase()) return false
-    if (activeTag && !post.tags.map((t) => t.toLowerCase()).includes(activeTag.toLowerCase())) return false
+    if (activeCategory && post.category.toLowerCase() !== activeCategory.toLowerCase()) {
+      return false
+    }
+
+    if (
+      activeTag &&
+      !post.tags.map((tag) => tag.toLowerCase()).includes(activeTag.toLowerCase())
+    ) {
+      return false
+    }
+
     return true
   })
 
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 py-16">
-      {/* Header */}
-      <div className="mb-12">
-        <p className="section-title mb-2">The Archive</p>
-        <h1 className="text-4xl font-black tracking-tight text-ink dark:text-white mb-4">
-          All Posts
-        </h1>
-        <p className="text-ink-muted dark:text-gray-400 max-w-xl">
-          Every piece of research translated, every framework built, every misconception challenged —
-          all in one place.
-        </p>
-      </div>
+    <main className="min-h-screen bg-canvas text-ink">
+      <section className="border-b border-ink/10 bg-lfi-white">
+        <div className="mx-auto max-w-7xl px-6 py-16 md:px-10">
+          <p className="text-xs font-bold uppercase tracking-[0.25em] text-lfi-blue">
+            The blog
+          </p>
 
-      <div className="flex flex-col lg:flex-row gap-10">
-        {/* Sidebar */}
-        <aside className="lg:w-56 shrink-0">
-          {/* Categories */}
-          <div className="mb-8">
-            <p className="section-title mb-3">Categories</p>
-            <ul className="space-y-1">
-              <li>
-                <a
-                  href="/blog"
-                  className={`block text-sm px-3 py-1.5 rounded-lg transition-colors ${
-                    !activeCategory
-                      ? 'bg-ink dark:bg-white text-white dark:text-ink font-semibold'
-                      : 'text-ink-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'
-                  }`}
-                >
-                  All ({allPosts.length})
-                </a>
-              </li>
-              {categories.map((cat) => {
-                const count = allPosts.filter((p) => p.category.toLowerCase() === cat.toLowerCase()).length
+          <h1 className="mt-3 text-5xl font-semibold tracking-tight md:text-7xl">
+            All posts
+          </h1>
+
+          <p className="mt-6 max-w-3xl text-lg leading-8 text-ink/70">
+            Browse research to practice pieces, debates, hot takes, expert lenses, myth busters, and innovation spotlights on creativity, innovation, leadership, and teams.
+          </p>
+        </div>
+      </section>
+
+      <section className="mx-auto grid max-w-7xl gap-10 px-6 py-12 md:px-10 lg:grid-cols-[280px_1fr]">
+        <aside className="self-start rounded-[1.5rem] border border-ink/10 bg-lfi-white p-5 shadow-sm">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-ink/55">
+              Categories
+            </p>
+
+            <div className="mt-4 flex flex-wrap gap-2 lg:flex-col">
+              <Link
+                href="/blog"
+                className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
+                  !activeCategory && !activeTag
+                    ? 'bg-ink text-lfi-white'
+                    : 'bg-canvas text-ink hover:bg-lfi-yellow/30'
+                }`}
+              >
+                All posts ({allPosts.length})
+              </Link>
+
+              {categories.map((category) => {
+                const count = allPosts.filter(
+                  (post) => post.category.toLowerCase() === category.toLowerCase()
+                ).length
+
                 return (
-                  <li key={cat}>
-                    <a
-                      href={`/blog?category=${cat}`}
-                      className={`block text-sm px-3 py-1.5 rounded-lg transition-colors ${
-                        activeCategory.toLowerCase() === cat.toLowerCase()
-                          ? 'bg-ink dark:bg-white text-white dark:text-ink font-semibold'
-                          : 'text-ink-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'
-                      }`}
-                    >
-                      {cat} ({count})
-                    </a>
-                  </li>
+                  <Link
+                    key={category}
+                    href={`/blog?category=${encodeURIComponent(category)}`}
+                    className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
+                      activeCategory.toLowerCase() === category.toLowerCase()
+                        ? 'bg-lfi-blue text-lfi-white'
+                        : 'bg-canvas text-ink hover:bg-lfi-yellow/30'
+                    }`}
+                  >
+                    {category} ({count})
+                  </Link>
                 )
               })}
-            </ul>
+            </div>
           </div>
 
-          {/* Tags */}
-          {tags.length > 0 && (
-            <div>
-              <p className="section-title mb-3">Topics</p>
-              <div className="flex flex-wrap gap-1.5">
-                {tags.map((tag) => (
-                  <a
-                    key={tag}
-                    href={`/blog?tag=${tag}`}
-                    className={`tag-pill ${activeTag.toLowerCase() === tag.toLowerCase() ? 'bg-brand-500 !text-white border-brand-500' : ''}`}
-                  >
-                    {tag}
-                  </a>
-                ))}
-              </div>
+          <div className="mt-8 border-t border-ink/10 pt-6">
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-ink/55">
+              Topics
+            </p>
+
+            <div className="mt-4 flex flex-wrap gap-2">
+              {topics.map((topic) => (
+                <Link
+                  key={topic}
+                  href={`/blog?tag=${encodeURIComponent(topic)}`}
+                  className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
+                    activeTag.toLowerCase() === topic.toLowerCase()
+                      ? 'bg-lfi-green text-lfi-white'
+                      : 'bg-lfi-mint/30 text-ink hover:bg-lfi-mint/50'
+                  }`}
+                >
+                  {topic}
+                </Link>
+              ))}
             </div>
-          )}
+          </div>
         </aside>
 
-        {/* Posts grid */}
-        <div className="flex-1">
+        <div>
+          <div className="mb-6 flex flex-col justify-between gap-3 md:flex-row md:items-end">
+            <div>
+              <p className="text-sm font-semibold text-ink/60">
+                {filtered.length} post{filtered.length !== 1 ? 's' : ''}
+                {activeCategory ? ` in ${activeCategory}` : ''}
+                {activeTag ? ` tagged ${activeTag}` : ''}
+              </p>
+
+              {(activeCategory || activeTag) && (
+                <Link
+                  href="/blog"
+                  className="mt-2 inline-flex text-sm font-semibold text-lfi-blue hover:underline"
+                >
+                  Clear filters
+                </Link>
+              )}
+            </div>
+          </div>
+
           {filtered.length === 0 ? (
-            <div className="text-center py-20 text-ink-muted dark:text-gray-500">
-              <p className="text-4xl mb-4">🔍</p>
-              <p className="text-lg font-semibold">No posts found</p>
-              <p className="text-sm mt-1">Try a different filter or check back soon.</p>
+            <div className="rounded-[1.5rem] border border-ink/10 bg-lfi-white p-8">
+              <h2 className="text-2xl font-semibold">No posts found</h2>
+              <p className="mt-3 text-ink/70">
+                Try a different category or topic, or check back soon.
+              </p>
             </div>
           ) : (
-            <>
-              <p className="text-sm text-ink-subtle dark:text-gray-500 mb-5">
-                {filtered.length} post{filtered.length !== 1 ? 's' : ''}
-                {activeCategory ? ` in "${activeCategory}"` : ''}
-                {activeTag ? ` tagged "${activeTag}"` : ''}
-              </p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                {filtered.map((post) => (
-                  <PostCard key={post.slug} post={post} />
-                ))}
-              </div>
-            </>
+            <div className="grid gap-6 md:grid-cols-2">
+              {filtered.map((post) => (
+                <PostCard key={post.slug} post={post} />
+              ))}
+            </div>
           )}
         </div>
-      </div>
-    </div>
+      </section>
+    </main>
   )
 }
