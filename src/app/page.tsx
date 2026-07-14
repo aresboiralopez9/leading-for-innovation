@@ -55,7 +55,7 @@ export default function HomePage() {
         <div className="absolute right-10 top-14 h-32 w-32 rounded-full bg-lfi-blue/25 blur-3xl" />
         <div className="absolute bottom-0 right-1/3 h-24 w-24 rounded-full bg-lfi-green/25 blur-2xl" />
 
-        <div className="relative mx-auto grid max-w-7xl gap-10 px-6 pb-18 pt-14 md:grid-cols-[1.15fr_0.85fr] md:px-10 lg:pb-24 lg:pt-18">
+        <div className="relative mx-auto grid max-w-7xl gap-10 px-6 pb-16 pt-10 md:grid-cols-[1.15fr_0.85fr] md:px-10 lg:pb-24 lg:pt-12">
           <div>
             <div className="mb-4 inline-flex rounded-full border border-ink/10 bg-lfi-white/80 px-4 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-ink/70 shadow-sm">
               Research to Reality
