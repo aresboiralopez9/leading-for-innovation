@@ -43,11 +43,8 @@ export default async function PostPage({ params }: Props) {
 
         {/* Post header */}
         <header className="mb-10">
-          <div className="flex flex-wrap items-center gap-2 mb-5">
+          <div className="mb-5 flex flex-wrap items-center gap-2">
             <span className="category-badge">{post.category}</span>
-            {post.framework && post.frameworkName && (
-              <span className="framework-badge">⭐ {post.frameworkName}</span>
-            )}
           </div>
 
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-ink dark:text-white leading-[1.1] mb-5">
