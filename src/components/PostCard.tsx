@@ -19,12 +19,6 @@ export function PostCard({ post, featured = false }: PostCardProps) {
         <span className="rounded-full bg-lfi-yellow/45 px-3 py-1 text-xs font-bold uppercase tracking-[0.14em] text-ink">
           {post.category}
         </span>
-
-        {post.framework && post.frameworkName && (
-          <span className="rounded-full bg-lfi-green px-3 py-1 text-xs font-bold uppercase tracking-[0.14em] text-lfi-white">
-            {post.frameworkName}
-          </span>
-        )}
       </div>
 
       <h2
