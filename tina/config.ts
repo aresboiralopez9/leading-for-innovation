@@ -22,9 +22,7 @@ export default defineConfig({
 
   schema: {
     collections: [
-      // ─────────────────────────────────────────
       // BLOG POSTS
-      // ─────────────────────────────────────────
       {
         name: "post",
         label: "Blog Posts",
@@ -35,6 +33,8 @@ export default defineConfig({
           featured: false,
           framework: false,
           tags: [],
+          category: "Research to Practice",
+          linkedInUrl: "",
         }),
         ui: {
           filename: {
@@ -73,21 +73,35 @@ export default defineConfig({
             type: "string",
             name: "category",
             label: "Category",
+            description: "Choose the type of post.",
             required: true,
             options: [
-              "Creativity",
-              "Innovation",
-              "Leadership",
-              "Frameworks",
-              "Organizational Design",
-              "Research",
+              "Research to Practice",
+              "Debate",
+              "Hot Takes",
+              "Expert Lens",
+              "Myth Buster",
+              "Innovation Spotlight",
             ],
           },
           {
             type: "string",
             name: "tags",
-            label: "Tags",
+            label: "Topics",
+            description: "Choose one or more topic areas for this post.",
             list: true,
+            options: [
+              "Foundations",
+              "Process",
+              "Conditions",
+              "AI",
+            ],
+          },
+          {
+            type: "string",
+            name: "linkedInUrl",
+            label: "LinkedIn Post URL",
+            description: "Paste the URL for the LinkedIn version of this post.",
           },
           {
             type: "boolean",
@@ -113,9 +127,7 @@ export default defineConfig({
         ],
       },
 
-      // ─────────────────────────────────────────
       // HOME PAGE
-      // ─────────────────────────────────────────
       {
         name: "homePage",
         label: "Home Page",
@@ -205,9 +217,7 @@ export default defineConfig({
         ],
       },
 
-      // ─────────────────────────────────────────
       // ABOUT PAGE
-      // ─────────────────────────────────────────
       {
         name: "aboutPage",
         label: "About Page",
@@ -272,9 +282,7 @@ export default defineConfig({
         ],
       },
 
-      // ─────────────────────────────────────────
-      // SITE SETTINGS (global)
-      // ─────────────────────────────────────────
+      // SITE SETTINGS
       {
         name: "siteSettings",
         label: "Site Settings",
@@ -331,9 +339,7 @@ export default defineConfig({
         ],
       },
 
-      // ─────────────────────────────────────────
-      // NEWSLETTER CTA (global)
-      // ─────────────────────────────────────────
+      // NEWSLETTER CTA
       {
         name: "newsletterCTA",
         label: "Newsletter CTA",
@@ -381,9 +387,7 @@ export default defineConfig({
         ],
       },
 
-      // ─────────────────────────────────────────
-      // FOOTER (global)
-      // ─────────────────────────────────────────
+      // FOOTER
       {
         name: "footer",
         label: "Footer",
