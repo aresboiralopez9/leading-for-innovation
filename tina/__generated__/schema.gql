@@ -108,9 +108,8 @@ type Post implements Node & Document {
   date: String!
   category: String!
   tags: [String]
+  linkedInUrl: String
   featured: Boolean
-  framework: Boolean
-  frameworkName: String
   body: JSON
   id: ID!
   _sys: SystemInfo!
@@ -149,9 +148,8 @@ input PostFilter {
   date: DatetimeFilter
   category: StringFilter
   tags: StringFilter
+  linkedInUrl: StringFilter
   featured: BooleanFilter
-  framework: BooleanFilter
-  frameworkName: StringFilter
   body: RichTextFilter
 }
 
@@ -183,8 +181,8 @@ type HomePage implements Node & Document {
   positioningItems: [HomePagePositioningItems]
   featuredSectionLabel: String
   featuredSectionHeading: String
-  frameworksSectionLabel: String
-  frameworksSectionHeading: String
+  postTypesSectionLabel: String
+  postTypesSectionHeading: String
   latestSectionLabel: String
   latestSectionHeading: String
   id: ID!
@@ -209,8 +207,8 @@ input HomePageFilter {
   positioningItems: HomePagePositioningItemsFilter
   featuredSectionLabel: StringFilter
   featuredSectionHeading: StringFilter
-  frameworksSectionLabel: StringFilter
-  frameworksSectionHeading: StringFilter
+  postTypesSectionLabel: StringFilter
+  postTypesSectionHeading: StringFilter
   latestSectionLabel: StringFilter
   latestSectionHeading: StringFilter
 }
@@ -421,9 +419,8 @@ input PostMutation {
   date: String
   category: String
   tags: [String]
+  linkedInUrl: String
   featured: Boolean
-  framework: Boolean
-  frameworkName: String
   body: JSON
 }
 
@@ -444,8 +441,8 @@ input HomePageMutation {
   positioningItems: [HomePagePositioningItemsMutation]
   featuredSectionLabel: String
   featuredSectionHeading: String
-  frameworksSectionLabel: String
-  frameworksSectionHeading: String
+  postTypesSectionLabel: String
+  postTypesSectionHeading: String
   latestSectionLabel: String
   latestSectionHeading: String
 }
