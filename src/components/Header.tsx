@@ -9,13 +9,15 @@ interface HeaderProps {
   settings: SiteSettingsData
 }
 
+const leadingForInnovationLinkedIn = 'https://www.linkedin.com/company/leading-for-innovation/'
+
 export function Header({ settings }: HeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false)
 
-  const { betaBadge, navItems, linkedInUrl1, linkedInUrl2 } = settings
+  const { betaBadge, navItems } = settings
 
   const primaryButtonClass =
-    'rounded-full bg-lfi-blue px-4 py-2 text-sm font-semibold text-lfi-white shadow-sm transition-colors hover:bg-lfi-green'
+    'rounded-full bg-lfi-blue px-5 py-2 text-sm font-semibold text-lfi-white shadow-sm transition-colors hover:bg-lfi-green'
 
   const mobilePrimaryButtonClass =
     'rounded-full bg-lfi-blue px-4 py-2 text-center text-sm font-semibold text-lfi-white transition-colors hover:bg-lfi-green'
@@ -53,15 +55,14 @@ export function Header({ settings }: HeaderProps) {
             ))}
           </nav>
 
-          <div className="flex items-center gap-2">
-            <Link href={linkedInUrl1} className={primaryButtonClass}>
-              Ares
-            </Link>
-
-            <Link href={linkedInUrl2} className={primaryButtonClass}>
-              Sam
-            </Link>
-          </div>
+          <Link
+            href={leadingForInnovationLinkedIn}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={primaryButtonClass}
+          >
+            LinkedIn
+          </Link>
         </div>
 
         <div className="flex items-center gap-2 md:hidden">
@@ -90,23 +91,15 @@ export function Header({ settings }: HeaderProps) {
               </Link>
             ))}
 
-            <div className="grid grid-cols-2 gap-3 pt-2">
-              <Link
-                href={linkedInUrl1}
-                onClick={() => setMenuOpen(false)}
-                className={mobilePrimaryButtonClass}
-              >
-                Ares
-              </Link>
-
-              <Link
-                href={linkedInUrl2}
-                onClick={() => setMenuOpen(false)}
-                className={mobilePrimaryButtonClass}
-              >
-                Sam
-              </Link>
-            </div>
+            <Link
+              href={leadingForInnovationLinkedIn}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMenuOpen(false)}
+              className={mobilePrimaryButtonClass}
+            >
+              LinkedIn
+            </Link>
           </nav>
         </div>
       )}
