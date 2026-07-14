@@ -22,16 +22,14 @@ export default defineConfig({
 
   schema: {
     collections: [
-      // BLOG POSTS
       {
         name: "post",
         label: "Blog Posts",
         path: "content/posts",
         format: "md",
         defaultItem: () => ({
-          date: new Date().toISOString().split("T")[0],
+          date: new Date().toISOString(),
           featured: false,
-          framework: false,
           tags: [],
           category: "Research to Practice",
           linkedInUrl: "",
@@ -39,12 +37,16 @@ export default defineConfig({
         ui: {
           filename: {
             readonly: false,
-            slugify: (values) =>
-              values?.title
-                ?.toLowerCase()
+            slugify: (values) => {
+              const title = values?.title || "untitled-post";
+
+              return title
+                .toLowerCase()
                 .replace(/[^\w\s-]/g, "")
                 .replace(/\s+/g, "-")
-                .trim() || "",
+                .replace(/-+/g, "-")
+                .trim();
+            },
           },
         },
         fields: [
@@ -88,14 +90,8 @@ export default defineConfig({
             type: "string",
             name: "tags",
             label: "Topics",
-            description: "Choose one or more topic areas for this post.",
+            description: "Add topic labels freely. Examples: Foundations, Process, Conditions, AI.",
             list: true,
-            options: [
-              "Foundations",
-              "Process",
-              "Conditions",
-              "AI",
-            ],
           },
           {
             type: "string",
@@ -109,16 +105,6 @@ export default defineConfig({
             label: "Featured Post",
           },
           {
-            type: "boolean",
-            name: "framework",
-            label: "Named Framework",
-          },
-          {
-            type: "string",
-            name: "frameworkName",
-            label: "Framework Name",
-          },
-          {
             type: "rich-text",
             name: "body",
             label: "Content",
@@ -127,7 +113,6 @@ export default defineConfig({
         ],
       },
 
-      // HOME PAGE
       {
         name: "homePage",
         label: "Home Page",
@@ -144,12 +129,12 @@ export default defineConfig({
           {
             type: "string",
             name: "heroHeadline",
-            label: "Hero Headline (Line 1)",
+            label: "Hero Headline",
           },
           {
             type: "string",
             name: "heroHeadlineAccent",
-            label: "Hero Headline Accent (Line 2, brand colour)",
+            label: "Hero Headline Accent",
           },
           {
             type: "string",
@@ -170,7 +155,7 @@ export default defineConfig({
           {
             type: "string",
             name: "heroSecondaryButtonText",
-            label: "Secondary Button Text (LinkedIn)",
+            label: "Secondary Button Text",
           },
           {
             type: "object",
@@ -187,7 +172,7 @@ export default defineConfig({
           {
             type: "string",
             name: "featuredSectionLabel",
-            label: "Featured Section Label (small caps)",
+            label: "Featured Section Label",
           },
           {
             type: "string",
@@ -196,18 +181,18 @@ export default defineConfig({
           },
           {
             type: "string",
-            name: "frameworksSectionLabel",
-            label: "Frameworks Section Label (small caps)",
+            name: "postTypesSectionLabel",
+            label: "Post Types Section Label",
           },
           {
             type: "string",
-            name: "frameworksSectionHeading",
-            label: "Frameworks Section Heading",
+            name: "postTypesSectionHeading",
+            label: "Post Types Section Heading",
           },
           {
             type: "string",
             name: "latestSectionLabel",
-            label: "Latest Posts Section Label (small caps)",
+            label: "Latest Posts Section Label",
           },
           {
             type: "string",
@@ -217,7 +202,6 @@ export default defineConfig({
         ],
       },
 
-      // ABOUT PAGE
       {
         name: "aboutPage",
         label: "About Page",
@@ -240,17 +224,17 @@ export default defineConfig({
           {
             type: "string",
             name: "sectionLabel",
-            label: "Section Label (small caps)",
+            label: "Section Label",
           },
           {
             type: "string",
             name: "headline",
-            label: "Headline (Line 1)",
+            label: "Headline",
           },
           {
             type: "string",
             name: "headlineAccent",
-            label: "Headline Accent (Line 2, brand colour)",
+            label: "Headline Accent",
           },
           {
             type: "string",
@@ -271,18 +255,17 @@ export default defineConfig({
           {
             type: "string",
             name: "secondaryButtonText",
-            label: "Secondary Button Text (LinkedIn)",
+            label: "Secondary Button Text",
           },
           {
             type: "rich-text",
             name: "body",
-            label: "Manifesto Body",
+            label: "Body",
             isBody: true,
           },
         ],
       },
 
-      // SITE SETTINGS
       {
         name: "siteSettings",
         label: "Site Settings",
@@ -312,7 +295,7 @@ export default defineConfig({
           {
             type: "boolean",
             name: "betaBadge",
-            label: "Show 'Beta' badge in header?",
+            label: "Show Beta badge in header?",
           },
           {
             type: "object",
@@ -322,7 +305,7 @@ export default defineConfig({
             ui: { itemProps: (item) => ({ label: item?.label }) },
             fields: [
               { type: "string", name: "label", label: "Label" },
-              { type: "string", name: "href", label: "URL / Path" },
+              { type: "string", name: "href", label: "URL or Path" },
             ],
           },
           {
@@ -339,7 +322,6 @@ export default defineConfig({
         ],
       },
 
-      // NEWSLETTER CTA
       {
         name: "newsletterCTA",
         label: "Newsletter CTA",
@@ -351,7 +333,7 @@ export default defineConfig({
           {
             type: "string",
             name: "badgeText",
-            label: "Badge / Label Text",
+            label: "Badge Text",
           },
           {
             type: "string",
@@ -377,17 +359,16 @@ export default defineConfig({
           {
             type: "string",
             name: "successMessage",
-            label: "Success Message (after submit)",
+            label: "Success Message",
           },
           {
             type: "string",
             name: "linkedInNudge",
-            label: "LinkedIn Nudge Text (below form)",
+            label: "LinkedIn Nudge Text",
           },
         ],
       },
 
-      // FOOTER
       {
         name: "footer",
         label: "Footer",
@@ -399,18 +380,18 @@ export default defineConfig({
           {
             type: "string",
             name: "brandTagline",
-            label: "Brand Tagline (below site name)",
+            label: "Brand Tagline",
             ui: { component: "textarea" },
           },
           {
             type: "string",
             name: "staySectionLabel",
-            label: "'Stay Sharp' Section Label",
+            label: "Stay Section Label",
           },
           {
             type: "string",
             name: "staySectionText",
-            label: "'Stay Sharp' Section Text",
+            label: "Stay Section Text",
             ui: { component: "textarea" },
           },
           {
@@ -421,12 +402,12 @@ export default defineConfig({
           {
             type: "string",
             name: "copyrightSuffix",
-            label: "Copyright Line (suffix after year)",
+            label: "Copyright Line Suffix",
           },
           {
             type: "string",
             name: "builtByLine",
-            label: "Built-by Line",
+            label: "Built By Line",
           },
         ],
       },
