@@ -2,6 +2,8 @@ import Link from 'next/link'
 import { getAllAuthors } from '@/lib/authors'
 import { getAllPosts } from '@/lib/posts'
 
+const leadingForInnovationLinkedIn = 'https://www.linkedin.com/company/leading-for-innovation/'
+
 const postTypes = [
   {
     label: 'Research to Practice',
@@ -45,8 +47,8 @@ export default function HomePage() {
   const posts = getAllPosts()
   const authors = getAllAuthors()
 
-  const featuredPosts = posts.slice(0, 3)
-  const latestPosts = posts.slice(3, 7)
+  const featuredPosts = posts.slice(0, 2)
+  const latestPosts = posts.slice(2, 5)
 
   return (
     <main className="min-h-screen bg-canvas text-ink">
@@ -125,7 +127,7 @@ export default function HomePage() {
       </section>
 
       {featuredPosts.length > 0 && (
-        <section className="mx-auto max-w-7xl px-6 py-16 md:px-10">
+        <section className="mx-auto max-w-7xl px-6 py-14 md:px-10">
           <div className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.25em] text-lfi-blue">
@@ -142,7 +144,7 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <div className="grid gap-6 lg:grid-cols-3">
+          <div className="grid gap-6 md:grid-cols-2">
             {featuredPosts.map((post, index) => {
               const readingTimeLabel = `${post.readingTime} min read`
 
@@ -150,9 +152,9 @@ export default function HomePage() {
                 <Link
                   key={post.slug}
                   href={`/blog/${post.slug}`}
-                  className={`group rounded-[1.75rem] border p-6 shadow-sm transition hover:translate-y-[-3px] hover:shadow-xl ${
+                  className={`group flex min-h-[360px] flex-col rounded-[1.75rem] border p-7 shadow-sm transition hover:translate-y-[-3px] hover:shadow-xl ${
                     index === 0
-                      ? 'border-lfi-yellow bg-lfi-yellow/25 lg:col-span-2'
+                      ? 'border-lfi-yellow bg-lfi-yellow/25'
                       : 'border-ink/10 bg-lfi-white'
                   }`}
                 >
@@ -162,21 +164,15 @@ export default function HomePage() {
                     <span>{readingTimeLabel}</span>
                   </div>
 
-                  <h3
-                    className={
-                      index === 0
-                        ? 'mt-5 text-3xl font-semibold tracking-tight'
-                        : 'mt-5 text-2xl font-semibold tracking-tight'
-                    }
-                  >
+                  <h3 className="mt-6 text-3xl font-semibold tracking-tight">
                     {post.title}
                   </h3>
 
-                  <p className="mt-4 text-sm leading-7 text-ink/70">
+                  <p className="mt-5 text-base leading-8 text-ink/70">
                     {post.excerpt}
                   </p>
 
-                  <div className="mt-6 text-sm font-semibold text-lfi-blue group-hover:underline">
+                  <div className="mt-auto pt-8 text-sm font-semibold text-lfi-blue group-hover:underline">
                     Read article
                   </div>
                 </Link>
@@ -187,7 +183,7 @@ export default function HomePage() {
       )}
 
       <section className="border-y border-ink/10 bg-lfi-white">
-        <div className="mx-auto max-w-7xl px-6 py-16 md:px-10">
+        <div className="mx-auto max-w-7xl px-6 py-14 md:px-10">
           <div className="mb-8">
             <p className="text-xs font-bold uppercase tracking-[0.25em] text-lfi-green">
               Browse by type
@@ -215,7 +211,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto grid max-w-7xl gap-10 px-6 py-16 md:px-10 lg:grid-cols-[0.9fr_1.1fr]">
+      <section className="mx-auto grid max-w-7xl gap-8 px-6 py-14 md:px-10 lg:grid-cols-[0.52fr_1.48fr]">
         <div>
           <p className="text-xs font-bold uppercase tracking-[0.25em] text-lfi-blue">
             The founders
@@ -242,7 +238,7 @@ export default function HomePage() {
             <Link
               key={author.id}
               href={`/about/${author.id}`}
-              className="group rounded-[1.75rem] border border-ink/10 bg-lfi-white p-6 shadow-sm transition hover:translate-y-[-3px] hover:shadow-xl"
+              className="group rounded-[1.75rem] border border-ink/10 bg-lfi-white p-7 shadow-sm transition hover:translate-y-[-3px] hover:shadow-xl"
             >
               <div
                 className={`flex h-14 w-14 items-center justify-center rounded-full ${author.color} text-lg font-bold text-lfi-white`}
@@ -256,7 +252,7 @@ export default function HomePage() {
                 {author.role}
               </p>
 
-              <p className="mt-4 text-sm leading-6 text-ink/70">
+              <p className="mt-4 text-sm leading-7 text-ink/70">
                 {author.bio}
               </p>
 
@@ -269,8 +265,8 @@ export default function HomePage() {
       </section>
 
       {latestPosts.length > 0 && (
-        <section className="bg-ink text-lfi-white">
-          <div className="mx-auto grid max-w-7xl gap-10 px-6 py-16 md:px-10 lg:grid-cols-[0.8fr_1.2fr]">
+        <section className="bg-lfi-green text-lfi-white">
+          <div className="mx-auto grid max-w-7xl gap-10 px-6 py-14 md:px-10 lg:grid-cols-[0.8fr_1.2fr]">
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.25em] text-lfi-yellow">
                 Latest
@@ -280,7 +276,7 @@ export default function HomePage() {
                 Recent posts
               </h2>
 
-              <p className="mt-5 text-base leading-7 text-lfi-white/70">
+              <p className="mt-5 text-base leading-7 text-lfi-white/80">
                 New research to practice pieces, debates, hot takes, expert lenses, myth busters, and innovation spotlights.
               </p>
             </div>
@@ -293,7 +289,7 @@ export default function HomePage() {
                   <Link
                     key={post.slug}
                     href={`/blog/${post.slug}`}
-                    className="rounded-[1.25rem] border border-lfi-white/10 bg-lfi-white/5 p-5 transition hover:bg-lfi-white/10"
+                    className="rounded-[1.25rem] border border-lfi-white/15 bg-lfi-white/10 p-5 transition hover:bg-lfi-white/15"
                   >
                     <div className="flex flex-wrap gap-3 text-xs font-semibold uppercase tracking-[0.18em] text-lfi-yellow">
                       <span>{post.category}</span>
@@ -303,7 +299,7 @@ export default function HomePage() {
 
                     <h3 className="mt-3 text-xl font-semibold">{post.title}</h3>
 
-                    <p className="mt-2 text-sm leading-6 text-lfi-white/65">
+                    <p className="mt-2 text-sm leading-6 text-lfi-white/75">
                       {post.excerpt}
                     </p>
                   </Link>
@@ -314,7 +310,7 @@ export default function HomePage() {
         </section>
       )}
 
-      <section className="mx-auto max-w-7xl px-6 py-16 md:px-10">
+      <section className="mx-auto max-w-7xl px-6 pb-8 pt-10 md:px-10">
         <div className="rounded-[2rem] border border-lfi-yellow bg-lfi-yellow/25 p-8 md:p-10">
           <div className="grid gap-8 md:grid-cols-[1fr_auto] md:items-center">
             <div>
@@ -332,10 +328,12 @@ export default function HomePage() {
             </div>
 
             <Link
-              href="/about"
+              href={leadingForInnovationLinkedIn}
+              target="_blank"
+              rel="noopener noreferrer"
               className="rounded-full bg-ink px-6 py-3 text-sm font-semibold text-lfi-white transition hover:translate-y-[-1px] hover:shadow-lg"
             >
-              Meet Ares and Sam
+              Follow on LinkedIn
             </Link>
           </div>
         </div>
