@@ -11,78 +11,81 @@ interface PostCardProps {
 export function PostCard({ post, featured = false }: PostCardProps) {
   return (
     <article
-      className={`group bg-white dark:bg-[#111114] border border-gray-200 dark:border-gray-800 rounded-2xl overflow-hidden card-hover ${
-        featured ? 'md:col-span-2' : ''
+      className={`group flex h-full flex-col rounded-2xl border border-ink/10 bg-lfi-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg ${
+        featured ? 'md:p-8' : ''
       }`}
     >
-      <Link href={`/blog/${post.slug}`} className="block p-6 h-full">
-        {/* Badges */}
-        <div className="flex flex-wrap items-center gap-2 mb-4">
-          <span className="category-badge">{post.category}</span>
-          {post.framework && post.frameworkName && (
-            <span className="framework-badge">
-              <FrameworkIcon />
-              {post.frameworkName}
-            </span>
-          )}
-        </div>
+      <div className="mb-4 flex flex-wrap items-center gap-2">
+        <span className="rounded-full bg-lfi-yellow/45 px-3 py-1 text-xs font-bold uppercase tracking-[0.14em] text-ink">
+          {post.category}
+        </span>
 
-        {/* Title */}
-        <h2
-          className={`font-bold tracking-tight text-ink dark:text-white mb-3 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors leading-tight ${
-            featured ? 'text-2xl sm:text-3xl' : 'text-xl'
-          }`}
-        >
-          {post.title}
-        </h2>
-
-        {/* Excerpt */}
-        <p className="text-ink-muted dark:text-gray-400 text-sm leading-relaxed mb-6 line-clamp-3">
-          {post.excerpt}
-        </p>
-
-        {/* Byline */}
-        {post.author && (
-          <div className="mb-4">
-            <Byline authorId={post.author} size="sm" linked={false} />
-          </div>
+        {post.framework && post.frameworkName && (
+          <span className="rounded-full bg-lfi-green px-3 py-1 text-xs font-bold uppercase tracking-[0.14em] text-lfi-white">
+            {post.frameworkName}
+          </span>
         )}
+      </div>
 
-        {/* Footer */}
-        <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-100 dark:border-gray-800">
-          <div className="flex flex-wrap gap-1.5">
-            {post.tags.slice(0, 3).map((tag) => (
-              <span key={tag} className="tag-pill">
-                {tag}
-              </span>
-            ))}
+      <h2
+        className={`font-black leading-tight tracking-tight text-ink transition-colors group-hover:text-lfi-green ${
+          featured ? 'text-3xl' : 'text-2xl'
+        }`}
+      >
+        <Link href={`/blog/${post.slug}`}>
+          {post.title}
+        </Link>
+      </h2>
+
+      <p className="mt-4 text-base leading-7 text-ink/70">
+        {post.excerpt}
+      </p>
+
+      {post.author && (
+        <div className="mt-5">
+          <Byline authorId={post.author} />
+        </div>
+      )}
+
+      <div className="mt-6 border-t border-ink/10 pt-5">
+        <div className="mb-5 flex flex-wrap gap-2">
+          {post.tags.slice(0, 3).map((tag) => (
+            <span
+              key={tag}
+              className="rounded-full border border-lfi-green/20 bg-lfi-mint/30 px-3 py-1 text-xs font-semibold text-lfi-green"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        <div className="flex flex-wrap items-center justify-between gap-4 text-sm text-ink/55">
+          <div className="flex flex-wrap items-center gap-3">
+            <span>{post.readingTime} min read</span>
+            <span>{formatDate(post.date)}</span>
           </div>
-          <div className="flex items-center gap-1.5 text-xs text-ink-subtle dark:text-gray-500 whitespace-nowrap ml-2">
-            <ClockIcon />
-            {post.readingTime} min
+
+          <div className="flex flex-wrap items-center gap-3">
+            <Link
+              href={`/blog/${post.slug}`}
+              className="font-semibold text-lfi-blue hover:underline"
+            >
+              Read post
+            </Link>
+
+            {post.linkedInUrl && (
+              <a
+                href={post.linkedInUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-full bg-lfi-blue px-4 py-2 text-xs font-bold text-lfi-white transition hover:bg-lfi-green"
+              >
+                LinkedIn version
+              </a>
+            )}
           </div>
         </div>
-        <div className="mt-3 text-xs text-ink-subtle dark:text-gray-500">
-          {formatDate(post.date)}
-        </div>
-      </Link>
+      </div>
     </article>
-  )
-}
-
-function FrameworkIcon() {
-  return (
-    <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
-      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-    </svg>
-  )
-}
-
-function ClockIcon() {
-  return (
-    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-      <circle cx="12" cy="12" r="10" />
-      <polyline points="12 6 12 12 16 14" />
-    </svg>
   )
 }
