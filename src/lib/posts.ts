@@ -17,9 +17,8 @@ export interface PostMeta {
   featured?: boolean
   framework?: boolean
   frameworkName?: string
-  /** Author id, matching a key in lib/authors.ts (e.g. 'ares' | 'sam') */
+  linkedInUrl?: string
   author?: string
-  /** Slug of the paired "same topic, different angle" post, if any */
   companionSlug?: string
 }
 
@@ -36,43 +35,46 @@ function calculateReadingTime(content: string): number {
 
 export function getAllPostSlugs(): string[] {
   if (!fs.existsSync(postsDirectory)) return []
+
   return fs
     .readdirSync(postsDirectory)
-    .filter((f) => f.endsWith('.md') || f.endsWith('.mdx'))
-    .map((f) => f.replace(/\.mdx?$/, ''))
+    .filter((file) => file.endsWith('.md') || file.endsWith('.mdx'))
+    .map((file) => file.replace(/\.mdx?$/, ''))
 }
 
 export function getAllPosts(): PostMeta[] {
   const slugs = getAllPostSlugs()
+
   const posts = slugs
     .map((slug) => getPostMeta(slug))
     .filter(Boolean) as PostMeta[]
+
   return posts.sort((a, b) => (a.date < b.date ? 1 : -1))
 }
 
 export function getFeaturedPosts(): PostMeta[] {
-  return getAllPosts().filter((p) => p.featured)
+  return getAllPosts().filter((post) => post.featured)
 }
 
 export function getFrameworkPosts(): PostMeta[] {
-  return getAllPosts().filter((p) => p.framework)
+  return getAllPosts().filter((post) => post.framework)
 }
 
 export function getPostsByCategory(category: string): PostMeta[] {
   return getAllPosts().filter(
-    (p) => p.category.toLowerCase() === category.toLowerCase()
+    (post) => post.category.toLowerCase() === category.toLowerCase()
   )
 }
 
 export function getAllCategories(): string[] {
   const posts = getAllPosts()
-  const cats = new Set(posts.map((p) => p.category))
-  return Array.from(cats).sort()
+  const categories = new Set(posts.map((post) => post.category))
+  return Array.from(categories).sort()
 }
 
 export function getAllTags(): string[] {
   const posts = getAllPosts()
-  const tags = new Set(posts.flatMap((p) => p.tags))
+  const tags = new Set(posts.flatMap((post) => post.tags))
   return Array.from(tags).sort()
 }
 
@@ -81,8 +83,10 @@ export function getPostMeta(slug: string): PostMeta | null {
     const mdPath = path.join(postsDirectory, `${slug}.md`)
     const mdxPath = path.join(postsDirectory, `${slug}.mdx`)
     const filePath = fs.existsSync(mdPath) ? mdPath : mdxPath
+
     const raw = fs.readFileSync(filePath, 'utf8')
     const { data, content } = matter(raw)
+
     return {
       slug,
       title: data.title || slug,
@@ -94,6 +98,7 @@ export function getPostMeta(slug: string): PostMeta | null {
       featured: data.featured || false,
       framework: data.framework || false,
       frameworkName: data.frameworkName || '',
+      linkedInUrl: data.linkedInUrl || '',
       author: data.author || '',
       companionSlug: data.companionSlug || '',
     }
@@ -102,7 +107,6 @@ export function getPostMeta(slug: string): PostMeta | null {
   }
 }
 
-/** Convenience helper: resolves a post's paired "companion" post, if it has one. */
 export function getCompanionPost(post: PostMeta): PostMeta | null {
   if (!post.companionSlug) return null
   return getPostMeta(post.companionSlug)
@@ -113,10 +117,13 @@ export async function getPost(slug: string): Promise<Post | null> {
     const mdPath = path.join(postsDirectory, `${slug}.md`)
     const mdxPath = path.join(postsDirectory, `${slug}.mdx`)
     const filePath = fs.existsSync(mdPath) ? mdPath : mdxPath
+
     const raw = fs.readFileSync(filePath, 'utf8')
     const { data, content } = matter(raw)
+
     const processed = await remark().use(html).process(content)
     const contentHtml = processed.toString()
+
     return {
       slug,
       title: data.title || slug,
@@ -128,6 +135,7 @@ export async function getPost(slug: string): Promise<Post | null> {
       featured: data.featured || false,
       framework: data.framework || false,
       frameworkName: data.frameworkName || '',
+      linkedInUrl: data.linkedInUrl || '',
       author: data.author || '',
       companionSlug: data.companionSlug || '',
       content,
