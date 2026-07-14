@@ -27,8 +27,34 @@ export interface Post extends PostMeta {
 
 function calculateReadingTime(content: string): number {
   const wordsPerMinute = 250
-  const wordCount = content.split(/\s+/).length
-  return Math.ceil(wordCount / wordsPerMinute)
+  const words = content.trim().split(/\s+/).filter(Boolean)
+  const wordCount = words.length
+
+  return Math.max(1, Math.ceil(wordCount / wordsPerMinute))
+}
+
+function getPostFilePath(slug: string): string | null {
+  const mdPath = path.join(postsDirectory, `${slug}.md`)
+  const mdxPath = path.join(postsDirectory, `${slug}.mdx`)
+
+  if (fs.existsSync(mdPath)) return mdPath
+  if (fs.existsSync(mdxPath)) return mdxPath
+
+  return null
+}
+
+function normalizeTags(tags: unknown): string[] {
+  if (!tags) return []
+
+  if (Array.isArray(tags)) {
+    return tags.filter((tag): tag is string => typeof tag === 'string')
+  }
+
+  if (typeof tags === 'string') {
+    return [tags]
+  }
+
+  return []
 }
 
 export function getAllPostSlugs(): string[] {
@@ -40,12 +66,36 @@ export function getAllPostSlugs(): string[] {
     .map((file) => file.replace(/\.mdx?$/, ''))
 }
 
-export function getAllPosts(): PostMeta[] {
-  const slugs = getAllPostSlugs()
+export function getPostMeta(slug: string): PostMeta | null {
+  try {
+    const filePath = getPostFilePath(slug)
+    if (!filePath) return null
 
-  const posts = slugs
+    const raw = fs.readFileSync(filePath, 'utf8')
+    const { data, content } = matter(raw)
+
+    return {
+      slug,
+      title: data.title || slug,
+      date: data.date || '',
+      excerpt: data.excerpt || '',
+      category: data.category || 'Uncategorized',
+      tags: normalizeTags(data.tags),
+      readingTime: calculateReadingTime(content),
+      featured: Boolean(data.featured),
+      linkedInUrl: data.linkedInUrl || '',
+      author: data.author || '',
+      companionSlug: data.companionSlug || '',
+    }
+  } catch {
+    return null
+  }
+}
+
+export function getAllPosts(): PostMeta[] {
+  const posts = getAllPostSlugs()
     .map((slug) => getPostMeta(slug))
-    .filter(Boolean) as PostMeta[]
+    .filter((post): post is PostMeta => post !== null)
 
   return posts.sort((a, b) => (a.date < b.date ? 1 : -1))
 }
@@ -61,58 +111,30 @@ export function getPostsByCategory(category: string): PostMeta[] {
 }
 
 export function getAllCategories(): string[] {
-  const posts = getAllPosts()
-  const categories = new Set(posts.map((post) => post.category))
+  const categories = new Set(getAllPosts().map((post) => post.category))
+
   return Array.from(categories).sort()
 }
 
 export function getAllTags(): string[] {
-  const posts = getAllPosts()
-  const tags = new Set(posts.flatMap((post) => post.tags))
+  const tags = new Set(getAllPosts().flatMap((post) => post.tags))
+
   return Array.from(tags).sort()
-}
-
-export function getPostMeta(slug: string): PostMeta | null {
-  try {
-    const mdPath = path.join(postsDirectory, `${slug}.md`)
-    const mdxPath = path.join(postsDirectory, `${slug}.mdx`)
-    const filePath = fs.existsSync(mdPath) ? mdPath : mdxPath
-
-    const raw = fs.readFileSync(filePath, 'utf8')
-    const { data, content } = matter(raw)
-
-    return {
-      slug,
-      title: data.title || slug,
-      date: data.date || '',
-      excerpt: data.excerpt || '',
-      category: data.category || 'Uncategorized',
-      tags: data.tags || [],
-      readingTime: calculateReadingTime(content),
-      featured: data.featured || false, '',
-      linkedInUrl: data.linkedInUrl || '',
-      author: data.author || '',
-      companionSlug: data.companionSlug || '',
-    }
-  } catch {
-    return null
-  }
 }
 
 export function getCompanionPost(post: PostMeta): PostMeta | null {
   if (!post.companionSlug) return null
+
   return getPostMeta(post.companionSlug)
 }
 
 export async function getPost(slug: string): Promise<Post | null> {
   try {
-    const mdPath = path.join(postsDirectory, `${slug}.md`)
-    const mdxPath = path.join(postsDirectory, `${slug}.mdx`)
-    const filePath = fs.existsSync(mdPath) ? mdPath : mdxPath
+    const filePath = getPostFilePath(slug)
+    if (!filePath) return null
 
     const raw = fs.readFileSync(filePath, 'utf8')
     const { data, content } = matter(raw)
-
     const processed = await remark().use(html).process(content)
     const contentHtml = processed.toString()
 
@@ -122,9 +144,9 @@ export async function getPost(slug: string): Promise<Post | null> {
       date: data.date || '',
       excerpt: data.excerpt || '',
       category: data.category || 'Uncategorized',
-      tags: data.tags || [],
+      tags: normalizeTags(data.tags),
       readingTime: calculateReadingTime(content),
-      featured: data.featured || false, '',
+      featured: Boolean(data.featured),
       linkedInUrl: data.linkedInUrl || '',
       author: data.author || '',
       companionSlug: data.companionSlug || '',
