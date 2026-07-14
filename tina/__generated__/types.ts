@@ -262,9 +262,8 @@ export type Post = Node & Document & {
   date: Scalars['String']['output'];
   category: Scalars['String']['output'];
   tags?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  linkedInUrl?: Maybe<Scalars['String']['output']>;
   featured?: Maybe<Scalars['Boolean']['output']>;
-  framework?: Maybe<Scalars['Boolean']['output']>;
-  frameworkName?: Maybe<Scalars['String']['output']>;
   body?: Maybe<Scalars['JSON']['output']>;
   id: Scalars['ID']['output'];
   _sys: SystemInfo;
@@ -303,9 +302,8 @@ export type PostFilter = {
   date?: InputMaybe<DatetimeFilter>;
   category?: InputMaybe<StringFilter>;
   tags?: InputMaybe<StringFilter>;
+  linkedInUrl?: InputMaybe<StringFilter>;
   featured?: InputMaybe<BooleanFilter>;
-  framework?: InputMaybe<BooleanFilter>;
-  frameworkName?: InputMaybe<StringFilter>;
   body?: InputMaybe<RichTextFilter>;
 };
 
@@ -700,9 +698,8 @@ export type PostMutation = {
   date?: InputMaybe<Scalars['String']['input']>;
   category?: InputMaybe<Scalars['String']['input']>;
   tags?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  linkedInUrl?: InputMaybe<Scalars['String']['input']>;
   featured?: InputMaybe<Scalars['Boolean']['input']>;
-  framework?: InputMaybe<Scalars['Boolean']['input']>;
-  frameworkName?: InputMaybe<Scalars['String']['input']>;
   body?: InputMaybe<Scalars['JSON']['input']>;
 };
 
@@ -776,7 +773,7 @@ export type FooterMutation = {
   builtByLine?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type PostPartsFragment = { __typename: 'Post', title: string, excerpt: string, date: string, category: string, tags?: Array<string | null> | null, featured?: boolean | null, framework?: boolean | null, frameworkName?: string | null, body?: any | null };
+export type PostPartsFragment = { __typename: 'Post', title: string, excerpt: string, date: string, category: string, tags?: Array<string | null> | null, linkedInUrl?: string | null, featured?: boolean | null, body?: any | null };
 
 export type HomePagePartsFragment = { __typename: 'HomePage', heroBadgeText?: string | null, heroHeadline?: string | null, heroHeadlineAccent?: string | null, heroSubtext?: string | null, heroPrimaryButtonText?: string | null, heroPrimaryButtonHref?: string | null, heroSecondaryButtonText?: string | null, featuredSectionLabel?: string | null, featuredSectionHeading?: string | null, frameworksSectionLabel?: string | null, frameworksSectionHeading?: string | null, latestSectionLabel?: string | null, latestSectionHeading?: string | null, positioningItems?: Array<{ __typename: 'HomePagePositioningItems', icon?: string | null, label?: string | null, desc?: string | null } | null> | null };
 
@@ -793,7 +790,8 @@ export type PostQueryVariables = Exact<{
 }>;
 
 
-export type PostQuery = { __typename?: 'Query', post: { __typename: 'Post', id: string, title: string, excerpt: string, date: string, category: string, tags?: Array<string | null> | null, featured?: boolean | null, framework?: boolean | null, frameworkName?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type PostQuery = { __typename?: 'Query', post: { __typename: 'Post', id: string, title: string, excerpt: string, date: string, category: string, tags?: Array<string | null> | null, featured?: boolean | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string, linkedInUrl?: string | null
+ } } };
 
 export type PostConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -910,9 +908,8 @@ export const PostPartsFragmentDoc = gql`
   date
   category
   tags
+  linkedInUrl
   featured
-  framework
-  frameworkName
   body
 }
     `;
