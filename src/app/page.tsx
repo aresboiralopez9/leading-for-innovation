@@ -2,30 +2,42 @@ import Link from 'next/link'
 import { getAllAuthors } from '@/lib/authors'
 import { getAllPosts } from '@/lib/posts'
 
-const themes = [
+const postTypes = [
   {
-    label: 'Creativity',
-    href: '/blog',
-    description: 'Better ways to generate, protect, and evaluate original ideas.',
+    label: 'Research to Practice',
+    href: '/blog?category=Research%20to%20Practice',
+    description: 'What the research says and what teams can actually do with it.',
     className: 'border-lfi-yellow bg-lfi-yellow/25',
   },
   {
-    label: 'Innovation',
-    href: '/blog',
-    description: 'How teams turn insight into durable organizational capability.',
+    label: 'Debate',
+    href: '/blog?category=Debate',
+    description: 'Two sided takes on the ideas people often oversimplify.',
     className: 'border-lfi-blue bg-lfi-blue/10',
   },
   {
-    label: 'Leadership',
-    href: '/blog',
-    description: 'What leaders actually need to do to make creativity possible.',
+    label: 'Hot Takes',
+    href: '/blog?category=Hot%20Takes',
+    description: 'Sharp arguments that challenge familiar innovation advice.',
     className: 'border-lfi-green bg-lfi-green/10',
   },
   {
-    label: 'Frameworks',
-    href: '/blog',
-    description: 'Reusable systems for translating research into action.',
+    label: 'Expert Lens',
+    href: '/blog?category=Expert%20Lens',
+    description: 'Deeper reads on creativity, innovation, leadership, and evidence.',
     className: 'border-lfi-mint bg-lfi-mint/20',
+  },
+  {
+    label: 'Myth Buster',
+    href: '/blog?category=Myth%20Buster',
+    description: 'Common beliefs about creativity and innovation put to the test.',
+    className: 'border-lfi-yellow bg-lfi-yellow/20',
+  },
+  {
+    label: 'Innovation Spotlight',
+    href: '/blog?category=Innovation%20Spotlight',
+    description: 'Concrete examples of innovation in action and what they teach us.',
+    className: 'border-lfi-blue bg-lfi-blue/10',
   },
 ]
 
@@ -39,13 +51,13 @@ export default function HomePage() {
   return (
     <main className="min-h-screen bg-canvas text-ink">
       <section className="relative overflow-hidden border-b border-ink/10">
-        <div className="absolute left-6 top-8 h-24 w-24 rounded-full bg-lfi-yellow/60 blur-2xl" />
-        <div className="absolute right-10 top-20 h-32 w-32 rounded-full bg-lfi-blue/25 blur-3xl" />
+        <div className="absolute left-6 top-6 h-24 w-24 rounded-full bg-lfi-yellow/60 blur-2xl" />
+        <div className="absolute right-10 top-14 h-32 w-32 rounded-full bg-lfi-blue/25 blur-3xl" />
         <div className="absolute bottom-0 right-1/3 h-24 w-24 rounded-full bg-lfi-green/25 blur-2xl" />
 
-        <div className="relative mx-auto grid max-w-7xl gap-12 px-6 py-20 md:grid-cols-[1.15fr_0.85fr] md:px-10 lg:py-28">
+        <div className="relative mx-auto grid max-w-7xl gap-10 px-6 pb-18 pt-14 md:grid-cols-[1.15fr_0.85fr] md:px-10 lg:pb-24 lg:pt-18">
           <div>
-            <div className="mb-6 inline-flex rounded-full border border-ink/10 bg-lfi-white/80 px-4 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-ink/70 shadow-sm">
+            <div className="mb-4 inline-flex rounded-full border border-ink/10 bg-lfi-white/80 px-4 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-ink/70 shadow-sm">
               Research to Reality
             </div>
 
@@ -54,11 +66,11 @@ export default function HomePage() {
               <span className="block text-lfi-blue">We close it.</span>
             </h1>
 
-            <p className="mt-8 max-w-2xl text-lg leading-8 text-ink/75 md:text-xl">
-              Good innovation practice rarely feels natural. We take the research seriously, challenge what intuition gets backwards, and turn the findings into methods you can actually use.
+            <p className="mt-7 max-w-2xl text-lg leading-8 text-ink/75 md:text-xl">
+              Good innovation practice rarely feels natural. We take the research seriously, challenge what intuition gets backwards, and turn the findings into clear ideas teams can actually use.
             </p>
 
-            <div className="mt-10 flex flex-wrap gap-4">
+            <div className="mt-9 flex flex-wrap gap-4">
               <Link
                 href="/blog"
                 className="rounded-full bg-ink px-6 py-3 text-sm font-semibold text-lfi-white transition hover:translate-y-[-1px] hover:shadow-lg"
@@ -75,35 +87,35 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="rounded-[2rem] border border-ink/10 bg-lfi-white p-6 shadow-xl">
-            <div className="rounded-[1.5rem] bg-lfi-yellow/30 p-5">
+          <div className="self-start rounded-[2rem] border border-ink/10 bg-lfi-white p-5 shadow-xl">
+            <div className="rounded-[1.5rem] bg-lfi-yellow/30 p-6">
               <p className="text-xs font-bold uppercase tracking-[0.25em] text-ink/60">
                 Start here
               </p>
 
-              <h2 className="mt-4 text-2xl font-semibold text-ink">
-                Sharp insights. Concrete frameworks. Zero fluff.
+              <h2 className="mt-3 text-2xl font-semibold leading-tight text-ink">
+                Smart takes on creativity, innovation, and how teams actually work.
               </h2>
 
-              <div className="mt-6 grid gap-3">
+              <div className="mt-5 grid gap-3">
                 <div className="rounded-2xl bg-lfi-white p-4 shadow-sm">
-                  <p className="text-sm font-semibold text-lfi-blue">Translate</p>
+                  <p className="text-sm font-semibold text-lfi-blue">Research to Practice</p>
                   <p className="mt-1 text-sm text-ink/70">
-                    Academic research into practitioner language.
+                    Turn evidence into usable ideas.
                   </p>
                 </div>
 
                 <div className="rounded-2xl bg-lfi-white p-4 shadow-sm">
-                  <p className="text-sm font-semibold text-lfi-green">Prescribe</p>
+                  <p className="text-sm font-semibold text-lfi-green">Myth Busters</p>
                   <p className="mt-1 text-sm text-ink/70">
-                    Not just what the data says, but what to do.
+                    Challenge what sounds right but often fails.
                   </p>
                 </div>
 
                 <div className="rounded-2xl bg-lfi-white p-4 shadow-sm">
-                  <p className="text-sm font-semibold text-lfi-blue">Build</p>
+                  <p className="text-sm font-semibold text-lfi-blue">Debates and Hot Takes</p>
                   <p className="mt-1 text-sm text-ink/70">
-                    Frameworks, systems, and methods teams can reuse.
+                    Make familiar innovation questions sharper.
                   </p>
                 </div>
               </div>
@@ -117,11 +129,11 @@ export default function HomePage() {
           <div className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.25em] text-lfi-blue">
-                Featured thinking
+                Featured posts
               </p>
 
               <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
-                The pieces to read first
+                Start with these
               </h2>
             </div>
 
@@ -178,24 +190,24 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl px-6 py-16 md:px-10">
           <div className="mb-8">
             <p className="text-xs font-bold uppercase tracking-[0.25em] text-lfi-green">
-              Browse by need
+              Browse by type
             </p>
 
             <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
-              What are you trying to improve?
+              Choose the kind of post you want to read
             </h2>
           </div>
 
-          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-            {themes.map((theme) => (
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {postTypes.map((type) => (
               <Link
-                key={theme.label}
-                href={theme.href}
-                className={`rounded-[1.5rem] border p-5 transition hover:translate-y-[-2px] hover:shadow-lg ${theme.className}`}
+                key={type.label}
+                href={type.href}
+                className={`rounded-[1.5rem] border p-5 transition hover:translate-y-[-2px] hover:shadow-lg ${type.className}`}
               >
-                <h3 className="text-xl font-semibold">{theme.label}</h3>
+                <h3 className="text-xl font-semibold">{type.label}</h3>
                 <p className="mt-3 text-sm leading-6 text-ink/70">
-                  {theme.description}
+                  {type.description}
                 </p>
               </Link>
             ))}
@@ -210,11 +222,11 @@ export default function HomePage() {
           </p>
 
           <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
-            Meet the people translating the research
+            Meet the people behind the blog
           </h2>
 
           <p className="mt-5 max-w-xl text-base leading-7 text-ink/70">
-            Leading for Innovation is built by two creativity and innovation researchers who care about making academic evidence usable for real teams, managers, and organizations.
+            Leading for Innovation is built by two creativity and innovation researchers who care about making academic evidence useful for real teams, managers, and organizations.
           </p>
 
           <Link
@@ -265,11 +277,11 @@ export default function HomePage() {
               </p>
 
               <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
-                Recent articles
+                Recent posts
               </h2>
 
               <p className="mt-5 text-base leading-7 text-lfi-white/70">
-                New frameworks, research translations, and practical challenges to common innovation advice.
+                New research to practice pieces, debates, hot takes, expert lenses, myth busters, and innovation spotlights.
               </p>
             </div>
 
@@ -311,11 +323,11 @@ export default function HomePage() {
               </p>
 
               <h2 className="mt-3 text-3xl font-semibold tracking-tight">
-                LinkedIn for sharp takes. The blog for the full system.
+                Short takes on LinkedIn. Deeper posts on the blog.
               </h2>
 
               <p className="mt-4 max-w-2xl text-base leading-7 text-ink/70">
-                We test ideas in short form, then expand the strongest ones here into frameworks, methods, and practical guidance.
+                We share timely ideas in short form, then develop the strongest ones here into fuller posts.
               </p>
             </div>
 
