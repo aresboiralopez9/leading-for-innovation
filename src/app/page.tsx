@@ -131,41 +131,45 @@ export default function HomePage() {
           </div>
 
           <div className="grid gap-6 lg:grid-cols-3">
-            {featuredPosts.map((post, index) => (
-              <Link
-                key={post.slug}
-                href={`/blog/${post.slug}`}
-                className={`group rounded-[1.75rem] border p-6 shadow-sm transition hover:translate-y-[-3px] hover:shadow-xl ${
-                  index === 0
-                    ? 'border-lfi-yellow bg-lfi-yellow/25 lg:col-span-2'
-                    : 'border-ink/10 bg-lfi-white'
-                }`}
-              >
-                <div className="flex flex-wrap items-center gap-3 text-xs font-semibold uppercase tracking-[0.18em] text-ink/55">
-                  {post.category && <span>{post.category}</span>}
-                  {post.readingTime && <span>•</span>}
-                  {post.readingTime && <span>{post.readingTime}</span>}
-                </div>
+            {featuredPosts.map((post, index) => {
+              const readingTimeLabel = `${post.readingTime} min read`
 
-                <h3
-                  className={
+              return (
+                <Link
+                  key={post.slug}
+                  href={`/blog/${post.slug}`}
+                  className={`group rounded-[1.75rem] border p-6 shadow-sm transition hover:translate-y-[-3px] hover:shadow-xl ${
                     index === 0
-                      ? 'mt-5 text-3xl font-semibold tracking-tight'
-                      : 'mt-5 text-2xl font-semibold tracking-tight'
-                  }
+                      ? 'border-lfi-yellow bg-lfi-yellow/25 lg:col-span-2'
+                      : 'border-ink/10 bg-lfi-white'
+                  }`}
                 >
-                  {post.title}
-                </h3>
+                  <div className="flex flex-wrap items-center gap-3 text-xs font-semibold uppercase tracking-[0.18em] text-ink/55">
+                    <span>{post.category}</span>
+                    <span>•</span>
+                    <span>{readingTimeLabel}</span>
+                  </div>
 
-                <p className="mt-4 text-sm leading-7 text-ink/70">
-                  {post.description}
-                </p>
+                  <h3
+                    className={
+                      index === 0
+                        ? 'mt-5 text-3xl font-semibold tracking-tight'
+                        : 'mt-5 text-2xl font-semibold tracking-tight'
+                    }
+                  >
+                    {post.title}
+                  </h3>
 
-                <div className="mt-6 text-sm font-semibold text-lfi-blue group-hover:underline">
-                  Read article
-                </div>
-              </Link>
-            ))}
+                  <p className="mt-4 text-sm leading-7 text-ink/70">
+                    {post.excerpt}
+                  </p>
+
+                  <div className="mt-6 text-sm font-semibold text-lfi-blue group-hover:underline">
+                    Read article
+                  </div>
+                </Link>
+              )
+            })}
           </div>
         </section>
       )}
@@ -240,7 +244,7 @@ export default function HomePage() {
                 {author.role}
               </p>
 
-              <p className="mt-4 line-clamp-5 text-sm leading-6 text-ink/70">
+              <p className="mt-4 text-sm leading-6 text-ink/70">
                 {author.bio}
               </p>
 
@@ -270,25 +274,29 @@ export default function HomePage() {
             </div>
 
             <div className="grid gap-4">
-              {latestPosts.map((post) => (
-                <Link
-                  key={post.slug}
-                  href={`/blog/${post.slug}`}
-                  className="rounded-[1.25rem] border border-lfi-white/10 bg-lfi-white/5 p-5 transition hover:bg-lfi-white/10"
-                >
-                  <div className="flex flex-wrap gap-3 text-xs font-semibold uppercase tracking-[0.18em] text-lfi-yellow">
-                    {post.category && <span>{post.category}</span>}
-                    {post.readingTime && <span>•</span>}
-                    {post.readingTime && <span>{post.readingTime}</span>}
-                  </div>
+              {latestPosts.map((post) => {
+                const readingTimeLabel = `${post.readingTime} min read`
 
-                  <h3 className="mt-3 text-xl font-semibold">{post.title}</h3>
+                return (
+                  <Link
+                    key={post.slug}
+                    href={`/blog/${post.slug}`}
+                    className="rounded-[1.25rem] border border-lfi-white/10 bg-lfi-white/5 p-5 transition hover:bg-lfi-white/10"
+                  >
+                    <div className="flex flex-wrap gap-3 text-xs font-semibold uppercase tracking-[0.18em] text-lfi-yellow">
+                      <span>{post.category}</span>
+                      <span>•</span>
+                      <span>{readingTimeLabel}</span>
+                    </div>
 
-                  <p className="mt-2 text-sm leading-6 text-lfi-white/65">
-                    {post.description}
-                  </p>
-                </Link>
-              ))}
+                    <h3 className="mt-3 text-xl font-semibold">{post.title}</h3>
+
+                    <p className="mt-2 text-sm leading-6 text-lfi-white/65">
+                      {post.excerpt}
+                    </p>
+                  </Link>
+                )
+              })}
             </div>
           </div>
         </section>
