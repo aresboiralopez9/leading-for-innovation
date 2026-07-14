@@ -9,4 +9,4 @@ linkedInUrl: ''
 featured: true
 ---
 
-*Coming soon*
+*Coming soon.*
