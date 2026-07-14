@@ -15,8 +15,6 @@ export interface PostMeta {
   tags: string[]
   readingTime: number
   featured?: boolean
-  framework?: boolean
-  frameworkName?: string
   linkedInUrl?: string
   author?: string
   companionSlug?: string
@@ -56,10 +54,6 @@ export function getFeaturedPosts(): PostMeta[] {
   return getAllPosts().filter((post) => post.featured)
 }
 
-export function getFrameworkPosts(): PostMeta[] {
-  return getAllPosts().filter((post) => post.framework)
-}
-
 export function getPostsByCategory(category: string): PostMeta[] {
   return getAllPosts().filter(
     (post) => post.category.toLowerCase() === category.toLowerCase()
@@ -95,9 +89,7 @@ export function getPostMeta(slug: string): PostMeta | null {
       category: data.category || 'Uncategorized',
       tags: data.tags || [],
       readingTime: calculateReadingTime(content),
-      featured: data.featured || false,
-      framework: data.framework || false,
-      frameworkName: data.frameworkName || '',
+      featured: data.featured || false, '',
       linkedInUrl: data.linkedInUrl || '',
       author: data.author || '',
       companionSlug: data.companionSlug || '',
@@ -132,9 +124,7 @@ export async function getPost(slug: string): Promise<Post | null> {
       category: data.category || 'Uncategorized',
       tags: data.tags || [],
       readingTime: calculateReadingTime(content),
-      featured: data.featured || false,
-      framework: data.framework || false,
-      frameworkName: data.frameworkName || '',
+      featured: data.featured || false, '',
       linkedInUrl: data.linkedInUrl || '',
       author: data.author || '',
       companionSlug: data.companionSlug || '',
