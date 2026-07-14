@@ -1,25 +1,34 @@
-import Link from 'next/link'
-import type { PostMeta } from '@/lib/posts'
+import Link from 'next/link';
+import type { PostMeta } from '@/lib/posts';
 
-interface PostCardProps {
-  post: PostMeta
-  featured?: boolean
-}
+type PostCardProps = {
+  post: PostMeta;
+  featured?: boolean;
+};
 
 function formatDate(date: string): string {
-  if (!date) return ''
+  if (!date) return '';
+
+  const parsedDate = new Date(date);
+
+  if (Number.isNaN(parsedDate.getTime())) {
+    return '';
+  }
 
   return new Intl.DateTimeFormat('en-US', {
     month: 'short',
     day: 'numeric',
     year: 'numeric',
-  }).format(new Date(date))
+  }).format(parsedDate);
 }
 
 export default function PostCard({ post, featured = false }: PostCardProps) {
+  const formattedDate = formatDate(post.date);
+  const tags = Array.isArray(post.tags) ? post.tags : [];
+
   return (
     <article
-      className={`group flex h-full flex-col overflow-hidden rounded-[1.5rem] border border-ink/10 bg-lfi-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl ${
+      className={`group flex h-full flex-col overflow-hidden rounded-3xl border border-ink/10 bg-lfi-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl ${
         featured ? 'md:rounded-[2rem]' : ''
       }`}
     >
@@ -52,9 +61,9 @@ export default function PostCard({ post, featured = false }: PostCardProps) {
           </p>
         )}
 
-        {post.tags.length > 0 && (
+        {tags.length > 0 && (
           <div className="mt-5 flex flex-wrap gap-2">
-            {post.tags.map((tag) => (
+            {tags.map((tag) => (
               <span
                 key={tag}
                 className="rounded-full bg-lfi-mint/35 px-3 py-1 text-xs font-semibold text-ink/75"
@@ -67,8 +76,9 @@ export default function PostCard({ post, featured = false }: PostCardProps) {
 
         <div className="mt-6 flex flex-wrap items-center justify-between gap-4 border-t border-ink/10 pt-5">
           <div className="text-xs font-semibold uppercase tracking-[0.14em] text-ink/55">
-            {formatDate(post.date)}
-            {post.readingTime ? ` · ${post.readingTime} min read` : ''}
+            {formattedDate}
+            {formattedDate && post.readingTime ? ' · ' : ''}
+            {post.readingTime ? `${post.readingTime} min read` : ''}
           </div>
 
           <div className="flex flex-wrap items-center gap-3">
@@ -93,5 +103,5 @@ export default function PostCard({ post, featured = false }: PostCardProps) {
         </div>
       </div>
     </article>
-  )
+  );
 }
