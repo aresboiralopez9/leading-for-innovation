@@ -55,22 +55,22 @@ export default function HomePage() {
         <div className="absolute right-10 top-14 h-32 w-32 rounded-full bg-lfi-blue/25 blur-3xl" />
         <div className="absolute bottom-0 right-1/3 h-24 w-24 rounded-full bg-lfi-green/25 blur-2xl" />
 
-        <div className="relative mx-auto grid max-w-7xl gap-10 px-6 pb-16 pt-10 md:grid-cols-[1.15fr_0.85fr] md:px-10 lg:pb-24 lg:pt-12">
+        <div className="relative mx-auto grid max-w-7xl gap-10 px-6 pb-12 pt-8 md:grid-cols-[1.12fr_0.88fr] md:px-10 lg:pb-16 lg:pt-10">
           <div>
             <div className="mb-4 inline-flex rounded-full border border-ink/10 bg-lfi-white/80 px-4 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-ink/70 shadow-sm">
               Research to Reality
             </div>
 
-            <h1 className="max-w-4xl text-5xl font-semibold tracking-tight text-ink md:text-7xl">
+            <h1 className="max-w-4xl text-4xl font-semibold leading-[1.02] tracking-tight text-ink md:text-5xl lg:text-6xl">
               The gap between what feels right and what actually works is where most teams get stuck.
               <span className="block text-lfi-blue">We close it.</span>
             </h1>
 
-            <p className="mt-7 max-w-2xl text-lg leading-8 text-ink/75 md:text-xl">
+            <p className="mt-6 max-w-2xl text-base leading-7 text-ink/75 md:text-lg">
               Good innovation practice rarely feels natural. We take the research seriously, challenge what intuition gets backwards, and turn the findings into clear ideas teams can actually use.
             </p>
 
-            <div className="mt-9 flex flex-wrap gap-4">
+            <div className="mt-7 flex flex-wrap gap-4">
               <Link
                 href="/blog"
                 className="rounded-full bg-ink px-6 py-3 text-sm font-semibold text-lfi-white transition hover:translate-y-[-1px] hover:shadow-lg"
@@ -87,13 +87,13 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="self-start rounded-[2rem] border border-ink/10 bg-lfi-white p-5 shadow-xl">
-            <div className="rounded-[1.5rem] bg-lfi-yellow/30 p-6">
+          <div className="self-start rounded-[2rem] border border-ink/10 bg-lfi-white p-4 shadow-xl">
+            <div className="rounded-[1.5rem] bg-lfi-yellow/30 p-5">
               <p className="text-xs font-bold uppercase tracking-[0.25em] text-ink/60">
                 Start here
               </p>
 
-              <h2 className="mt-3 text-2xl font-semibold leading-tight text-ink">
+              <h2 className="mt-3 text-xl font-semibold leading-tight text-ink md:text-2xl">
                 Smart takes on creativity, innovation, and how teams actually work.
               </h2>
 
