@@ -2,7 +2,8 @@ import Link from 'next/link'
 import { getAllAuthors } from '@/lib/authors'
 import { getAllPosts } from '@/lib/posts'
 
-const leadingForInnovationLinkedIn = 'https://www.linkedin.com/company/leading-for-innovation/'
+const leadingForInnovationLinkedIn =
+  'https://www.linkedin.com/company/leading-for-innovation/'
 
 const postTypes = [
   {
@@ -14,7 +15,7 @@ const postTypes = [
   {
     label: 'Debate',
     href: '/blog?category=Debate',
-    description: 'Two sided takes on the ideas people often oversimplify.',
+    description: 'Two-sided takes on the ideas people often oversimplify.',
     className: 'border-lfi-blue bg-lfi-blue/10',
   },
   {
@@ -64,12 +65,15 @@ export default function HomePage() {
             </div>
 
             <h1 className="max-w-4xl text-4xl font-semibold leading-[1.02] tracking-tight text-ink md:text-5xl lg:text-6xl">
-              The gap between what feels right and what actually works is where most teams get stuck.
+              The gap between what feels right and what actually works is where
+              most teams get stuck.
               <span className="block text-lfi-blue">We close it.</span>
             </h1>
 
             <p className="mt-6 max-w-2xl text-base leading-7 text-ink/75 md:text-lg">
-              Good innovation practice rarely feels natural. We take the research seriously, challenge what intuition gets backwards, and turn the findings into clear ideas teams can actually use.
+              Good innovation practice rarely feels natural. We take the
+              research seriously, challenge what intuition gets backwards, and
+              turn the findings into clear ideas teams can actually use.
             </p>
 
             <div className="mt-7 flex flex-wrap gap-4">
@@ -96,30 +100,46 @@ export default function HomePage() {
               </p>
 
               <h2 className="mt-3 text-xl font-semibold leading-tight text-ink md:text-2xl">
-                Smart takes on creativity, innovation, and how teams actually work.
+                Smart takes on creativity, innovation, and how teams actually
+                work.
               </h2>
 
               <div className="mt-5 grid gap-3">
-                <div className="rounded-2xl bg-lfi-white p-4 shadow-sm">
-                  <p className="text-sm font-semibold text-lfi-blue">Research to Practice</p>
+                <Link
+                  href="/blog?category=Research%20to%20Practice"
+                  className="block rounded-2xl bg-lfi-white p-4 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+                >
+                  <p className="text-sm font-semibold text-lfi-blue">
+                    Research to Practice
+                  </p>
                   <p className="mt-1 text-sm text-ink/70">
                     Turn evidence into usable ideas.
                   </p>
-                </div>
+                </Link>
 
-                <div className="rounded-2xl bg-lfi-white p-4 shadow-sm">
-                  <p className="text-sm font-semibold text-lfi-green">Myth Busters</p>
+                <Link
+                  href="/blog?category=Myth%20Buster"
+                  className="block rounded-2xl bg-lfi-white p-4 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+                >
+                  <p className="text-sm font-semibold text-lfi-green">
+                    Myth Busters
+                  </p>
                   <p className="mt-1 text-sm text-ink/70">
                     Challenge what sounds right but often fails.
                   </p>
-                </div>
+                </Link>
 
-                <div className="rounded-2xl bg-lfi-white p-4 shadow-sm">
-                  <p className="text-sm font-semibold text-lfi-blue">Debates and Hot Takes</p>
+                <Link
+                  href="/blog?category=Debate"
+                  className="block rounded-2xl bg-lfi-white p-4 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+                >
+                  <p className="text-sm font-semibold text-lfi-blue">
+                    Debates and Hot Takes
+                  </p>
                   <p className="mt-1 text-sm text-ink/70">
                     Make familiar innovation questions sharper.
                   </p>
-                </div>
+                </Link>
               </div>
             </div>
           </div>
@@ -139,7 +159,10 @@ export default function HomePage() {
               </h2>
             </div>
 
-            <Link href="/blog" className="text-sm font-semibold text-lfi-blue hover:underline">
+            <Link
+              href="/blog"
+              className="text-sm font-semibold text-lfi-blue hover:underline"
+            >
               View all posts
             </Link>
           </div>
@@ -222,7 +245,9 @@ export default function HomePage() {
           </h2>
 
           <p className="mt-5 max-w-xl text-base leading-7 text-ink/70">
-            Leading for Innovation is built by two creativity and innovation researchers who care about making academic evidence useful for real teams, managers, and organizations.
+            Leading for Innovation is built by two creativity and innovation
+            researchers who care about making academic evidence useful for real
+            teams, managers, and organizations.
           </p>
 
           <Link
@@ -277,7 +302,8 @@ export default function HomePage() {
               </h2>
 
               <p className="mt-5 text-base leading-7 text-lfi-white/80">
-                New research to practice pieces, debates, hot takes, expert lenses, myth busters, and innovation spotlights.
+                New research to practice pieces, debates, hot takes, expert
+                lenses, myth busters, and innovation spotlights.
               </p>
             </div>
 
@@ -297,7 +323,9 @@ export default function HomePage() {
                       <span>{readingTimeLabel}</span>
                     </div>
 
-                    <h3 className="mt-3 text-xl font-semibold">{post.title}</h3>
+                    <h3 className="mt-3 text-xl font-semibold">
+                      {post.title}
+                    </h3>
 
                     <p className="mt-2 text-sm leading-6 text-lfi-white/75">
                       {post.excerpt}
@@ -323,7 +351,8 @@ export default function HomePage() {
               </h2>
 
               <p className="mt-4 max-w-2xl text-base leading-7 text-ink/70">
-                We share timely ideas in short form, then develop the strongest ones here into fuller posts.
+                We share timely ideas in short form, then develop the strongest
+                ones here into fuller posts.
               </p>
             </div>
 
