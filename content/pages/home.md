@@ -50,7 +50,7 @@ postTypeCards:
   - label: Innovation Spotlight
     description: Concrete examples of innovation in action and what they teach us.
     href: /blog?category=Innovation%20Spotlight
-    className: border-lfi-blue bg-lfi-blue/10
+    className: border-lfi-green bg-lfi-green/10
 foundersSectionLabel: The founders
 foundersSectionHeading: Meet the people behind the blog
 foundersSectionText: 'Leading for Innovation is built by two creativity and innovation researchers who care about making academic evidence useful for real teams, managers, and organizations.'
