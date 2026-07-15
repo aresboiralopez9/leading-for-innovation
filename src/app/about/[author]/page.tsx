@@ -2,16 +2,16 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import type { Metadata } from 'next'
-import { getAuthor, authors } from '@/lib/authors'
+import { getAllAuthorIds, getAuthor } from '@/lib/authors'
 import { getAllPosts } from '@/lib/posts'
-import { PostCard } from '@/components/PostCard'
+import PostCard from '@/components/PostCard'
 
 interface Props {
   params: { author: string }
 }
 
 export function generateStaticParams() {
-  return Object.keys(authors).map((author) => ({ author }))
+  return getAllAuthorIds().map((author) => ({ author }))
 }
 
 export function generateMetadata({ params }: Props): Metadata {

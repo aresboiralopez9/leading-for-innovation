@@ -19,7 +19,7 @@ function formatDate(date: string): string {
   }).format(parsedDate);
 }
 
-export function PostCard({ post, featured = false }: PostCardProps) {
+export default function PostCard({ post, featured = false }: PostCardProps) {
   const formattedDate = formatDate(post.date);
   const tags = Array.isArray(post.tags) ? post.tags : [];
 

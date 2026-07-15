@@ -9,8 +9,6 @@ interface HeaderProps {
   settings: SiteSettingsData
 }
 
-const leadingForInnovationLinkedIn = 'https://www.linkedin.com/company/leading-for-innovation/'
-
 export function Header({ settings }: HeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false)
 
@@ -56,7 +54,7 @@ export function Header({ settings }: HeaderProps) {
           </nav>
 
           <Link
-            href={leadingForInnovationLinkedIn}
+            href={settings.linkedInUrl}
             target="_blank"
             rel="noopener noreferrer"
             className={primaryButtonClass}
@@ -92,7 +90,7 @@ export function Header({ settings }: HeaderProps) {
             ))}
 
             <Link
-              href={leadingForInnovationLinkedIn}
+              href={settings.linkedInUrl}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setMenuOpen(false)}

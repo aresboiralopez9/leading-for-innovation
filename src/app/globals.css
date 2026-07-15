@@ -39,7 +39,7 @@
       bg-ink dark:bg-white text-white dark:text-ink;
   }
 
-  .framework-badge {
+  .legacy-badge {
     @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider
       bg-gradient-to-r from-brand-500 to-brand-700 text-white;
   }

@@ -1,50 +1,11 @@
 import Link from 'next/link'
 import { getAllAuthors } from '@/lib/authors'
+import { getHomePageData, getSiteSettings } from '@/lib/content'
 import { getAllPosts } from '@/lib/posts'
 
-const leadingForInnovationLinkedIn =
-  'https://www.linkedin.com/company/leading-for-innovation/'
-
-const postTypes = [
-  {
-    label: 'Research to Practice',
-    href: '/blog?category=Research%20to%20Practice',
-    description: 'What the research says and what teams can actually do with it.',
-    className: 'border-lfi-yellow bg-lfi-yellow/25',
-  },
-  {
-    label: 'Debate',
-    href: '/blog?category=Debate',
-    description: 'Two-sided takes on the ideas people often oversimplify.',
-    className: 'border-lfi-blue bg-lfi-blue/10',
-  },
-  {
-    label: 'Hot Takes',
-    href: '/blog?category=Hot%20Takes',
-    description: 'Sharp arguments that challenge familiar innovation advice.',
-    className: 'border-lfi-green bg-lfi-green/10',
-  },
-  {
-    label: 'Expert Lens',
-    href: '/blog?category=Expert%20Lens',
-    description: 'Deeper reads on creativity, innovation, leadership, and evidence.',
-    className: 'border-lfi-mint bg-lfi-mint/20',
-  },
-  {
-    label: 'Myth Buster',
-    href: '/blog?category=Myth%20Buster',
-    description: 'Common beliefs about creativity and innovation put to the test.',
-    className: 'border-lfi-yellow bg-lfi-yellow/20',
-  },
-  {
-    label: 'Innovation Spotlight',
-    href: '/blog?category=Innovation%20Spotlight',
-    description: 'Concrete examples of innovation in action and what they teach us.',
-    className: 'border-lfi-blue bg-lfi-blue/10',
-  },
-]
-
 export default function HomePage() {
+  const cms = getHomePageData()
+  const settings = getSiteSettings()
   const posts = getAllPosts()
   const authors = getAllAuthors()
 
@@ -61,85 +22,62 @@ export default function HomePage() {
         <div className="relative mx-auto grid max-w-7xl gap-10 px-6 pb-12 pt-8 md:grid-cols-[1.12fr_0.88fr] md:px-10 lg:pb-16 lg:pt-10">
           <div>
             <div className="mb-4 inline-flex rounded-full border border-ink/10 bg-lfi-white/80 px-4 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-ink/70 shadow-sm">
-              Research to Reality
+              {cms.heroBadgeText}
             </div>
 
             <h1 className="max-w-4xl text-4xl font-semibold leading-[1.02] tracking-tight text-ink md:text-5xl lg:text-6xl">
-              The gap between what feels right and what actually works is where
-              most teams get stuck.
-              <span className="block text-lfi-blue">We close it.</span>
+              {cms.heroHeadline}
+              <span className="block text-lfi-blue">{cms.heroHeadlineAccent}</span>
             </h1>
 
             <p className="mt-6 max-w-2xl text-base leading-7 text-ink/75 md:text-lg">
-              Good innovation practice rarely feels natural. We take the
-              research seriously, challenge what intuition gets backwards, and
-              turn the findings into clear ideas teams can actually use.
+              {cms.heroSubtext}
             </p>
 
             <div className="mt-7 flex flex-wrap gap-4">
-              <Link
-                href="/blog"
-                className="rounded-full bg-ink px-6 py-3 text-sm font-semibold text-lfi-white transition hover:translate-y-[-1px] hover:shadow-lg"
-              >
-                Read the blog
-              </Link>
+              {cms.heroPrimaryButtonText && cms.heroPrimaryButtonHref && (
+                <Link
+                  href={cms.heroPrimaryButtonHref}
+                  className="rounded-full bg-ink px-6 py-3 text-sm font-semibold text-lfi-white transition hover:translate-y-[-1px] hover:shadow-lg"
+                >
+                  {cms.heroPrimaryButtonText}
+                </Link>
+              )}
 
-              <Link
-                href="/about"
-                className="rounded-full border border-ink/15 bg-lfi-white px-6 py-3 text-sm font-semibold text-ink transition hover:translate-y-[-1px] hover:border-lfi-yellow hover:shadow-lg"
-              >
-                Meet the founders
-              </Link>
+              {cms.heroSecondaryButtonText && cms.heroSecondaryButtonHref && (
+                <Link
+                  href={cms.heroSecondaryButtonHref}
+                  className="rounded-full border border-ink/15 bg-lfi-white px-6 py-3 text-sm font-semibold text-ink transition hover:translate-y-[-1px] hover:border-lfi-yellow hover:shadow-lg"
+                >
+                  {cms.heroSecondaryButtonText}
+                </Link>
+              )}
             </div>
           </div>
 
           <div className="self-start rounded-[2rem] border border-ink/10 bg-lfi-white p-4 shadow-xl">
             <div className="rounded-[1.5rem] bg-lfi-yellow/30 p-5">
               <p className="text-xs font-bold uppercase tracking-[0.25em] text-ink/60">
-                Start here
+                {cms.startHereLabel}
               </p>
 
               <h2 className="mt-3 text-xl font-semibold leading-tight text-ink md:text-2xl">
-                Smart takes on creativity, innovation, and how teams actually
-                work.
+                {cms.startHereHeading}
               </h2>
 
               <div className="mt-5 grid gap-3">
-                <Link
-                  href="/blog?category=Research%20to%20Practice"
-                  className="block rounded-2xl bg-lfi-white p-4 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
-                >
-                  <p className="text-sm font-semibold text-lfi-blue">
-                    Research to Practice
-                  </p>
-                  <p className="mt-1 text-sm text-ink/70">
-                    Turn evidence into usable ideas.
-                  </p>
-                </Link>
-
-                <Link
-                  href="/blog?category=Myth%20Buster"
-                  className="block rounded-2xl bg-lfi-white p-4 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
-                >
-                  <p className="text-sm font-semibold text-lfi-green">
-                    Myth Busters
-                  </p>
-                  <p className="mt-1 text-sm text-ink/70">
-                    Challenge what sounds right but often fails.
-                  </p>
-                </Link>
-
-                <Link
-                  href="/blog?category=Debate"
-                  className="block rounded-2xl bg-lfi-white p-4 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
-                >
-                  <p className="text-sm font-semibold text-lfi-blue">
-                    Debates and Hot Takes
-                  </p>
-                  <p className="mt-1 text-sm text-ink/70">
-                    Make familiar innovation questions sharper.
-                  </p>
-                </Link>
+                {cms.startHereCards.map((card) => (
+                  <Link
+                    key={`${card.label}-${card.href}`}
+                    href={card.href}
+                    className="block rounded-2xl bg-lfi-white p-4 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+                  >
+                    <p className={`text-sm font-semibold ${card.colorClass || 'text-lfi-blue'}`}>
+                      {card.label}
+                    </p>
+                    <p className="mt-1 text-sm text-ink/70">{card.description}</p>
+                  </Link>
+                ))}
               </div>
             </div>
           </div>
@@ -151,18 +89,15 @@ export default function HomePage() {
           <div className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.25em] text-lfi-blue">
-                Featured posts
+                {cms.featuredSectionLabel}
               </p>
 
               <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
-                Start with these
+                {cms.featuredSectionHeading}
               </h2>
             </div>
 
-            <Link
-              href="/blog"
-              className="text-sm font-semibold text-lfi-blue hover:underline"
-            >
+            <Link href="/blog" className="text-sm font-semibold text-lfi-blue hover:underline">
               View all posts
             </Link>
           </div>
@@ -209,20 +144,20 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl px-6 py-14 md:px-10">
           <div className="mb-8">
             <p className="text-xs font-bold uppercase tracking-[0.25em] text-lfi-green">
-              Browse by type
+              {cms.postTypesSectionLabel}
             </p>
 
             <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
-              Choose the kind of post you want to read
+              {cms.postTypesSectionHeading}
             </h2>
           </div>
 
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {postTypes.map((type) => (
+            {cms.postTypeCards.map((type) => (
               <Link
-                key={type.label}
+                key={`${type.label}-${type.href}`}
                 href={type.href}
-                className={`rounded-[1.5rem] border p-5 transition hover:translate-y-[-2px] hover:shadow-lg ${type.className}`}
+                className={`rounded-[1.5rem] border p-5 transition hover:translate-y-[-2px] hover:shadow-lg ${type.className || 'border-ink/10 bg-lfi-white'}`}
               >
                 <h3 className="text-xl font-semibold">{type.label}</h3>
                 <p className="mt-3 text-sm leading-6 text-ink/70">
@@ -237,25 +172,25 @@ export default function HomePage() {
       <section className="mx-auto grid max-w-7xl gap-8 px-6 py-14 md:px-10 lg:grid-cols-[0.52fr_1.48fr]">
         <div>
           <p className="text-xs font-bold uppercase tracking-[0.25em] text-lfi-blue">
-            The founders
+            {cms.foundersSectionLabel}
           </p>
 
           <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
-            Meet the people behind the blog
+            {cms.foundersSectionHeading}
           </h2>
 
           <p className="mt-5 max-w-xl text-base leading-7 text-ink/70">
-            Leading for Innovation is built by two creativity and innovation
-            researchers who care about making academic evidence useful for real
-            teams, managers, and organizations.
+            {cms.foundersSectionText}
           </p>
 
-          <Link
-            href="/about"
-            className="mt-7 inline-flex rounded-full border border-ink/15 bg-lfi-white px-5 py-3 text-sm font-semibold text-ink transition hover:border-lfi-yellow hover:shadow-md"
-          >
-            Read about the blog
-          </Link>
+          {cms.foundersButtonText && cms.foundersButtonHref && (
+            <Link
+              href={cms.foundersButtonHref}
+              className="mt-7 inline-flex rounded-full border border-ink/15 bg-lfi-white px-5 py-3 text-sm font-semibold text-ink transition hover:border-lfi-yellow hover:shadow-md"
+            >
+              {cms.foundersButtonText}
+            </Link>
+          )}
         </div>
 
         <div className="grid gap-5 md:grid-cols-2">
@@ -294,16 +229,15 @@ export default function HomePage() {
           <div className="mx-auto grid max-w-7xl gap-10 px-6 py-14 md:px-10 lg:grid-cols-[0.8fr_1.2fr]">
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.25em] text-lfi-yellow">
-                Latest
+                {cms.latestSectionLabel}
               </p>
 
               <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
-                Recent posts
+                {cms.latestSectionHeading}
               </h2>
 
               <p className="mt-5 text-base leading-7 text-lfi-white/80">
-                New research to practice pieces, debates, hot takes, expert
-                lenses, myth busters, and innovation spotlights.
+                {cms.latestSectionText}
               </p>
             </div>
 
@@ -323,9 +257,7 @@ export default function HomePage() {
                       <span>{readingTimeLabel}</span>
                     </div>
 
-                    <h3 className="mt-3 text-xl font-semibold">
-                      {post.title}
-                    </h3>
+                    <h3 className="mt-3 text-xl font-semibold">{post.title}</h3>
 
                     <p className="mt-2 text-sm leading-6 text-lfi-white/75">
                       {post.excerpt}
@@ -343,26 +275,25 @@ export default function HomePage() {
           <div className="grid gap-8 md:grid-cols-[1fr_auto] md:items-center">
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.25em] text-ink/60">
-                Follow the work
+                {cms.followSectionLabel}
               </p>
 
               <h2 className="mt-3 text-3xl font-semibold tracking-tight">
-                Short takes on LinkedIn. Deeper posts on the blog.
+                {cms.followSectionHeading}
               </h2>
 
               <p className="mt-4 max-w-2xl text-base leading-7 text-ink/70">
-                We share timely ideas in short form, then develop the strongest
-                ones here into fuller posts.
+                {cms.followSectionText}
               </p>
             </div>
 
             <Link
-              href={leadingForInnovationLinkedIn}
+              href={settings.linkedInUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="rounded-full bg-ink px-6 py-3 text-sm font-semibold text-lfi-white transition hover:translate-y-[-1px] hover:shadow-lg"
             >
-              Follow on LinkedIn
+              {cms.followButtonText}
             </Link>
           </div>
         </div>

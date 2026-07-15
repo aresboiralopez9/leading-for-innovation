@@ -4,8 +4,6 @@ import Image from 'next/image'
 import { getAboutPageData } from '@/lib/content'
 import { getAllAuthors } from '@/lib/authors'
 
-const leadingForInnovationLinkedIn = 'https://www.linkedin.com/company/leading-for-innovation/'
-
 export async function generateMetadata(): Promise<Metadata> {
   const cms = await getAboutPageData()
 
@@ -41,10 +39,10 @@ export default async function AboutPage() {
 
               <div className="mt-8 rounded-2xl border border-lfi-yellow bg-lfi-white/80 p-5">
                 <p className="text-sm font-bold uppercase tracking-[0.2em] text-ink/55">
-                  Our point of view
+                  {cms.pointOfViewLabel}
                 </p>
                 <p className="mt-3 text-lg font-semibold leading-7 text-ink">
-                  Useful research should not stay trapped in journals, slide decks, or vague advice. It should help people make better decisions at work.
+                  {cms.pointOfViewText}
                 </p>
               </div>
             </div>
@@ -74,7 +72,7 @@ export default async function AboutPage() {
 
               {cms.secondaryButtonText && (
                 <a
-                  href={leadingForInnovationLinkedIn}
+                  href="https://www.linkedin.com/company/leading-for-innovation/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 rounded-full border border-lfi-yellow bg-lfi-yellow/30 px-6 py-3 text-sm font-semibold text-ink transition-colors hover:bg-lfi-yellow/45"
@@ -87,10 +85,10 @@ export default async function AboutPage() {
         </div>
 
         <section className="mx-auto max-w-5xl border-t border-ink/10 pt-12">
-          <p className="section-title mb-3">The People</p>
+          <p className="section-title mb-3">{cms.peopleSectionLabel}</p>
 
           <h2 className="mb-8 text-2xl font-black tracking-tight text-ink sm:text-3xl">
-            Two voices, one system
+            {cms.peopleSectionHeading}
           </h2>
 
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">

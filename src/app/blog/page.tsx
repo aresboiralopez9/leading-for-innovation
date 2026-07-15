@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import PostCard from '@/components/PostCard'
-import { getAllPosts } from '@/lib/posts'
+import { getAllPosts, getAllTags } from '@/lib/posts'
 
 interface Props {
   searchParams: {
@@ -18,8 +18,6 @@ const categories = [
   'Innovation Spotlight',
 ]
 
-const topics = ['Foundations', 'Process', 'Conditions', 'AI']
-
 export const metadata = {
   title: 'Blog',
   description:
@@ -28,6 +26,7 @@ export const metadata = {
 
 export default function BlogPage({ searchParams }: Props) {
   const allPosts = getAllPosts()
+  const topics = getAllTags()
 
   const activeCategory = searchParams.category || ''
   const activeTag = searchParams.tag || ''

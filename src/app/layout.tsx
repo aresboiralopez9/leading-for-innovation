@@ -20,7 +20,7 @@ export async function generateMetadata(): Promise<Metadata> {
       template: `%s | ${settings.siteName}`,
     },
     description: settings.siteMetaDescription,
-    keywords: ['organizational design', 'innovation', 'leadership', 'frameworks', 'management', 'creativity'],
+    keywords: ['organizational design', 'innovation', 'leadership', 'management', 'creativity'],
     openGraph: {
       type: 'website',
       locale: 'en_US',

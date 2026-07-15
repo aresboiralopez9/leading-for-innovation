@@ -5,9 +5,13 @@ sectionLabel: "Who We Are"
 headline: "Translators."
 headlineAccent: "Not Curators."
 intro: "We sit at the intersection of creativity and innovation — and we're done watching great research die in journals while organizations keep making the same avoidable mistakes."
-primaryButtonText: "Read the Blog →"
+primaryButtonText: "Read the Blog"
 primaryButtonHref: "/blog"
 secondaryButtonText: ""
+pointOfViewLabel: "Our point of view"
+pointOfViewText: "Useful research should not stay trapped in journals, slide decks, or vague advice. It should help people make better decisions at work."
+peopleSectionLabel: "The People"
+peopleSectionHeading: "Two voices, one system"
 ---
 
 ## The Problem We're Solving
@@ -38,9 +42,9 @@ We are **not** thought leaders in the performative sense. We are practitioners w
 
 **LinkedIn** is where we test ideas and distribute sharp, high-signal insights in short form. Follow us there for daily thinking.
 
-**This blog** is the deep-dive home base. When a LinkedIn post hits and demands more, we build it out here — into full frameworks, operating systems, and extended analysis. Our best thinking lives here, structured and consolidated.
+**This blog** is the deep-dive home base. When a LinkedIn post hits and demands more, we build it out here — into full methods, operating systems, and extended analysis. Our best thinking lives here, structured and consolidated.
 
-Over time, the work compounds into recognizable, **named frameworks** — repeatable approaches that bridge the gap between theory and the messy reality of organizations. That credibility is the foundation for the consulting demand we're building toward.
+Over time, the work compounds into recognizable, **repeatable methods** that bridge the gap between theory and the messy reality of organizations. That credibility is the foundation for the consulting demand we're building toward.
 
 ## Who We Write For
 
