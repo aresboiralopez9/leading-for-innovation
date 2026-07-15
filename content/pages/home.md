@@ -34,7 +34,7 @@ postTypeCards:
   - label: Debate
     description: Two-sided takes on the ideas people often oversimplify.
     href: /blog?category=Debate
-    className: 'backgroundColor: #EAF0F6 borderColor: #1E3A5F'
+    className: border-lfi-blue bg-lfi-blue/10
   - label: Hot Takes
     description: Sharp arguments that challenge familiar innovation advice.
     href: /blog?category=Hot%20Takes
