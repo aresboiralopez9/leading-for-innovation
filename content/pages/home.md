@@ -42,7 +42,7 @@ postTypeCards:
   - label: Expert Lens
     description: 'Deeper reads on creativity, innovation, leadership, and evidence.'
     href: /blog?category=Expert%20Lens
-    className: border-lfi-mint bg-lfi-mint/20
+    className: border-lfi-mint bg-lfi-mint/10
   - label: Myth Buster
     description: Common beliefs about creativity and innovation put to the test.
     href: /blog?category=Myth%20Buster
