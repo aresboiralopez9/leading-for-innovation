@@ -30,7 +30,7 @@ postTypeCards:
   - label: Research to Practice
     description: What the research says and what teams can actually do with it.
     href: /blog?category=Research%20to%20Practice
-    className: border-lfi-yellow bg-lfi-yellow/25
+    className: border-lfi-yellow bg-lfi-yellow/10
   - label: Debate
     description: Two-sided takes on the ideas people often oversimplify.
     href: /blog?category=Debate
