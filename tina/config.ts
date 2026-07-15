@@ -11,9 +11,13 @@ const postCategories = [
 
 const colorOptions = [
   "bg-lfi-blue",
+  "bg-lfi-blue/10",
   "bg-lfi-green",
   "bg-lfi-yellow",
+  "bg-lfi-yellow/10",
+  "bg-lfi-green/10",
   "bg-lfi-mint",
+  "bg-lfi-mint/10",
   "bg-ink",
 ];
 
