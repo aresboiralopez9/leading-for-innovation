@@ -46,7 +46,7 @@ postTypeCards:
   - label: Myth Buster
     description: Common beliefs about creativity and innovation put to the test.
     href: /blog?category=Myth%20Buster
-    className: border-lfi-yellow bg-lfi-yellow/20
+    className: border-lfi-yellow bg-lfi-yellow/10
   - label: Innovation Spotlight
     description: Concrete examples of innovation in action and what they teach us.
     href: /blog?category=Innovation%20Spotlight
