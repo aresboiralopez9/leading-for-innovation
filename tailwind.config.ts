@@ -6,6 +6,19 @@ const config: Config = {
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/lib/**/*.{js,ts,jsx,tsx,mdx}',
+    './content/**/*.{md,mdx,json}',
+    './tina/**/*.{ts,tsx}',
+  ],
+  safelist: [
+    'border-lfi-blue',
+    'bg-lfi-blue/10',
+    'border-lfi-green',
+    'bg-lfi-green/10',
+    'border-lfi-yellow',
+    'bg-lfi-yellow/10',
+    'border-lfi-mint',
+    'bg-lfi-mint/10',
   ],
   theme: {
     extend: {
