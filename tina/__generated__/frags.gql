@@ -5,8 +5,22 @@ fragment PostParts on Post {
   date
   category
   tags
+  author
+  companionSlug
   linkedInUrl
   featured
+  body
+}
+
+fragment AuthorParts on Author {
+  __typename
+  name
+  role
+  initials
+  color
+  photo
+  linkedInUrl
+  bio
   body
 }
 
@@ -19,18 +33,39 @@ fragment HomePageParts on HomePage {
   heroPrimaryButtonText
   heroPrimaryButtonHref
   heroSecondaryButtonText
-  positioningItems {
+  heroSecondaryButtonHref
+  startHereLabel
+  startHereHeading
+  startHereCards {
     __typename
-    icon
     label
-    desc
+    description
+    href
+    colorClass
   }
   featuredSectionLabel
   featuredSectionHeading
   postTypesSectionLabel
   postTypesSectionHeading
+  postTypeCards {
+    __typename
+    label
+    description
+    href
+    className
+  }
+  foundersSectionLabel
+  foundersSectionHeading
+  foundersSectionText
+  foundersButtonText
+  foundersButtonHref
   latestSectionLabel
   latestSectionHeading
+  latestSectionText
+  followSectionLabel
+  followSectionHeading
+  followSectionText
+  followButtonText
 }
 
 fragment AboutPageParts on AboutPage {
@@ -41,9 +76,13 @@ fragment AboutPageParts on AboutPage {
   headline
   headlineAccent
   intro
+  pointOfViewLabel
+  pointOfViewText
   primaryButtonText
   primaryButtonHref
   secondaryButtonText
+  peopleSectionLabel
+  peopleSectionHeading
   body
 }
 

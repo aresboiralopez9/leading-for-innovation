@@ -56,6 +56,8 @@ type Query {
   document(collection: String, relativePath: String): DocumentNode!
   post(relativePath: String): Post!
   postConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: PostFilter): PostConnection!
+  author(relativePath: String): Author!
+  authorConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: AuthorFilter): AuthorConnection!
   homePage(relativePath: String): HomePage!
   homePageConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: HomePageFilter): HomePageConnection!
   aboutPage(relativePath: String): AboutPage!
@@ -70,6 +72,7 @@ type Query {
 
 input DocumentFilter {
   post: PostFilter
+  author: AuthorFilter
   homePage: HomePageFilter
   aboutPage: AboutPageFilter
   siteSettings: SiteSettingsFilter
@@ -100,7 +103,7 @@ type Collection {
   documents(before: String, after: String, first: Float, last: Float, sort: String, filter: DocumentFilter, folder: String): DocumentConnection!
 }
 
-union DocumentNode = Post | HomePage | AboutPage | SiteSettings | NewsletterCTA | Footer | Folder
+union DocumentNode = Post | Author | HomePage | AboutPage | SiteSettings | NewsletterCTA | Footer | Folder
 
 type Post implements Node & Document {
   title: String!
@@ -108,6 +111,8 @@ type Post implements Node & Document {
   date: String!
   category: String!
   tags: [String]
+  author: String
+  companionSlug: String
   linkedInUrl: String
   featured: Boolean
   body: JSON
@@ -148,6 +153,8 @@ input PostFilter {
   date: DatetimeFilter
   category: StringFilter
   tags: StringFilter
+  author: StringFilter
+  companionSlug: StringFilter
   linkedInUrl: StringFilter
   featured: BooleanFilter
   body: RichTextFilter
@@ -164,10 +171,61 @@ type PostConnection implements Connection {
   edges: [PostConnectionEdges]
 }
 
-type HomePagePositioningItems {
-  icon: String
+type Author implements Node & Document {
+  name: String!
+  role: String
+  initials: String
+  color: String
+  photo: String
+  linkedInUrl: String
+  bio: String
+  body: JSON
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input ImageFilter {
+  startsWith: String
+  eq: String
+  exists: Boolean
+  in: [String]
+}
+
+input AuthorFilter {
+  name: StringFilter
+  role: StringFilter
+  initials: StringFilter
+  color: StringFilter
+  photo: ImageFilter
+  linkedInUrl: StringFilter
+  bio: StringFilter
+  body: RichTextFilter
+}
+
+type AuthorConnectionEdges {
+  cursor: String!
+  node: Author
+}
+
+type AuthorConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [AuthorConnectionEdges]
+}
+
+type HomePageStartHereCards {
   label: String
-  desc: String
+  description: String
+  href: String
+  colorClass: String
+}
+
+type HomePagePostTypeCards {
+  label: String
+  description: String
+  href: String
+  className: String
 }
 
 type HomePage implements Node & Document {
@@ -178,22 +236,44 @@ type HomePage implements Node & Document {
   heroPrimaryButtonText: String
   heroPrimaryButtonHref: String
   heroSecondaryButtonText: String
-  positioningItems: [HomePagePositioningItems]
+  heroSecondaryButtonHref: String
+  startHereLabel: String
+  startHereHeading: String
+  startHereCards: [HomePageStartHereCards]
   featuredSectionLabel: String
   featuredSectionHeading: String
   postTypesSectionLabel: String
   postTypesSectionHeading: String
+  postTypeCards: [HomePagePostTypeCards]
+  foundersSectionLabel: String
+  foundersSectionHeading: String
+  foundersSectionText: String
+  foundersButtonText: String
+  foundersButtonHref: String
   latestSectionLabel: String
   latestSectionHeading: String
+  latestSectionText: String
+  followSectionLabel: String
+  followSectionHeading: String
+  followSectionText: String
+  followButtonText: String
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
 }
 
-input HomePagePositioningItemsFilter {
-  icon: StringFilter
+input HomePageStartHereCardsFilter {
   label: StringFilter
-  desc: StringFilter
+  description: StringFilter
+  href: StringFilter
+  colorClass: StringFilter
+}
+
+input HomePagePostTypeCardsFilter {
+  label: StringFilter
+  description: StringFilter
+  href: StringFilter
+  className: StringFilter
 }
 
 input HomePageFilter {
@@ -204,13 +284,27 @@ input HomePageFilter {
   heroPrimaryButtonText: StringFilter
   heroPrimaryButtonHref: StringFilter
   heroSecondaryButtonText: StringFilter
-  positioningItems: HomePagePositioningItemsFilter
+  heroSecondaryButtonHref: StringFilter
+  startHereLabel: StringFilter
+  startHereHeading: StringFilter
+  startHereCards: HomePageStartHereCardsFilter
   featuredSectionLabel: StringFilter
   featuredSectionHeading: StringFilter
   postTypesSectionLabel: StringFilter
   postTypesSectionHeading: StringFilter
+  postTypeCards: HomePagePostTypeCardsFilter
+  foundersSectionLabel: StringFilter
+  foundersSectionHeading: StringFilter
+  foundersSectionText: StringFilter
+  foundersButtonText: StringFilter
+  foundersButtonHref: StringFilter
   latestSectionLabel: StringFilter
   latestSectionHeading: StringFilter
+  latestSectionText: StringFilter
+  followSectionLabel: StringFilter
+  followSectionHeading: StringFilter
+  followSectionText: StringFilter
+  followButtonText: StringFilter
 }
 
 type HomePageConnectionEdges {
@@ -231,9 +325,13 @@ type AboutPage implements Node & Document {
   headline: String
   headlineAccent: String
   intro: String
+  pointOfViewLabel: String
+  pointOfViewText: String
   primaryButtonText: String
   primaryButtonHref: String
   secondaryButtonText: String
+  peopleSectionLabel: String
+  peopleSectionHeading: String
   body: JSON
   id: ID!
   _sys: SystemInfo!
@@ -247,9 +345,13 @@ input AboutPageFilter {
   headline: StringFilter
   headlineAccent: StringFilter
   intro: StringFilter
+  pointOfViewLabel: StringFilter
+  pointOfViewText: StringFilter
   primaryButtonText: StringFilter
   primaryButtonHref: StringFilter
   secondaryButtonText: StringFilter
+  peopleSectionLabel: StringFilter
+  peopleSectionHeading: StringFilter
   body: RichTextFilter
 }
 
@@ -382,6 +484,8 @@ type Mutation {
   createFolder(collection: String, relativePath: String!): DocumentNode!
   updatePost(relativePath: String!, params: PostMutation!): Post!
   createPost(relativePath: String!, params: PostMutation!): Post!
+  updateAuthor(relativePath: String!, params: AuthorMutation!): Author!
+  createAuthor(relativePath: String!, params: AuthorMutation!): Author!
   updateHomePage(relativePath: String!, params: HomePageMutation!): HomePage!
   createHomePage(relativePath: String!, params: HomePageMutation!): HomePage!
   updateAboutPage(relativePath: String!, params: AboutPageMutation!): AboutPage!
@@ -396,6 +500,7 @@ type Mutation {
 
 input DocumentUpdateMutation {
   post: PostMutation
+  author: AuthorMutation
   homePage: HomePageMutation
   aboutPage: AboutPageMutation
   siteSettings: SiteSettingsMutation
@@ -406,6 +511,7 @@ input DocumentUpdateMutation {
 
 input DocumentMutation {
   post: PostMutation
+  author: AuthorMutation
   homePage: HomePageMutation
   aboutPage: AboutPageMutation
   siteSettings: SiteSettingsMutation
@@ -419,15 +525,36 @@ input PostMutation {
   date: String
   category: String
   tags: [String]
+  author: String
+  companionSlug: String
   linkedInUrl: String
   featured: Boolean
   body: JSON
 }
 
-input HomePagePositioningItemsMutation {
-  icon: String
+input AuthorMutation {
+  name: String
+  role: String
+  initials: String
+  color: String
+  photo: String
+  linkedInUrl: String
+  bio: String
+  body: JSON
+}
+
+input HomePageStartHereCardsMutation {
   label: String
-  desc: String
+  description: String
+  href: String
+  colorClass: String
+}
+
+input HomePagePostTypeCardsMutation {
+  label: String
+  description: String
+  href: String
+  className: String
 }
 
 input HomePageMutation {
@@ -438,13 +565,27 @@ input HomePageMutation {
   heroPrimaryButtonText: String
   heroPrimaryButtonHref: String
   heroSecondaryButtonText: String
-  positioningItems: [HomePagePositioningItemsMutation]
+  heroSecondaryButtonHref: String
+  startHereLabel: String
+  startHereHeading: String
+  startHereCards: [HomePageStartHereCardsMutation]
   featuredSectionLabel: String
   featuredSectionHeading: String
   postTypesSectionLabel: String
   postTypesSectionHeading: String
+  postTypeCards: [HomePagePostTypeCardsMutation]
+  foundersSectionLabel: String
+  foundersSectionHeading: String
+  foundersSectionText: String
+  foundersButtonText: String
+  foundersButtonHref: String
   latestSectionLabel: String
   latestSectionHeading: String
+  latestSectionText: String
+  followSectionLabel: String
+  followSectionHeading: String
+  followSectionText: String
+  followButtonText: String
 }
 
 input AboutPageMutation {
@@ -454,9 +595,13 @@ input AboutPageMutation {
   headline: String
   headlineAccent: String
   intro: String
+  pointOfViewLabel: String
+  pointOfViewText: String
   primaryButtonText: String
   primaryButtonHref: String
   secondaryButtonText: String
+  peopleSectionLabel: String
+  peopleSectionHeading: String
   body: JSON
 }
 

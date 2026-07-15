@@ -84,6 +84,8 @@ export type Query = {
   document: DocumentNode;
   post: Post;
   postConnection: PostConnection;
+  author: Author;
+  authorConnection: AuthorConnection;
   homePage: HomePage;
   homePageConnection: HomePageConnection;
   aboutPage: AboutPage;
@@ -130,6 +132,21 @@ export type QueryPostConnectionArgs = {
   last?: InputMaybe<Scalars['Float']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
   filter?: InputMaybe<PostFilter>;
+};
+
+
+export type QueryAuthorArgs = {
+  relativePath?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryAuthorConnectionArgs = {
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<AuthorFilter>;
 };
 
 
@@ -209,6 +226,7 @@ export type QueryFooterConnectionArgs = {
 
 export type DocumentFilter = {
   post?: InputMaybe<PostFilter>;
+  author?: InputMaybe<AuthorFilter>;
   homePage?: InputMaybe<HomePageFilter>;
   aboutPage?: InputMaybe<AboutPageFilter>;
   siteSettings?: InputMaybe<SiteSettingsFilter>;
@@ -253,7 +271,7 @@ export type CollectionDocumentsArgs = {
   folder?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type DocumentNode = Post | HomePage | AboutPage | SiteSettings | NewsletterCta | Footer | Folder;
+export type DocumentNode = Post | Author | HomePage | AboutPage | SiteSettings | NewsletterCta | Footer | Folder;
 
 export type Post = Node & Document & {
   __typename?: 'Post';
@@ -262,6 +280,8 @@ export type Post = Node & Document & {
   date: Scalars['String']['output'];
   category: Scalars['String']['output'];
   tags?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  author?: Maybe<Scalars['String']['output']>;
+  companionSlug?: Maybe<Scalars['String']['output']>;
   linkedInUrl?: Maybe<Scalars['String']['output']>;
   featured?: Maybe<Scalars['Boolean']['output']>;
   body?: Maybe<Scalars['JSON']['output']>;
@@ -302,6 +322,8 @@ export type PostFilter = {
   date?: InputMaybe<DatetimeFilter>;
   category?: InputMaybe<StringFilter>;
   tags?: InputMaybe<StringFilter>;
+  author?: InputMaybe<StringFilter>;
+  companionSlug?: InputMaybe<StringFilter>;
   linkedInUrl?: InputMaybe<StringFilter>;
   featured?: InputMaybe<BooleanFilter>;
   body?: InputMaybe<RichTextFilter>;
@@ -320,11 +342,66 @@ export type PostConnection = Connection & {
   edges?: Maybe<Array<Maybe<PostConnectionEdges>>>;
 };
 
-export type HomePagePositioningItems = {
-  __typename?: 'HomePagePositioningItems';
-  icon?: Maybe<Scalars['String']['output']>;
+export type Author = Node & Document & {
+  __typename?: 'Author';
+  name: Scalars['String']['output'];
+  role?: Maybe<Scalars['String']['output']>;
+  initials?: Maybe<Scalars['String']['output']>;
+  color?: Maybe<Scalars['String']['output']>;
+  photo?: Maybe<Scalars['String']['output']>;
+  linkedInUrl?: Maybe<Scalars['String']['output']>;
+  bio?: Maybe<Scalars['String']['output']>;
+  body?: Maybe<Scalars['JSON']['output']>;
+  id: Scalars['ID']['output'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON']['output'];
+};
+
+export type ImageFilter = {
+  startsWith?: InputMaybe<Scalars['String']['input']>;
+  eq?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type AuthorFilter = {
+  name?: InputMaybe<StringFilter>;
+  role?: InputMaybe<StringFilter>;
+  initials?: InputMaybe<StringFilter>;
+  color?: InputMaybe<StringFilter>;
+  photo?: InputMaybe<ImageFilter>;
+  linkedInUrl?: InputMaybe<StringFilter>;
+  bio?: InputMaybe<StringFilter>;
+  body?: InputMaybe<RichTextFilter>;
+};
+
+export type AuthorConnectionEdges = {
+  __typename?: 'AuthorConnectionEdges';
+  cursor: Scalars['String']['output'];
+  node?: Maybe<Author>;
+};
+
+export type AuthorConnection = Connection & {
+  __typename?: 'AuthorConnection';
+  pageInfo: PageInfo;
+  totalCount: Scalars['Float']['output'];
+  edges?: Maybe<Array<Maybe<AuthorConnectionEdges>>>;
+};
+
+export type HomePageStartHereCards = {
+  __typename?: 'HomePageStartHereCards';
   label?: Maybe<Scalars['String']['output']>;
-  desc?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  href?: Maybe<Scalars['String']['output']>;
+  colorClass?: Maybe<Scalars['String']['output']>;
+};
+
+export type HomePagePostTypeCards = {
+  __typename?: 'HomePagePostTypeCards';
+  label?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  href?: Maybe<Scalars['String']['output']>;
+  className?: Maybe<Scalars['String']['output']>;
 };
 
 export type HomePage = Node & Document & {
@@ -336,22 +413,44 @@ export type HomePage = Node & Document & {
   heroPrimaryButtonText?: Maybe<Scalars['String']['output']>;
   heroPrimaryButtonHref?: Maybe<Scalars['String']['output']>;
   heroSecondaryButtonText?: Maybe<Scalars['String']['output']>;
-  positioningItems?: Maybe<Array<Maybe<HomePagePositioningItems>>>;
+  heroSecondaryButtonHref?: Maybe<Scalars['String']['output']>;
+  startHereLabel?: Maybe<Scalars['String']['output']>;
+  startHereHeading?: Maybe<Scalars['String']['output']>;
+  startHereCards?: Maybe<Array<Maybe<HomePageStartHereCards>>>;
   featuredSectionLabel?: Maybe<Scalars['String']['output']>;
   featuredSectionHeading?: Maybe<Scalars['String']['output']>;
-  frameworksSectionLabel?: Maybe<Scalars['String']['output']>;
-  frameworksSectionHeading?: Maybe<Scalars['String']['output']>;
+  postTypesSectionLabel?: Maybe<Scalars['String']['output']>;
+  postTypesSectionHeading?: Maybe<Scalars['String']['output']>;
+  postTypeCards?: Maybe<Array<Maybe<HomePagePostTypeCards>>>;
+  foundersSectionLabel?: Maybe<Scalars['String']['output']>;
+  foundersSectionHeading?: Maybe<Scalars['String']['output']>;
+  foundersSectionText?: Maybe<Scalars['String']['output']>;
+  foundersButtonText?: Maybe<Scalars['String']['output']>;
+  foundersButtonHref?: Maybe<Scalars['String']['output']>;
   latestSectionLabel?: Maybe<Scalars['String']['output']>;
   latestSectionHeading?: Maybe<Scalars['String']['output']>;
+  latestSectionText?: Maybe<Scalars['String']['output']>;
+  followSectionLabel?: Maybe<Scalars['String']['output']>;
+  followSectionHeading?: Maybe<Scalars['String']['output']>;
+  followSectionText?: Maybe<Scalars['String']['output']>;
+  followButtonText?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
   _sys: SystemInfo;
   _values: Scalars['JSON']['output'];
 };
 
-export type HomePagePositioningItemsFilter = {
-  icon?: InputMaybe<StringFilter>;
+export type HomePageStartHereCardsFilter = {
   label?: InputMaybe<StringFilter>;
-  desc?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+  href?: InputMaybe<StringFilter>;
+  colorClass?: InputMaybe<StringFilter>;
+};
+
+export type HomePagePostTypeCardsFilter = {
+  label?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+  href?: InputMaybe<StringFilter>;
+  className?: InputMaybe<StringFilter>;
 };
 
 export type HomePageFilter = {
@@ -362,13 +461,27 @@ export type HomePageFilter = {
   heroPrimaryButtonText?: InputMaybe<StringFilter>;
   heroPrimaryButtonHref?: InputMaybe<StringFilter>;
   heroSecondaryButtonText?: InputMaybe<StringFilter>;
-  positioningItems?: InputMaybe<HomePagePositioningItemsFilter>;
+  heroSecondaryButtonHref?: InputMaybe<StringFilter>;
+  startHereLabel?: InputMaybe<StringFilter>;
+  startHereHeading?: InputMaybe<StringFilter>;
+  startHereCards?: InputMaybe<HomePageStartHereCardsFilter>;
   featuredSectionLabel?: InputMaybe<StringFilter>;
   featuredSectionHeading?: InputMaybe<StringFilter>;
-  frameworksSectionLabel?: InputMaybe<StringFilter>;
-  frameworksSectionHeading?: InputMaybe<StringFilter>;
+  postTypesSectionLabel?: InputMaybe<StringFilter>;
+  postTypesSectionHeading?: InputMaybe<StringFilter>;
+  postTypeCards?: InputMaybe<HomePagePostTypeCardsFilter>;
+  foundersSectionLabel?: InputMaybe<StringFilter>;
+  foundersSectionHeading?: InputMaybe<StringFilter>;
+  foundersSectionText?: InputMaybe<StringFilter>;
+  foundersButtonText?: InputMaybe<StringFilter>;
+  foundersButtonHref?: InputMaybe<StringFilter>;
   latestSectionLabel?: InputMaybe<StringFilter>;
   latestSectionHeading?: InputMaybe<StringFilter>;
+  latestSectionText?: InputMaybe<StringFilter>;
+  followSectionLabel?: InputMaybe<StringFilter>;
+  followSectionHeading?: InputMaybe<StringFilter>;
+  followSectionText?: InputMaybe<StringFilter>;
+  followButtonText?: InputMaybe<StringFilter>;
 };
 
 export type HomePageConnectionEdges = {
@@ -392,9 +505,13 @@ export type AboutPage = Node & Document & {
   headline?: Maybe<Scalars['String']['output']>;
   headlineAccent?: Maybe<Scalars['String']['output']>;
   intro?: Maybe<Scalars['String']['output']>;
+  pointOfViewLabel?: Maybe<Scalars['String']['output']>;
+  pointOfViewText?: Maybe<Scalars['String']['output']>;
   primaryButtonText?: Maybe<Scalars['String']['output']>;
   primaryButtonHref?: Maybe<Scalars['String']['output']>;
   secondaryButtonText?: Maybe<Scalars['String']['output']>;
+  peopleSectionLabel?: Maybe<Scalars['String']['output']>;
+  peopleSectionHeading?: Maybe<Scalars['String']['output']>;
   body?: Maybe<Scalars['JSON']['output']>;
   id: Scalars['ID']['output'];
   _sys: SystemInfo;
@@ -408,9 +525,13 @@ export type AboutPageFilter = {
   headline?: InputMaybe<StringFilter>;
   headlineAccent?: InputMaybe<StringFilter>;
   intro?: InputMaybe<StringFilter>;
+  pointOfViewLabel?: InputMaybe<StringFilter>;
+  pointOfViewText?: InputMaybe<StringFilter>;
   primaryButtonText?: InputMaybe<StringFilter>;
   primaryButtonHref?: InputMaybe<StringFilter>;
   secondaryButtonText?: InputMaybe<StringFilter>;
+  peopleSectionLabel?: InputMaybe<StringFilter>;
+  peopleSectionHeading?: InputMaybe<StringFilter>;
   body?: InputMaybe<RichTextFilter>;
 };
 
@@ -556,6 +677,8 @@ export type Mutation = {
   createFolder: DocumentNode;
   updatePost: Post;
   createPost: Post;
+  updateAuthor: Author;
+  createAuthor: Author;
   updateHomePage: HomePage;
   createHomePage: HomePage;
   updateAboutPage: AboutPage;
@@ -611,6 +734,18 @@ export type MutationUpdatePostArgs = {
 export type MutationCreatePostArgs = {
   relativePath: Scalars['String']['input'];
   params: PostMutation;
+};
+
+
+export type MutationUpdateAuthorArgs = {
+  relativePath: Scalars['String']['input'];
+  params: AuthorMutation;
+};
+
+
+export type MutationCreateAuthorArgs = {
+  relativePath: Scalars['String']['input'];
+  params: AuthorMutation;
 };
 
 
@@ -675,6 +810,7 @@ export type MutationCreateFooterArgs = {
 
 export type DocumentUpdateMutation = {
   post?: InputMaybe<PostMutation>;
+  author?: InputMaybe<AuthorMutation>;
   homePage?: InputMaybe<HomePageMutation>;
   aboutPage?: InputMaybe<AboutPageMutation>;
   siteSettings?: InputMaybe<SiteSettingsMutation>;
@@ -685,6 +821,7 @@ export type DocumentUpdateMutation = {
 
 export type DocumentMutation = {
   post?: InputMaybe<PostMutation>;
+  author?: InputMaybe<AuthorMutation>;
   homePage?: InputMaybe<HomePageMutation>;
   aboutPage?: InputMaybe<AboutPageMutation>;
   siteSettings?: InputMaybe<SiteSettingsMutation>;
@@ -698,15 +835,36 @@ export type PostMutation = {
   date?: InputMaybe<Scalars['String']['input']>;
   category?: InputMaybe<Scalars['String']['input']>;
   tags?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  author?: InputMaybe<Scalars['String']['input']>;
+  companionSlug?: InputMaybe<Scalars['String']['input']>;
   linkedInUrl?: InputMaybe<Scalars['String']['input']>;
   featured?: InputMaybe<Scalars['Boolean']['input']>;
   body?: InputMaybe<Scalars['JSON']['input']>;
 };
 
-export type HomePagePositioningItemsMutation = {
-  icon?: InputMaybe<Scalars['String']['input']>;
+export type AuthorMutation = {
+  name?: InputMaybe<Scalars['String']['input']>;
+  role?: InputMaybe<Scalars['String']['input']>;
+  initials?: InputMaybe<Scalars['String']['input']>;
+  color?: InputMaybe<Scalars['String']['input']>;
+  photo?: InputMaybe<Scalars['String']['input']>;
+  linkedInUrl?: InputMaybe<Scalars['String']['input']>;
+  bio?: InputMaybe<Scalars['String']['input']>;
+  body?: InputMaybe<Scalars['JSON']['input']>;
+};
+
+export type HomePageStartHereCardsMutation = {
   label?: InputMaybe<Scalars['String']['input']>;
-  desc?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  href?: InputMaybe<Scalars['String']['input']>;
+  colorClass?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type HomePagePostTypeCardsMutation = {
+  label?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  href?: InputMaybe<Scalars['String']['input']>;
+  className?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type HomePageMutation = {
@@ -717,13 +875,27 @@ export type HomePageMutation = {
   heroPrimaryButtonText?: InputMaybe<Scalars['String']['input']>;
   heroPrimaryButtonHref?: InputMaybe<Scalars['String']['input']>;
   heroSecondaryButtonText?: InputMaybe<Scalars['String']['input']>;
-  positioningItems?: InputMaybe<Array<InputMaybe<HomePagePositioningItemsMutation>>>;
+  heroSecondaryButtonHref?: InputMaybe<Scalars['String']['input']>;
+  startHereLabel?: InputMaybe<Scalars['String']['input']>;
+  startHereHeading?: InputMaybe<Scalars['String']['input']>;
+  startHereCards?: InputMaybe<Array<InputMaybe<HomePageStartHereCardsMutation>>>;
   featuredSectionLabel?: InputMaybe<Scalars['String']['input']>;
   featuredSectionHeading?: InputMaybe<Scalars['String']['input']>;
-  frameworksSectionLabel?: InputMaybe<Scalars['String']['input']>;
-  frameworksSectionHeading?: InputMaybe<Scalars['String']['input']>;
+  postTypesSectionLabel?: InputMaybe<Scalars['String']['input']>;
+  postTypesSectionHeading?: InputMaybe<Scalars['String']['input']>;
+  postTypeCards?: InputMaybe<Array<InputMaybe<HomePagePostTypeCardsMutation>>>;
+  foundersSectionLabel?: InputMaybe<Scalars['String']['input']>;
+  foundersSectionHeading?: InputMaybe<Scalars['String']['input']>;
+  foundersSectionText?: InputMaybe<Scalars['String']['input']>;
+  foundersButtonText?: InputMaybe<Scalars['String']['input']>;
+  foundersButtonHref?: InputMaybe<Scalars['String']['input']>;
   latestSectionLabel?: InputMaybe<Scalars['String']['input']>;
   latestSectionHeading?: InputMaybe<Scalars['String']['input']>;
+  latestSectionText?: InputMaybe<Scalars['String']['input']>;
+  followSectionLabel?: InputMaybe<Scalars['String']['input']>;
+  followSectionHeading?: InputMaybe<Scalars['String']['input']>;
+  followSectionText?: InputMaybe<Scalars['String']['input']>;
+  followButtonText?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type AboutPageMutation = {
@@ -733,9 +905,13 @@ export type AboutPageMutation = {
   headline?: InputMaybe<Scalars['String']['input']>;
   headlineAccent?: InputMaybe<Scalars['String']['input']>;
   intro?: InputMaybe<Scalars['String']['input']>;
+  pointOfViewLabel?: InputMaybe<Scalars['String']['input']>;
+  pointOfViewText?: InputMaybe<Scalars['String']['input']>;
   primaryButtonText?: InputMaybe<Scalars['String']['input']>;
   primaryButtonHref?: InputMaybe<Scalars['String']['input']>;
   secondaryButtonText?: InputMaybe<Scalars['String']['input']>;
+  peopleSectionLabel?: InputMaybe<Scalars['String']['input']>;
+  peopleSectionHeading?: InputMaybe<Scalars['String']['input']>;
   body?: InputMaybe<Scalars['JSON']['input']>;
 };
 
@@ -773,11 +949,13 @@ export type FooterMutation = {
   builtByLine?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type PostPartsFragment = { __typename: 'Post', title: string, excerpt: string, date: string, category: string, tags?: Array<string | null> | null, linkedInUrl?: string | null, featured?: boolean | null, body?: any | null };
+export type PostPartsFragment = { __typename: 'Post', title: string, excerpt: string, date: string, category: string, tags?: Array<string | null> | null, author?: string | null, companionSlug?: string | null, linkedInUrl?: string | null, featured?: boolean | null, body?: any | null };
 
-export type HomePagePartsFragment = { __typename: 'HomePage', heroBadgeText?: string | null, heroHeadline?: string | null, heroHeadlineAccent?: string | null, heroSubtext?: string | null, heroPrimaryButtonText?: string | null, heroPrimaryButtonHref?: string | null, heroSecondaryButtonText?: string | null, featuredSectionLabel?: string | null, featuredSectionHeading?: string | null, frameworksSectionLabel?: string | null, frameworksSectionHeading?: string | null, latestSectionLabel?: string | null, latestSectionHeading?: string | null, positioningItems?: Array<{ __typename: 'HomePagePositioningItems', icon?: string | null, label?: string | null, desc?: string | null } | null> | null };
+export type AuthorPartsFragment = { __typename: 'Author', name: string, role?: string | null, initials?: string | null, color?: string | null, photo?: string | null, linkedInUrl?: string | null, bio?: string | null, body?: any | null };
 
-export type AboutPagePartsFragment = { __typename: 'AboutPage', seoTitle?: string | null, seoDescription?: string | null, sectionLabel?: string | null, headline?: string | null, headlineAccent?: string | null, intro?: string | null, primaryButtonText?: string | null, primaryButtonHref?: string | null, secondaryButtonText?: string | null, body?: any | null };
+export type HomePagePartsFragment = { __typename: 'HomePage', heroBadgeText?: string | null, heroHeadline?: string | null, heroHeadlineAccent?: string | null, heroSubtext?: string | null, heroPrimaryButtonText?: string | null, heroPrimaryButtonHref?: string | null, heroSecondaryButtonText?: string | null, heroSecondaryButtonHref?: string | null, startHereLabel?: string | null, startHereHeading?: string | null, featuredSectionLabel?: string | null, featuredSectionHeading?: string | null, postTypesSectionLabel?: string | null, postTypesSectionHeading?: string | null, foundersSectionLabel?: string | null, foundersSectionHeading?: string | null, foundersSectionText?: string | null, foundersButtonText?: string | null, foundersButtonHref?: string | null, latestSectionLabel?: string | null, latestSectionHeading?: string | null, latestSectionText?: string | null, followSectionLabel?: string | null, followSectionHeading?: string | null, followSectionText?: string | null, followButtonText?: string | null, startHereCards?: Array<{ __typename: 'HomePageStartHereCards', label?: string | null, description?: string | null, href?: string | null, colorClass?: string | null } | null> | null, postTypeCards?: Array<{ __typename: 'HomePagePostTypeCards', label?: string | null, description?: string | null, href?: string | null, className?: string | null } | null> | null };
+
+export type AboutPagePartsFragment = { __typename: 'AboutPage', seoTitle?: string | null, seoDescription?: string | null, sectionLabel?: string | null, headline?: string | null, headlineAccent?: string | null, intro?: string | null, pointOfViewLabel?: string | null, pointOfViewText?: string | null, primaryButtonText?: string | null, primaryButtonHref?: string | null, secondaryButtonText?: string | null, peopleSectionLabel?: string | null, peopleSectionHeading?: string | null, body?: any | null };
 
 export type SiteSettingsPartsFragment = { __typename: 'SiteSettings', siteName?: string | null, siteTagline?: string | null, linkedInUrl?: string | null, betaBadge?: boolean | null, siteMetaTitle?: string | null, siteMetaDescription?: string | null, navItems?: Array<{ __typename: 'SiteSettingsNavItems', label?: string | null, href?: string | null } | null> | null };
 
@@ -790,8 +968,7 @@ export type PostQueryVariables = Exact<{
 }>;
 
 
-export type PostQuery = { __typename?: 'Query', post: { __typename: 'Post', id: string, title: string, excerpt: string, date: string, category: string, tags?: Array<string | null> | null, featured?: boolean | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string, linkedInUrl?: string | null
- } } };
+export type PostQuery = { __typename?: 'Query', post: { __typename: 'Post', id: string, title: string, excerpt: string, date: string, category: string, tags?: Array<string | null> | null, author?: string | null, companionSlug?: string | null, linkedInUrl?: string | null, featured?: boolean | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
 export type PostConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -803,14 +980,33 @@ export type PostConnectionQueryVariables = Exact<{
 }>;
 
 
-export type PostConnectionQuery = { __typename?: 'Query', postConnection: { __typename?: 'PostConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'PostConnectionEdges', cursor: string, node?: { __typename: 'Post', id: string, title: string, excerpt: string, date: string, category: string, tags?: Array<string | null> | null, featured?: boolean | null, framework?: boolean | null, frameworkName?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type PostConnectionQuery = { __typename?: 'Query', postConnection: { __typename?: 'PostConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'PostConnectionEdges', cursor: string, node?: { __typename: 'Post', id: string, title: string, excerpt: string, date: string, category: string, tags?: Array<string | null> | null, author?: string | null, companionSlug?: string | null, linkedInUrl?: string | null, featured?: boolean | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+
+export type AuthorQueryVariables = Exact<{
+  relativePath: Scalars['String']['input'];
+}>;
+
+
+export type AuthorQuery = { __typename?: 'Query', author: { __typename: 'Author', id: string, name: string, role?: string | null, initials?: string | null, color?: string | null, photo?: string | null, linkedInUrl?: string | null, bio?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+
+export type AuthorConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<AuthorFilter>;
+}>;
+
+
+export type AuthorConnectionQuery = { __typename?: 'Query', authorConnection: { __typename?: 'AuthorConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'AuthorConnectionEdges', cursor: string, node?: { __typename: 'Author', id: string, name: string, role?: string | null, initials?: string | null, color?: string | null, photo?: string | null, linkedInUrl?: string | null, bio?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export type HomePageQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
 }>;
 
 
-export type HomePageQuery = { __typename?: 'Query', homePage: { __typename: 'HomePage', id: string, heroBadgeText?: string | null, heroHeadline?: string | null, heroHeadlineAccent?: string | null, heroSubtext?: string | null, heroPrimaryButtonText?: string | null, heroPrimaryButtonHref?: string | null, heroSecondaryButtonText?: string | null, featuredSectionLabel?: string | null, featuredSectionHeading?: string | null, frameworksSectionLabel?: string | null, frameworksSectionHeading?: string | null, latestSectionLabel?: string | null, latestSectionHeading?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, positioningItems?: Array<{ __typename: 'HomePagePositioningItems', icon?: string | null, label?: string | null, desc?: string | null } | null> | null } };
+export type HomePageQuery = { __typename?: 'Query', homePage: { __typename: 'HomePage', id: string, heroBadgeText?: string | null, heroHeadline?: string | null, heroHeadlineAccent?: string | null, heroSubtext?: string | null, heroPrimaryButtonText?: string | null, heroPrimaryButtonHref?: string | null, heroSecondaryButtonText?: string | null, heroSecondaryButtonHref?: string | null, startHereLabel?: string | null, startHereHeading?: string | null, featuredSectionLabel?: string | null, featuredSectionHeading?: string | null, postTypesSectionLabel?: string | null, postTypesSectionHeading?: string | null, foundersSectionLabel?: string | null, foundersSectionHeading?: string | null, foundersSectionText?: string | null, foundersButtonText?: string | null, foundersButtonHref?: string | null, latestSectionLabel?: string | null, latestSectionHeading?: string | null, latestSectionText?: string | null, followSectionLabel?: string | null, followSectionHeading?: string | null, followSectionText?: string | null, followButtonText?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, startHereCards?: Array<{ __typename: 'HomePageStartHereCards', label?: string | null, description?: string | null, href?: string | null, colorClass?: string | null } | null> | null, postTypeCards?: Array<{ __typename: 'HomePagePostTypeCards', label?: string | null, description?: string | null, href?: string | null, className?: string | null } | null> | null } };
 
 export type HomePageConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -822,14 +1018,14 @@ export type HomePageConnectionQueryVariables = Exact<{
 }>;
 
 
-export type HomePageConnectionQuery = { __typename?: 'Query', homePageConnection: { __typename?: 'HomePageConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'HomePageConnectionEdges', cursor: string, node?: { __typename: 'HomePage', id: string, heroBadgeText?: string | null, heroHeadline?: string | null, heroHeadlineAccent?: string | null, heroSubtext?: string | null, heroPrimaryButtonText?: string | null, heroPrimaryButtonHref?: string | null, heroSecondaryButtonText?: string | null, featuredSectionLabel?: string | null, featuredSectionHeading?: string | null, frameworksSectionLabel?: string | null, frameworksSectionHeading?: string | null, latestSectionLabel?: string | null, latestSectionHeading?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, positioningItems?: Array<{ __typename: 'HomePagePositioningItems', icon?: string | null, label?: string | null, desc?: string | null } | null> | null } | null } | null> | null } };
+export type HomePageConnectionQuery = { __typename?: 'Query', homePageConnection: { __typename?: 'HomePageConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'HomePageConnectionEdges', cursor: string, node?: { __typename: 'HomePage', id: string, heroBadgeText?: string | null, heroHeadline?: string | null, heroHeadlineAccent?: string | null, heroSubtext?: string | null, heroPrimaryButtonText?: string | null, heroPrimaryButtonHref?: string | null, heroSecondaryButtonText?: string | null, heroSecondaryButtonHref?: string | null, startHereLabel?: string | null, startHereHeading?: string | null, featuredSectionLabel?: string | null, featuredSectionHeading?: string | null, postTypesSectionLabel?: string | null, postTypesSectionHeading?: string | null, foundersSectionLabel?: string | null, foundersSectionHeading?: string | null, foundersSectionText?: string | null, foundersButtonText?: string | null, foundersButtonHref?: string | null, latestSectionLabel?: string | null, latestSectionHeading?: string | null, latestSectionText?: string | null, followSectionLabel?: string | null, followSectionHeading?: string | null, followSectionText?: string | null, followButtonText?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, startHereCards?: Array<{ __typename: 'HomePageStartHereCards', label?: string | null, description?: string | null, href?: string | null, colorClass?: string | null } | null> | null, postTypeCards?: Array<{ __typename: 'HomePagePostTypeCards', label?: string | null, description?: string | null, href?: string | null, className?: string | null } | null> | null } | null } | null> | null } };
 
 export type AboutPageQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
 }>;
 
 
-export type AboutPageQuery = { __typename?: 'Query', aboutPage: { __typename: 'AboutPage', id: string, seoTitle?: string | null, seoDescription?: string | null, sectionLabel?: string | null, headline?: string | null, headlineAccent?: string | null, intro?: string | null, primaryButtonText?: string | null, primaryButtonHref?: string | null, secondaryButtonText?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type AboutPageQuery = { __typename?: 'Query', aboutPage: { __typename: 'AboutPage', id: string, seoTitle?: string | null, seoDescription?: string | null, sectionLabel?: string | null, headline?: string | null, headlineAccent?: string | null, intro?: string | null, pointOfViewLabel?: string | null, pointOfViewText?: string | null, primaryButtonText?: string | null, primaryButtonHref?: string | null, secondaryButtonText?: string | null, peopleSectionLabel?: string | null, peopleSectionHeading?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
 export type AboutPageConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -841,7 +1037,7 @@ export type AboutPageConnectionQueryVariables = Exact<{
 }>;
 
 
-export type AboutPageConnectionQuery = { __typename?: 'Query', aboutPageConnection: { __typename?: 'AboutPageConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'AboutPageConnectionEdges', cursor: string, node?: { __typename: 'AboutPage', id: string, seoTitle?: string | null, seoDescription?: string | null, sectionLabel?: string | null, headline?: string | null, headlineAccent?: string | null, intro?: string | null, primaryButtonText?: string | null, primaryButtonHref?: string | null, secondaryButtonText?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type AboutPageConnectionQuery = { __typename?: 'Query', aboutPageConnection: { __typename?: 'AboutPageConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'AboutPageConnectionEdges', cursor: string, node?: { __typename: 'AboutPage', id: string, seoTitle?: string | null, seoDescription?: string | null, sectionLabel?: string | null, headline?: string | null, headlineAccent?: string | null, intro?: string | null, pointOfViewLabel?: string | null, pointOfViewText?: string | null, primaryButtonText?: string | null, primaryButtonHref?: string | null, secondaryButtonText?: string | null, peopleSectionLabel?: string | null, peopleSectionHeading?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export type SiteSettingsQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -908,8 +1104,23 @@ export const PostPartsFragmentDoc = gql`
   date
   category
   tags
+  author
+  companionSlug
   linkedInUrl
   featured
+  body
+}
+    `;
+export const AuthorPartsFragmentDoc = gql`
+    fragment AuthorParts on Author {
+  __typename
+  name
+  role
+  initials
+  color
+  photo
+  linkedInUrl
+  bio
   body
 }
     `;
@@ -923,18 +1134,39 @@ export const HomePagePartsFragmentDoc = gql`
   heroPrimaryButtonText
   heroPrimaryButtonHref
   heroSecondaryButtonText
-  positioningItems {
+  heroSecondaryButtonHref
+  startHereLabel
+  startHereHeading
+  startHereCards {
     __typename
-    icon
     label
-    desc
+    description
+    href
+    colorClass
   }
   featuredSectionLabel
   featuredSectionHeading
-  frameworksSectionLabel
-  frameworksSectionHeading
+  postTypesSectionLabel
+  postTypesSectionHeading
+  postTypeCards {
+    __typename
+    label
+    description
+    href
+    className
+  }
+  foundersSectionLabel
+  foundersSectionHeading
+  foundersSectionText
+  foundersButtonText
+  foundersButtonHref
   latestSectionLabel
   latestSectionHeading
+  latestSectionText
+  followSectionLabel
+  followSectionHeading
+  followSectionText
+  followButtonText
 }
     `;
 export const AboutPagePartsFragmentDoc = gql`
@@ -946,9 +1178,13 @@ export const AboutPagePartsFragmentDoc = gql`
   headline
   headlineAccent
   intro
+  pointOfViewLabel
+  pointOfViewText
   primaryButtonText
   primaryButtonHref
   secondaryButtonText
+  peopleSectionLabel
+  peopleSectionHeading
   body
 }
     `;
@@ -1048,6 +1284,63 @@ export const PostConnectionDocument = gql`
   }
 }
     ${PostPartsFragmentDoc}`;
+export const AuthorDocument = gql`
+    query author($relativePath: String!) {
+  author(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...AuthorParts
+  }
+}
+    ${AuthorPartsFragmentDoc}`;
+export const AuthorConnectionDocument = gql`
+    query authorConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: AuthorFilter) {
+  authorConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...AuthorParts
+      }
+    }
+  }
+}
+    ${AuthorPartsFragmentDoc}`;
 export const HomePageDocument = gql`
     query homePage($relativePath: String!) {
   homePage(relativePath: $relativePath) {
@@ -1341,6 +1634,12 @@ export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) 
       },
     postConnection(variables?: PostConnectionQueryVariables, options?: C): Promise<{data: PostConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: PostConnectionQueryVariables, query: string}> {
         return requester<{data: PostConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: PostConnectionQueryVariables, query: string}, PostConnectionQueryVariables>(PostConnectionDocument, variables, options);
+      },
+    author(variables: AuthorQueryVariables, options?: C): Promise<{data: AuthorQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: AuthorQueryVariables, query: string}> {
+        return requester<{data: AuthorQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: AuthorQueryVariables, query: string}, AuthorQueryVariables>(AuthorDocument, variables, options);
+      },
+    authorConnection(variables?: AuthorConnectionQueryVariables, options?: C): Promise<{data: AuthorConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: AuthorConnectionQueryVariables, query: string}> {
+        return requester<{data: AuthorConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: AuthorConnectionQueryVariables, query: string}, AuthorConnectionQueryVariables>(AuthorConnectionDocument, variables, options);
       },
     homePage(variables: HomePageQueryVariables, options?: C): Promise<{data: HomePageQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: HomePageQueryVariables, query: string}> {
         return requester<{data: HomePageQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: HomePageQueryVariables, query: string}, HomePageQueryVariables>(HomePageDocument, variables, options);
