@@ -1,6 +1,6 @@
 import Link from 'next/link'
+import PostCard from '@/components/PostCard'
 import { getAllPosts } from '@/lib/posts'
-import { PostCard } from '@/components/PostCard'
 
 interface Props {
   searchParams: {
@@ -33,7 +33,10 @@ export default function BlogPage({ searchParams }: Props) {
   const activeTag = searchParams.tag || ''
 
   const filtered = allPosts.filter((post) => {
-    if (activeCategory && post.category.toLowerCase() !== activeCategory.toLowerCase()) {
+    if (
+      activeCategory &&
+      post.category.toLowerCase() !== activeCategory.toLowerCase()
+    ) {
       return false
     }
 
@@ -60,7 +63,9 @@ export default function BlogPage({ searchParams }: Props) {
           </h1>
 
           <p className="mt-6 max-w-3xl text-lg leading-8 text-ink/70">
-            Browse research to practice pieces, debates, hot takes, expert lenses, myth busters, and innovation spotlights on creativity, innovation, leadership, and teams.
+            Browse research to practice pieces, debates, hot takes, expert
+            lenses, myth busters, and innovation spotlights on creativity,
+            innovation, leadership, and teams.
           </p>
         </div>
       </section>
@@ -86,7 +91,8 @@ export default function BlogPage({ searchParams }: Props) {
 
               {categories.map((category) => {
                 const count = allPosts.filter(
-                  (post) => post.category.toLowerCase() === category.toLowerCase()
+                  (post) =>
+                    post.category.toLowerCase() === category.toLowerCase()
                 ).length
 
                 return (
