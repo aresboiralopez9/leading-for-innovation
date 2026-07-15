@@ -38,7 +38,7 @@ postTypeCards:
   - label: Hot Takes
     description: Sharp arguments that challenge familiar innovation advice.
     href: /blog?category=Hot%20Takes
-    className: border-lfi-green bg-lfi-green/10
+    className: border-lfi-green bg-lfi-mint/10
   - label: Expert Lens
     description: 'Deeper reads on creativity, innovation, leadership, and evidence.'
     href: /blog?category=Expert%20Lens
