@@ -16,11 +16,9 @@ peopleSectionHeading: 'Two voices, one system'
 
 ## The Problem We're Solving
 
-There's a massive gap between what researchers understand about human behavior, organizations, creativity, and innovation — and what practitioners actually do. That gap costs companies billions in lost productivity, bad decisions, and wasted talent.
+Organizations want to innovate, but innovation is complex and difficult to navigate. Most people don't know where to start or how to actually make innovation happen. Decades of research, case studies, and real-world examples of organizations getting it right (and wrong) give us insight into what we can do differently. What doesn't exist is a platform with credible voices who can spotlight what's happening in the field and translate it into something grounded in human behavior and usable by a manager on Monday morning.
 
-The problem isn't that the research doesn't exist. **The problem is that nobody translates it into something a manager can use on Monday morning.**
-
-> "Most people don't fail because they lack information. They fail because they can't bridge from information to action."
+> It's hard to find innovation advice that's credible, grounded in human behavior, and usable by Monday morning.
 
 ## What We Do Differently
 
