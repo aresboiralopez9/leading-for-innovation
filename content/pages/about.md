@@ -16,9 +16,11 @@ peopleSectionHeading: 'Two voices, one system'
 
 ## The Problem We're Solving
 
-Organizations want to innovate, but innovation is complex and difficult to navigate. Most people don't know where to start or how to actually make innovation happen. Decades of research, case studies, and real-world examples of organizations getting it right (and wrong) give us insight into what we can do differently. What doesn't exist is a platform with credible voices who can spotlight what's happening in the field and translate it into something grounded in human behavior and usable by a manager on Monday morning.
+Organizations want to innovate, but innovation is complex and difficult to navigate. Most people don't know where to start or how to actually make innovation happen. 
 
-> It's hard to find innovation advice that's credible, grounded in human behavior, and usable by Monday morning.
+Decades of research, case studies, and real-world examples of organizations getting it right (and wrong) give us insight into what we can do differently. What doesn't exist is a platform with credible voices who can spotlight what's happening in the field and translate it into something grounded in human behavior and usable by a manager on Monday morning.
+
+> It's hard to find innovation advice that's credible, grounded in human behavior, and usable on Monday morning.
 
 ## What We Do Differently
 
