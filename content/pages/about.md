@@ -1,17 +1,17 @@
 ---
-seoTitle: "About"
-seoDescription: "Who we are, what we believe, and why the gap between research and reality needs to close."
-sectionLabel: "Who We Are"
-headline: "Translators."
-headlineAccent: "Not Curators."
-intro: "We sit at the intersection of creativity and innovation — and we're done watching great research die in journals while organizations keep making the same avoidable mistakes."
-primaryButtonText: "Read the Blog"
-primaryButtonHref: "/blog"
-secondaryButtonText: ""
-pointOfViewLabel: "Our point of view"
-pointOfViewText: "Useful research should not stay trapped in journals, slide decks, or vague advice. It should help people make better decisions at work."
-peopleSectionLabel: "The People"
-peopleSectionHeading: "Two voices, one system"
+seoTitle: About
+seoDescription: 'Who we are, what we believe, and why the gap between research and reality needs to close.'
+sectionLabel: Who We Are
+headline: Curators of What Works
+headlineAccent: Translators of Why It Matters
+intro: 'As two industrial organizational psychologists passionate about innovation and creativity, we''re tired of watching great research die in journals while organizations make the same avoidable mistakes. Leading for Innovation is our answer. Here we share research, spotlight the ideas and organizations getting it right, and translate it into insights people can actually use.'
+pointOfViewLabel: Our point of view
+pointOfViewText: 'Useful research should not stay trapped in journals, slide decks, or vague advice. It should help people make better decisions at work.'
+primaryButtonText: Read the Blog
+primaryButtonHref: /blog
+secondaryButtonText: ''
+peopleSectionLabel: The People
+peopleSectionHeading: 'Two voices, one system'
 ---
 
 ## The Problem We're Solving
@@ -28,9 +28,9 @@ We don't summarize research. Summaries are still just information. We **translat
 
 Our output has three properties every time:
 
-- **Opinionated.** We take a position. We don't give you "it depends" without telling you what it depends on.
-- **Immediately usable.** If you can't do something with it in the next 30 days, it's not done.
-- **Grounded.** Every claim connects to something real — research, case evidence, or direct practitioner experience.
+* **Opinionated.** We take a position. We don't give you "it depends" without telling you what it depends on.
+* **Immediately usable.** If you can't do something with it in the next 30 days, it's not done.
+* **Grounded.** Every claim connects to something real — research, case evidence, or direct practitioner experience.
 
 ## Our Positioning
 
@@ -50,8 +50,8 @@ Over time, the work compounds into recognizable, **repeatable methods** that bri
 
 We write for people with real organizational responsibility who are done with platitudes. Specifically:
 
-- **Employees** trying to do better creative work inside systems that weren't designed for it
-- **Managers** trying to unlock their team's potential without MBA jargon
-- **Organizations** trying to build genuine innovation capability — not just the aesthetics of it
+* **Employees** trying to do better creative work inside systems that weren't designed for it
+* **Managers** trying to unlock their team's potential without MBA jargon
+* **Organizations** trying to build genuine innovation capability — not just the aesthetics of it
 
 If you're looking for validation of what you already believe, we're probably not for you. If you're looking for a challenge to think more clearly and act more effectively, you're in the right place.
