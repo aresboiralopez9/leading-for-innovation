@@ -18,19 +18,19 @@ peopleSectionHeading: 'Two voices, one system'
 
 Organizations want to innovate, but innovation is complex and difficult to navigate. Most people don't know where to start or how to actually make innovation happen. 
 
-Decades of research, case studies, and real-world examples of organizations getting it right (and wrong) give us insight into what we can do differently. What doesn't exist is a platform with credible voices who can spotlight what's happening in the field and translate it into something grounded in human behavior and usable by a manager on Monday morning.
+Decades of research, case studies, and organizations getting it right (and wrong) give us insight into what we can do differently. What doesn't exist is a platform with credible voices who can spotlight what's happening in the field and translate it into something grounded in human behavior and usable by a manager on Monday morning.
 
 > It's hard to find innovation advice that's credible, grounded in human behavior, and usable on Monday morning.
 
 ## What We Do Differently
 
-We don't summarize research. Summaries are still just information. We **translate** it — meaning we take the finding, identify what it actually implies for your organization, challenge the common misreading of it, and give you a concrete prescription.
+Here's what we do about it. We find what's credible,. identify what it means and why it matters, and translate it into something easy to understand and act on. Along the way, we challenge common misconceptions and highlight real examples of what actually works.
 
-Our output has three properties every time:
+Every piece we publish carries the same three properties: 
 
-* **Opinionated.** We take a position. We don't give you "it depends" without telling you what it depends on.
-* **Immediately usable.** If you can't do something with it in the next 30 days, it's not done.
-* **Grounded.** Every claim connects to something real — research, case evidence, or direct practitioner experience.
+* **Opinionated.** We take a position. We don't say "it depends" without telling you what it depends on.
+* **Practical.** Every piece gives you something you can act on in the next 30 days, not just something to think about.
+* **Evidence-Based. **Every claim connects to something real whether that's research, case evidence, or direct organizational experience.
 
 ## Our Positioning
 
