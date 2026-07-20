@@ -4,9 +4,9 @@ seoDescription: 'Who we are, what we believe, and why the gap between research a
 sectionLabel: Who We Are
 headline: Curators of What Works
 headlineAccent: Translators of Why It Matters
-intro: 'As industrial organizational psychologists passionate about innovation and creativity, we''re tired of watching great research die in journals while organizations make the same avoidable mistakes. Leading for Innovation is our answer. Here we share research, spotlight the ideas and organizations getting it right, and translate it into insights people can actually use.'
-pointOfViewLabel: Our point of view
-pointOfViewText: 'Useful research should not stay trapped in journals, slide decks, or vague advice. It should help people make better decisions at work.'
+intro: 'As industrial organizational psychologists passionate about innovation, we''re tired of watching great research die in journals while organizations make the same avoidable mistakes. Leading for Innovation is our answer. Here we share research, spotlight the ideas and organizations getting it right, and translate it into insights people can actually use.'
+pointOfViewLabel: ''
+pointOfViewText: Innovation is one of the most talked about topics in business and one of the least understood.
 primaryButtonText: Read the Blog
 primaryButtonHref: /blog
 secondaryButtonText: ''
