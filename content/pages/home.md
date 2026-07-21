@@ -53,7 +53,7 @@ postTypeCards:
     className: border-lfi-green bg-lfi-green/10
 foundersSectionLabel: The founders
 foundersSectionHeading: Meet the people behind the blog
-foundersSectionText: 'Leading for Innovation is built by two creativity and innovation researchers who care about making academic evidence useful for real teams, managers, and organizations.'
+foundersSectionText: 'Leading for Innovation is built by two industrial-organizational psychologists who care about making the science of creativity and innovation useful for real teams, managers, and organizations.'
 foundersButtonText: Read about the blog
 foundersButtonHref: /about
 latestSectionLabel: Latest
