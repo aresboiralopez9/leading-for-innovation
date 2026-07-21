@@ -1,6 +1,6 @@
 ---
 heroBadgeText: Research to Reality
-heroHeadline: 'There''s no shortage of information on innovation, but it rarely reaches the people who need it.'
+heroHeadline: 'There''s no shortage of information on innovation, but it rarely reaches the right people.'
 heroHeadlineAccent: We close that gap.
 heroSubtext: 'We find the ideas and evidence that matter, tell you what''s credible, and translate it into something practical and ready to use.'
 heroPrimaryButtonText: Read the blog
