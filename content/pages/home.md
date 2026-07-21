@@ -25,7 +25,7 @@ startHereCards:
 featuredSectionLabel: Featured posts
 featuredSectionHeading: Check This Out
 postTypesSectionLabel: Browse by type
-postTypesSectionHeading: What Do You Want To Read
+postTypesSectionHeading: What Do You Want To Read?
 postTypeCards:
   - label: Research to Practice
     description: What the research says and what teams can actually do with it.
