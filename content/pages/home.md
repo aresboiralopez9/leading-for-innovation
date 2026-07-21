@@ -1,8 +1,8 @@
 ---
 heroBadgeText: Research to Reality
-heroHeadline: The gap between what feels right and what actually works is where most teams get stuck.
-heroHeadlineAccent: We close it.
-heroSubtext: 'Good innovation practice rarely feels natural. We take the research seriously, challenge what intuition gets backwards, and turn the findings into clear ideas teams can actually use.'
+heroHeadline: 'There''s no shortage of information on innovation, but it rarely reaches the people who need it.'
+heroHeadlineAccent: We close that gap.
+heroSubtext: 'We find the ideas and evidence that matter, tell you what''s credible, and translate it into something practical and ready to use.'
 heroPrimaryButtonText: Read the blog
 heroPrimaryButtonHref: /blog
 heroSecondaryButtonText: Meet the founders
