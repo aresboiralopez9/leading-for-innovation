@@ -34,26 +34,8 @@ Every piece we publish carries the same three properties:
 * **Practical.** Every piece gives you something you can act on in the next 30 days, not just something to think about.
 * **Evidence Based. **Every claim connects to something real whether that's research, case evidence, or direct organizational experience.
 
-## Our Positioning
+## What To Expect
 
-We build at the intersection of creativity and innovation. That means we care about how organizations generate new ideas, how teams sustain creative output under pressure, how leadership either enables or destroys innovation, and how systems and structures shape the quality of thinking at every level.
+This platform is a source of information for employees navigating creative work, managers trying to unlock their team's potential, and organizations working to build innovation capability. You can expect fresh, curated content and insights on a biweekly basis, delivered in whatever format meets you where you are.
 
-We are **not** thought leaders in the performative sense. We are practitioners who happen to read a lot and have high standards for what passes as advice.
-
-## How This Works
-
-**LinkedIn** is where we test ideas and distribute sharp, high-signal insights in short form. Follow us there for daily thinking.
-
-**This blog** is the deep-dive home base. When a LinkedIn post hits and demands more, we build it out here — into full methods, operating systems, and extended analysis. Our best thinking lives here, structured and consolidated.
-
-Over time, the work compounds into recognizable, **repeatable methods** that bridge the gap between theory and the messy reality of organizations. That credibility is the foundation for the consulting demand we're building toward.
-
-## Who We Write For
-
-We write for people with real organizational responsibility who are done with platitudes. Specifically:
-
-* **Employees** trying to do better creative work inside systems that weren't designed for it
-* **Managers** trying to unlock their team's potential without MBA jargon
-* **Organizations** trying to build genuine innovation capability — not just the aesthetics of it
-
-If you're looking for validation of what you already believe, we're probably not for you. If you're looking for a challenge to think more clearly and act more effectively, you're in the right place.
+LinkedIn is where we share sharper, shorter takes and react to what's happening in the field in real time. This blog is where the deeper thinking lives, the full frameworks, and our extended analysis when a topic demands more room. Down the line we will expand into video and other formats, always with the same standard behind them.
