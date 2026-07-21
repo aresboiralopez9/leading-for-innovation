@@ -23,7 +23,7 @@ startHereCards:
     href: /blog?category=Debate
     colorClass: text-lfi-blue
 featuredSectionLabel: Featured posts
-featuredSectionHeading: Check it out!
+featuredSectionHeading: Check this out!
 postTypesSectionLabel: Browse by type
 postTypesSectionHeading: What do you want to read?
 postTypeCards:
