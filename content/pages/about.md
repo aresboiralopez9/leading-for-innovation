@@ -32,7 +32,7 @@ Every piece we publish carries the same three properties:
 
 * **Opinionated.** We take a position. We don't say "it depends" without telling you what it depends on.
 * **Practical.** Every piece gives you something you can act on in the next 30 days, not just something to think about.
-* **Evidence Based. **Every claim connects to something real whether that's research, case evidence, or direct organizational experience.
+* **Evidenced. **Every claim connects to something real whether that's research, case evidence, or direct organizational experience.
 
 ## What To Expect
 
