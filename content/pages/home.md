@@ -18,7 +18,7 @@ startHereCards:
     description: Challenge what sounds right but often fails.
     href: /blog?category=Myth%20Buster
     colorClass: text-lfi-green
-  - label: Debates and Hot Takes
+  - label: Debates
     description: Make familiar innovation questions sharper.
     href: /blog?category=Debate
     colorClass: text-lfi-blue
