@@ -23,9 +23,9 @@ startHereCards:
     href: /blog?category=Debate
     colorClass: text-lfi-blue
 featuredSectionLabel: Featured posts
-featuredSectionHeading: Check This Out
+featuredSectionHeading: Check it out!
 postTypesSectionLabel: Browse by type
-postTypesSectionHeading: What Do You Want To Read?
+postTypesSectionHeading: What do you want to read?
 postTypeCards:
   - label: Research to Practice
     description: What the research says and what teams can actually do with it.
