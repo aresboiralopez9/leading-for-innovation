@@ -24,7 +24,7 @@ Decades of research, case studies, and organizations getting it right (and wrong
 
 ## What We Do Differently
 
-Here's what we do about it. We find what's credible,. identify what it means and why it matters, and translate it into something easy to understand and act on. Along the way, we challenge common misconceptions and highlight real examples of what actually works.
+Here's what we do about it. We find what's credible, identify what it means and why it matters, and translate it into something easy to understand and act on. Along the way, we challenge common misconceptions and highlight real examples of what actually works.
 
 Every piece we publish carries the same three properties:
 
