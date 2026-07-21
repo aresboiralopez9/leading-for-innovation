@@ -8,7 +8,7 @@ heroPrimaryButtonHref: /blog
 heroSecondaryButtonText: Meet the founders
 heroSecondaryButtonHref: /about
 startHereLabel: Start here
-startHereHeading: 'Smart takes on creativity, innovation, and how teams actually work.'
+startHereHeading: 'Opinionated, practical, and evidence-based takes on how creativity and innovation actually work.'
 startHereCards:
   - label: Research to Practice
     description: Turn evidence into usable ideas.
