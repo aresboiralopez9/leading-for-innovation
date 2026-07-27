@@ -52,8 +52,8 @@ postTypeCards:
     href: /blog?category=Innovation%20Spotlight
     className: border-lfi-green bg-lfi-green/10
 foundersSectionLabel: The founders
-foundersSectionHeading: Meet the people behind the blog
-foundersSectionText: 'Leading for Innovation is built by two industrial-organizational psychologists who care about making the science of creativity and innovation useful for real teams, managers, and organizations.'
+foundersSectionHeading: Meet the people behind the mission
+foundersSectionText: 'Innovation is often treated as a talent problem. We believe it is also a leadership problem. Leading for Innovation was created by two industrial-organizational psychologists to help current and future managers translate research into better leadership, more creative teams, and stronger innovation.'
 foundersButtonText: Read about the blog
 foundersButtonHref: /about
 latestSectionLabel: Latest
