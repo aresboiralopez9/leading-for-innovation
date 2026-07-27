@@ -1,18 +1,18 @@
 ---
-heroBadgeText: Research to Reality
-heroHeadline: 'Information on innovation is out there, but it rarely reaches the right people.'
+heroBadgeText: Research for Managers
+heroHeadline: Managers are expected to lead innovation. Few have access to research they can actually use.
 heroHeadlineAccent: We close that gap.
-heroSubtext: 'We find the ideas and evidence that matter, tell you what''s credible, and translate it into something practical and ready to use.'
-heroPrimaryButtonText: Read the blog
+heroSubtext: 'We help middle managers build more creative, innovative teams by translating research from creativity and innovation into practical leadership strategies you can use immediately.'
+heroPrimaryButtonText: Start reading
 heroPrimaryButtonHref: /blog
-heroSecondaryButtonText: Meet the founders
+heroSecondaryButtonText: Our Mission
 heroSecondaryButtonHref: /about
 startHereLabel: Start here
-startHereHeading: 'Opinionated, practical, and evidence-based takes on how creativity and innovation actually work.'
+startHereHeading: 'Research backed strategies for managers building more creative, innovative teams.'
 startHereCards:
-  - label: Research to Practice
-    description: Turn evidence into usable ideas.
-    href: /blog?category=Research%20to%20Practice
+  - label: Creative Thinking
+    description: 'Help people generate, evaluate, and develop better ideas.'
+    href: /blog?topics=Creative%20Thinking
     colorClass: text-lfi-blue
   - label: Myth Busters
     description: Challenge what sounds right but often fails.
