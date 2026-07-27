@@ -1,4 +1,5 @@
-﻿---
-brandTagline: "Research → Reality. We filter what matters, challenge misconceptions, and prescribe concrete action for real-world teams."
-copyrightSuffix: "LEADING FOR INNOVATION. All rights reserved."
 ---
+brandTagline: 'Research → Reality. We translate the science of creativity and innovation into practical strategies for managers building more creative, innovative teams.'
+copyrightSuffix: LEADING FOR INNOVATION. All rights reserved.
+---
+
