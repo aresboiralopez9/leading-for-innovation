@@ -10,7 +10,7 @@ heroSecondaryButtonHref: /about
 startHereLabel: Start here
 startHereHeading: 'Research backed strategies for managers building more creative, innovative teams.'
 startHereCards:
-  - label: Creative Thinking
+  - label: Develop Creative Thinkers
     description: 'Help people generate, evaluate, and develop better ideas.'
     href: /blog?topics=Creative%20Thinking
     colorClass: text-lfi-blue
