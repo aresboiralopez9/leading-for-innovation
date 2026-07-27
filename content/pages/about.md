@@ -11,7 +11,7 @@ primaryButtonText: Read the Blog
 primaryButtonHref: /blog
 secondaryButtonText: ''
 peopleSectionLabel: The People
-peopleSectionHeading: 'Two voices, one system'
+peopleSectionHeading: The People Behind Leading for Innovation
 ---
 
 ## The Problem We're Solving
@@ -37,3 +37,7 @@ Every piece we publish carries the same three properties:
 Leading for Innovation is built primarily for current and aspiring managers who want to build more creative people, stronger teams, and more innovative organizations. Whether you're leading your first team or refining your leadership approach after years of experience, you'll find practical, research-informed guidance designed to help you lead innovation with confidence.
 
 LinkedIn is where we share sharper, shorter takes and react to what's happening in the field in real time. This blog is where the deeper thinking lives, the full frameworks, and our extended analysis when a topic demands more room. Down the line we will expand into video and other formats, always with the same standard behind them.
+
+## Our Philosophy
+
+We believe innovation is not the result of a single brilliant idea. It emerges when creative people work in environments that encourage experimentation, thoughtful evaluation, and continuous learning. Managers play a central role in creating those conditions. Our goal is to help them do it using the best evidence available.
