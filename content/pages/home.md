@@ -18,8 +18,8 @@ startHereCards:
     description: 'Create the conditions where ideas are shared, challenges, and implemented.'
     href: /blog?topics=Team%20Creativity
     colorClass: text-lfi-green
-  - label: Organizational Culture
-    description: 'Build workplaces that reward learning, experimentation, and innovation.'
+  - label: Shape an Innovative Culture
+    description: 'Build habits, systems, and incentives that help innovation thrive.'
     href: /blog?topic=Culture%20&%20Climate
     colorClass: text-lfi-blue
 featuredSectionLabel: Featured posts
