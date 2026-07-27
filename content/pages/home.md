@@ -8,7 +8,7 @@ heroPrimaryButtonHref: /blog
 heroSecondaryButtonText: Our Mission
 heroSecondaryButtonHref: /about
 startHereLabel: Start here
-startHereHeading: 'Research backed strategies for managers building more creative, innovative teams.'
+startHereHeading: 'Research-backed strategies for managers building more creative, innovative teams.'
 startHereCards:
   - label: Develop Creative Thinkers
     description: 'Help people generate, evaluate, and develop better ideas.'
