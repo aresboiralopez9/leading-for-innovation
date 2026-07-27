@@ -1,9 +1,9 @@
 ---
 seoTitle: About
 seoDescription: 'Who we are, what we believe, and why the gap between research and reality needs to close.'
-sectionLabel: Helping Managers Lead Innovation
-headline: Through Better Evidence
-headlineAccent: Translators of Why It Matters
+sectionLabel: Our Mission
+headline: Helping Managers Lead Innovation
+headlineAccent: Through Better Evidence
 intro: 'Innovation research has never been more accessible to researchers, yet it has rarely been harder for managers to know what actually works. Between academic journals, consultant frameworks, LinkedIn advice, and management trends, separating evidence from opinion can be difficult. Leading for Innovation exists to bridge that gap by translating research into practical guidance managers can use with their teams.'
 pointOfViewLabel: ''
 pointOfViewText: Good ideas matter. The conditions managers create determine whether those ideas succeed.
