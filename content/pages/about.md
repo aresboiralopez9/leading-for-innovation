@@ -1,12 +1,12 @@
 ---
 seoTitle: About
 seoDescription: 'Who we are, what we believe, and why the gap between research and reality needs to close.'
-sectionLabel: Who We Are
-headline: Curators of What Works
+sectionLabel: Helping Managers Lead Innovation
+headline: Through Better Evidence
 headlineAccent: Translators of Why It Matters
-intro: 'As people passionate about innovation, we''re tired of watching great research die in journals while organizations make the same avoidable mistakes. Leading for Innovation is our answer. On this platform we share research, spotlight the organizations getting it right, and translate it into insights people can actually use.'
+intro: 'Innovation research has never been more accessible to researchers, yet it has rarely been harder for managers to know what actually works. Between academic journals, consultant frameworks, LinkedIn advice, and management trends, separating evidence from opinion can be difficult. Leading for Innovation exists to bridge that gap by translating research into practical guidance managers can use with their teams.'
 pointOfViewLabel: ''
-pointOfViewText: Innovation is one of the most talked about topics in business and one of the least understood.
+pointOfViewText: Good ideas matter. The conditions managers create determine whether those ideas succeed.
 primaryButtonText: Read the Blog
 primaryButtonHref: /blog
 secondaryButtonText: ''
@@ -16,7 +16,7 @@ peopleSectionHeading: 'Two voices, one system'
 
 ## The Problem We're Solving
 
-Organizations want to innovate, but innovation is complex and difficult to navigate. Most people don't know where to start or how to actually make innovation happen.
+Organizations invest heavily in innovation, but many managers receive little evidence-based guidance on how to develop creative people, evaluate ideas, or build innovative teams. As a result, innovation often depends more on intuition than on what research has already taught us.
 
 Decades of research, case studies, and organizations getting it right (and wrong) give us insight into what we can do differently. What doesn't exist is a platform with credible voices who can spotlight what's happening in the field and translate it into something grounded in human behavior and usable by a manager on Monday morning.
 
@@ -24,16 +24,16 @@ Decades of research, case studies, and organizations getting it right (and wrong
 
 ## What We Do Differently
 
-Here's what we do about it. We find what's credible, identify what it means and why it matters, and translate it into something easy to understand and act on. Along the way, we challenge common misconceptions and highlight real examples of what actually works.
+Here's what we do about it. Every week we read the research so you don't have to. We identify what's credible, explain why it matters, and translate it into practical actions managers can apply with their teams. Along the way, we challenge common misconceptions and highlight real examples of what actually works.
 
 Every piece we publish carries the same three properties:
 
 * **Opinionated.** We take a position. We don't say "it depends" without telling you what it depends on.
 * **Practical.** Every piece gives you something you can act on in the next 30 days, not just something to think about.
-* **Evidenced.** Every claim connects to something real whether that's research, case evidence, or direct organizational experience.
+* **Evidenced.** Every recommendation is grounded in research, case evidence, or direct organizational experience.
 
 ## What To Expect
 
-This platform is a source of information for employees navigating creative work, managers trying to unlock their team's potential, and organizations working to build innovation capability. You can expect fresh, curated content and insights on a biweekly basis, delivered in whatever format meets you where you are.
+Leading for Innovation is built primarily for current and aspiring managers who want to build more creative people, stronger teams, and more innovative organizations. Whether you're leading your first team or refining your leadership approach after years of experience, you'll find practical, research-informed guidance designed to help you lead innovation with confidence.
 
 LinkedIn is where we share sharper, shorter takes and react to what's happening in the field in real time. This blog is where the deeper thinking lives, the full frameworks, and our extended analysis when a topic demands more room. Down the line we will expand into video and other formats, always with the same standard behind them.
