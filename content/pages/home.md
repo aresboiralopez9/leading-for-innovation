@@ -14,9 +14,9 @@ startHereCards:
     description: 'Help people generate, evaluate, and develop better ideas.'
     href: /blog?topics=Creative%20Thinking
     colorClass: text-lfi-blue
-  - label: Myth Busters
-    description: Challenge what sounds right but often fails.
-    href: /blog?category=Myth%20Buster
+  - label: Leading Teams
+    description: Create the conditions where creativity becomes innovation.
+    href: /blog?topics=Team%20Creativity
     colorClass: text-lfi-green
   - label: Debates
     description: Make familiar innovation questions sharper.
