@@ -18,9 +18,9 @@ startHereCards:
     description: Create the conditions where creativity becomes innovation.
     href: /blog?topics=Team%20Creativity
     colorClass: text-lfi-green
-  - label: Debates
-    description: Make familiar innovation questions sharper.
-    href: /blog?category=Debate
+  - label: Organizational Culture
+    description: 'Build workplaces that reward learning, experimentation, and innovation.'
+    href: /blog?topic=Culture%20&%20Climate
     colorClass: text-lfi-blue
 featuredSectionLabel: Featured posts
 featuredSectionHeading: ''
