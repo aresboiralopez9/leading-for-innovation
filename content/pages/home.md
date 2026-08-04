@@ -1,8 +1,8 @@
 ---
 heroBadgeText: Research for Managers
-heroHeadline: 'There''s no shortage of information on innovation, but it rarely reaches the leaders who need it. '
+heroHeadline: 'There''s no shortage of information on innovation, but it rarely reaches leaders who need it. '
 heroHeadlineAccent: We close that gap.
-heroSubtext: 'We find the ideas and evidence that matter, tell you what''s credible, and translate it into something practical and ready for leaders to use.'
+heroSubtext: We find the ideas and evidence that matter and translate it into something practical and ready for leaders to use.
 heroPrimaryButtonText: Start reading
 heroPrimaryButtonHref: /blog
 heroSecondaryButtonText: Our Mission
