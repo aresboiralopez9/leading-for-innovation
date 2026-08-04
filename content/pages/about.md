@@ -2,11 +2,11 @@
 seoTitle: About
 seoDescription: 'Who we are, what we believe, and why the gap between research and reality needs to close.'
 sectionLabel: Our Mission
-headline: Helping Managers Lead Innovation
-headlineAccent: Through Better Evidence
-intro: 'Innovation research has never been more accessible to researchers, yet it has rarely been harder for managers to know what actually works. Between academic journals, consultant frameworks, LinkedIn advice, and management trends, separating evidence from opinion can be difficult. Leading for Innovation exists to bridge that gap by translating research into practical guidance managers can use with their teams.'
+headline: Helping Leaders Innovate
+headlineAccent: Curators of What Works. Translators of Why It Matters.
+intro: 'As two industrial-organizational psychologists passionate about creativity and innovation, we''re tired of watching great research die in journals while leaders make the same avoidable mistakes. Leading for Innovation is our answer. Our mission is to bridge the gap between research and practice by creating advice and insights that help leaders innovate and support innovation across their teams.'
 pointOfViewLabel: ''
-pointOfViewText: Good ideas matter. The conditions managers create determine whether those ideas succeed.
+pointOfViewText: ''
 primaryButtonText: Read the Blog
 primaryButtonHref: /blog
 secondaryButtonText: ''
