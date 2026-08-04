@@ -5,7 +5,7 @@ sectionLabel: Our Mission
 headline: Helping Leaders Innovate
 headlineAccent: Curators of What Works. Translators of Why It Matters.
 intro: 'As two industrial-organizational psychologists passionate about creativity and innovation, we''re tired of watching great research die in journals while leaders make the same avoidable mistakes. Leading for Innovation is our answer. Our mission is to bridge the gap between research and practice by creating advice and insights that help leaders innovate and support innovation across their teams.'
-pointOfViewLabel: ''
+pointOfViewLabel: Research doesn't change organizations. Leaders who know how to use it do.
 pointOfViewText: ''
 primaryButtonText: Read the Blog
 primaryButtonHref: /blog
