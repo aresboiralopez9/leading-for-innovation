@@ -1,5 +1,5 @@
 ---
-heroBadgeText: Research for Managers
+heroBadgeText: Research to practice
 heroHeadline: 'There''s no shortage of information on innovation, but it rarely reaches leaders who need it. '
 heroHeadlineAccent: We close that gap.
 heroSubtext: We find the ideas and evidence that matter and translate it into something practical and ready for leaders to use.
