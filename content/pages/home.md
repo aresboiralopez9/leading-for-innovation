@@ -1,8 +1,8 @@
 ---
 heroBadgeText: Research for Managers
-heroHeadline: Managers are expected to lead innovation. Few have access to research they can actually use.
+heroHeadline: 'There''s no shortage of information on innovation, but it rarely reaches the leaders who need it. '
 heroHeadlineAccent: We close that gap.
-heroSubtext: 'We help middle managers build more creative, innovative teams by translating research from creativity and innovation into practical leadership strategies you can use immediately.'
+heroSubtext: 'We find the ideas and evidence that matter, tell you what''s credible, and translate it into something practical and ready for leaders to use.'
 heroPrimaryButtonText: Start reading
 heroPrimaryButtonHref: /blog
 heroSecondaryButtonText: Our Mission
@@ -53,7 +53,7 @@ postTypeCards:
     className: border-lfi-green bg-lfi-green/10
 foundersSectionLabel: The founders
 foundersSectionHeading: Meet the people behind the mission
-foundersSectionText: 'Innovation is often treated as a talent problem. We believe it is also a leadership problem. Leading for Innovation was created by two industrial-organizational psychologists to help current and future managers translate research into better leadership, more creative teams, and stronger innovation.'
+foundersSectionText: Leading for Innovation was created by two industrial-organizational psychologists who care about making the science of creativity and innovation useful for leaders.
 foundersButtonText: Read about the blog
 foundersButtonHref: /about
 latestSectionLabel: Latest
