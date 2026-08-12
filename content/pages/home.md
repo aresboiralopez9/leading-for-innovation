@@ -1,8 +1,8 @@
 ---
 heroBadgeText: Research to practice
-heroHeadline: 'Innovation,'
-heroHeadlineAccent: Unpacked
-heroSubtext: 'Practical, evidence-based insights for leaders to strengthen their own creativity and build innovative teams, cultures, and organizations.'
+heroHeadline: 'Innovation, Unpacked.'
+heroHeadlineAccent: 'Practical, evidence-based insights for leaders.'
+heroSubtext: 'Strengthen your own creativity and build innovative teams, cultures, and organizations.'
 heroPrimaryButtonText: Start reading
 heroPrimaryButtonHref: /blog
 heroSecondaryButtonText: Our Mission
