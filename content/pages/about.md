@@ -2,7 +2,7 @@
 seoTitle: About
 seoDescription: 'Who we are, what we believe, and why the gap between research and reality needs to close.'
 sectionLabel: Our Mission
-headline: Helping Leaders Innovate
+headline: Helping Leaders Innovate.
 headlineAccent: Curators of What Works. Translators of Why It Matters.
 intro: 'As two industrial-organizational psychologists passionate about creativity and innovation, we''re tired of watching great research die in journals while leaders make the same avoidable mistakes. Leading for Innovation is our answer. Our mission is to bridge the gap between research and practice by creating advice and insights that help leaders innovate and support innovation across their teams.'
 pointOfViewLabel: ''
