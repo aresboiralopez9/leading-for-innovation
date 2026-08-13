@@ -2,7 +2,7 @@
 heroBadgeText: Research to practice
 heroHeadline: 'Innovation, Unpacked'
 heroHeadlineAccent: 'Practical, evidence-based insights for leaders.'
-heroSubtext: 'There''s no shortage of information on creativity and innovation, but it rarely reaches the leaders who need it. We close that gap.'
+heroSubtext: 'There is no shortage of information on creativity and innovation, but it rarely reaches the leaders who need it. We close that gap.'
 heroPrimaryButtonText: Start reading
 heroPrimaryButtonHref: /blog
 heroSecondaryButtonText: Our Mission
