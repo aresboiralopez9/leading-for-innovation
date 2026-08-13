@@ -33,13 +33,12 @@ export function Byline({ authorId, size = 'md', linked = true }: BylineProps) {
   if (!linked) return content
 
   return (
-    <a
-      href={author.linkedInUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      onClick={(e) => e.stopPropagation()}
-      className="group/byline inline-flex items-center hover:opacity-80 transition-opacity"
-    >
+   <a
+  href={author.linkedInUrl}
+  target="_blank"
+  rel="noopener noreferrer"
+  className="group/byline inline-flex items-center hover:opacity-80 transition-opacity"
+  >
       {content}
     </a>
   )
