@@ -10,6 +10,6 @@ linkedInUrl: ''
 featured: true
 ---
 
-\*\*Anticipated release: \*\*09/01/26
+**Anticipated release:** 09/01/26
 
-\*\*Summary: \*\*Decades of research contradict three common beliefs about creativity: that it arrives as a flash of insight, that it belongs to a certain kind of person, and that it only counts when it's disruptive. This post unpacks what the evidence actually shows and what leaders can do to widen both who participates in innovation and what gets counted as it.
+**Summary: **Decades of research contradict three common beliefs about creativity: that it arrives as a flash of insight, that it belongs to a certain kind of person, and that it only counts when it's disruptive. This post unpacks what the evidence actually shows and what leaders can do to widen both who participates in innovation and what gets counted as it.
