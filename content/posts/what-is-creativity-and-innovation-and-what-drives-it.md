@@ -63,7 +63,7 @@ Each of these questions deserves its own deep dive and yes, we will explore them
 
 ## One Final Thought
 
-Creativity and innovation are not the same thing. Creativity is a necessary precondition for innovation, but it is only the beginning. Innovation depends on what happens after an idea is generated. Whether that idea becomes a better product, service, or process depends largely on the environment built around it
+Creativity and innovation are not the same thing. Creativity is a necessary precondition for innovation, but it is only the beginning. Innovation depends on what happens after an idea is generated. Whether that idea becomes a better product, service, or process depends largely on the environment built around it.
 
 Leaders play a central role in creating that environment. By encouraging idea generation, facilitating thoughtful evaluation, championing promising ideas and helping teams secure the resources needed to experiment and improve, they transform creativity from isolated moments into sustained innovation. But that is only part of the story. The same knowledge also helps managers become better creative thinkers themselves. It improves how they frame problems, generate options, evaluate possibilities, and make decisions under uncertainty.
 
