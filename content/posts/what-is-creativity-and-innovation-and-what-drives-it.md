@@ -49,11 +49,11 @@ People create novel solutions by combining existing knowledge in new ways ([Scot
 
 #### Select and pilot the strongest idea.
 
-Once an idea has been refined, the next step is to test it on a small scale before broader implementation ([Baer, 2012](https://journals.aom.org/doi/abs/10.5465/amj.2009.0470)). **Encourage low cost experimentation and learning from early results.** This is not just about protecting the team. It is also about helping themselves think in a more iterative and less all or nothing way.
+Once an idea has been refined, the next step is to test it on a small scale before broader implementation ([Baer, 2012](https://journals.aom.org/doi/abs/10.5465/amj.2009.0470)). **Encourage low-cost experimentation and learning from early results.** This is not just about protecting the team. It is also about helping themselves think in a more iterative and less all or nothing way.
 
 #### Monitor and refine.
 
-Creative work is iterative ([Sawyer, 2021](https://www.sciencedirect.com/science/article/pii/S2713374521000029)). Feedback and new information often lead to further improvements rather than a finished solution ([Tolkamp et al., 2025](https://www.tandfonline.com/doi/full/10.1080/10400419.2023.2234719)). **Reinforce this process by treating iteration as progress rather than failure and by giving teams the time and psychological safety to improve ideas over time. **
+Creative work is iterative ([Sawyer, 2021](https://www.sciencedirect.com/science/article/pii/S2713374521000029)). Feedback and new information often lead to further improvements rather than a finished solution ([Tolkamp et al., 2025](https://www.tandfonline.com/doi/full/10.1080/10400419.2023.2234719)). **Reinforce this process by treating iteration as progress rather than failure and by giving teams the time and psychological safety to improve ideas over time.**
 
 ### The Idea Is Only the Beginning
 
