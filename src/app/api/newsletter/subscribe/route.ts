@@ -36,28 +36,151 @@ export async function POST(request: Request) {
       }
     )
 
-    if (!supabaseResponse.ok) {
-      const errorText = await supabaseResponse.text()
+   if (!supabaseResponse.ok) {
+  const errorText = await supabaseResponse.text()
 
-      if (supabaseResponse.status === 409) {
-        return NextResponse.json({
-          success: true,
-          message:
-            'Please check your inbox for a confirmation email.',
-        })
+  if (supabaseResponse.status === 409) {
+    const existingResponse = await fetch(
+      `${SUPABASE_URL}/rest/v1/newsletter_subscribers?email=eq.${encodeURIComponent(email)}&select=id,email,confirmed,unsubscribed_at`,
+      {
+        headers: {
+          apikey: SUPABASE_SERVICE_ROLE_KEY,
+          Authorization: `Bearer ${SUPABASE_SERVICE_ROLE_KEY}`,
+        },
       }
+    )
 
-      console.error('Supabase error:', errorText)
+    if (!existingResponse.ok) {
+      console.error(await existingResponse.text())
 
       return NextResponse.json(
-        { error: 'Unable to subscribe right now.' },
+        { error: 'Unable to check your existing subscription.' },
         { status: 500 }
       )
     }
 
-    const rows = await supabaseResponse.json()
-    const subscriber = rows[0]
+    const existingRows = await existingResponse.json()
+    const existingSubscriber = existingRows[0]
 
+    if (!existingSubscriber) {
+      return NextResponse.json(
+        { error: 'Unable to find your existing subscription.' },
+        { status: 500 }
+      )
+    }
+
+    if (
+      existingSubscriber.confirmed &&
+      !existingSubscriber.unsubscribed_at
+    ) {
+      return NextResponse.json({
+        success: true,
+        message: 'You are already subscribed.',
+      })
+    }
+
+    const newConfirmationToken = crypto.randomUUID()
+
+    const updateResponse = await fetch(
+      `${SUPABASE_URL}/rest/v1/newsletter_subscribers?id=eq.${existingSubscriber.id}`,
+      {
+        method: 'PATCH',
+        headers: {
+          apikey: SUPABASE_SERVICE_ROLE_KEY,
+          Authorization: `Bearer ${SUPABASE_SERVICE_ROLE_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          confirmed: false,
+          confirmation_token: newConfirmationToken,
+          unsubscribed_at: null,
+          confirmed_at: null,
+        }),
+      }
+    )
+
+    if (!updateResponse.ok) {
+      console.error(await updateResponse.text())
+
+      return NextResponse.json(
+        { error: 'Unable to restart your subscription.' },
+        { status: 500 }
+      )
+    }
+
+    const confirmationUrl =
+      `${SITE_URL}/api/newsletter/confirm?token=` +
+      encodeURIComponent(newConfirmationToken)
+
+    const resendResponse = await fetch(
+      'https://api.resend.com/emails',
+      {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${RESEND_API_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          from: FROM_EMAIL,
+          reply_to: REPLY_TO,
+          to: [email],
+          subject: 'Confirm your Leading for Innovation subscription',
+          html: `
+            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 40px 20px; color: #1f2937;">
+              <h1 style="font-size: 28px; margin-bottom: 16px; color: #035AA6;">
+                Leading for Innovation
+              </h1>
+
+              <p style="font-size: 16px; line-height: 1.6;">
+                You asked to subscribe again to Leading for Innovation.
+              </p>
+
+              <p style="font-size: 16px; line-height: 1.6;">
+                Click below to confirm your subscription.
+              </p>
+
+              <p style="margin: 30px 0;">
+                <a
+                  href="${confirmationUrl}"
+                  style="display: inline-block; padding: 14px 22px; background: #035AA6; color: white; text-decoration: none; border-radius: 8px; font-weight: bold;"
+                >
+                  Confirm my subscription
+                </a>
+              </p>
+
+              <p style="font-size: 13px; line-height: 1.5; color: #6b7280;">
+                If you did not request this, you can safely ignore this email.
+              </p>
+            </div>
+          `,
+        }),
+      }
+    )
+
+    if (!resendResponse.ok) {
+      const resendError = await resendResponse.text()
+      console.error('Resend error:', resendError)
+
+      return NextResponse.json(
+        { error: 'Unable to send confirmation email.' },
+        { status: 500 }
+      )
+    }
+
+    return NextResponse.json({
+      success: true,
+      message:
+        'Please check your inbox for a confirmation email.',
+    })
+  }
+
+  console.error('Supabase error:', errorText)
+
+  return NextResponse.json(
+    { error: 'Unable to subscribe right now.' },
+    { status: 500 }
+  )
+}
     if (!subscriber?.confirmation_token) {
       console.error('Missing confirmation token.')
       return NextResponse.json(
