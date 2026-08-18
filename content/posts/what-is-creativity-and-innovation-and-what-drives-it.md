@@ -11,8 +11,6 @@ linkedInUrl: ''
 featured: true
 ---
 
-# From Ideas to Innovation
-
 It’s no coincidence that companies like Alphabet, Microsoft, Apple, Amazon, Capital One, JPMorgan Chase, and NVIDIA show up on both **Forbes' America's Best Companies** ([Schwarz & Newman, 2025](https://www.forbes.com/lists/best-companies/)) and **Fortune's Most Innovative Companies** ([Fortune Media IP Limited, 2026](https://fortune.com/ranking/americas-most-innovative-companies/)). Creativity and innovation are directly tied to sales growth, competitive advantage, and long-term survival. Organizations that continuously improve their products, services, and ways of working are far less likely to become obsolete ([Acar et al., 2019](https://journals.sagepub.com/doi/abs/10.1177/0149206318805832); [Reiter-Palmon & Dredge, 2021](https://books.google.es/books?hl=en\&lr=\&id=4h1QEAAAQBAJ\&oi=fnd\&pg=PA460\&dq=long-term+survival+and+innovation+Reiter+Palmon\&ots=vKXlCh408O\&sig=DbUoR5mzGgmpIMSdW8tyZKKvolM#v=onepage\&q\&f=false)).
 
 That is not particularly surprising. What is worth asking, however, is what it actually means to be creative, what it means to be innovative, and where creativity fits into that picture. Those words appear constantly in strategy documents, leadership presentations, job descriptions, and mission statements. They have become so common that they often function more like buzzwords than clearly defined concepts. Yet understanding the difference matters, especially for managers responsible for improving how their teams work, make better creative judgments, and strengthen their own creative thinking.
