@@ -1,7 +1,7 @@
 ---
 title: From Ideas to Innovation
 excerpt: 'This blog post explains the difference between creativity and innovation and why that distinction matters for leaders. It shows how creative thinking can be strengthened through a clear process and how teams, leadership, and organizational climate shape whether ideas become real innovation.'
-date: 2026-07-14T22:31:53.872Z
+date: 2026-08-18T22:31:53.872Z
 category: Research to Practice
 tags:
   - Foundations
