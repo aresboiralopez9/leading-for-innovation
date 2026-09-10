@@ -1,7 +1,9 @@
+```tsx
 import Link from 'next/link'
 import { getAllAuthors } from '@/lib/authors'
 import { getHomePageData, getSiteSettings } from '@/lib/content'
 import { getAllPosts } from '@/lib/posts'
+import { NewsletterCTAWrapper } from '@/components/NewsletterCTAWrapper'
 
 export default function HomePage() {
   const cms = getHomePageData()
@@ -270,34 +272,10 @@ export default function HomePage() {
         </section>
       )}
 
-      <section className="mx-auto max-w-7xl px-6 pb-8 pt-10 md:px-10">
-        <div className="rounded-[2rem] border border-lfi-yellow bg-lfi-yellow/25 p-8 md:p-10">
-          <div className="grid gap-8 md:grid-cols-[1fr_auto] md:items-center">
-            <div>
-              <p className="text-xs font-bold uppercase tracking-[0.25em] text-ink/60">
-                {cms.followSectionLabel}
-              </p>
-
-              <h2 className="mt-3 text-3xl font-semibold tracking-tight">
-                {cms.followSectionHeading}
-              </h2>
-
-              <p className="mt-4 max-w-2xl text-base leading-7 text-ink/70">
-                {cms.followSectionText}
-              </p>
-            </div>
-
-            <Link
-              href={settings.linkedInUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-full bg-ink px-6 py-3 text-sm font-semibold text-lfi-white transition hover:translate-y-[-1px] hover:shadow-lg"
-            >
-              {cms.followButtonText}
-            </Link>
-          </div>
-        </div>
+      <section className="mx-auto max-w-7xl px-6 py-10 md:px-10">
+        <NewsletterCTAWrapper />
       </section>
     </main>
   )
 }
+```
