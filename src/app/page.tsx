@@ -1,4 +1,3 @@
-```tsx
 import Link from 'next/link'
 import { getAllAuthors } from '@/lib/authors'
 import { getHomePageData, getSiteSettings } from '@/lib/content'
@@ -278,4 +277,3 @@ export default function HomePage() {
     </main>
   )
 }
-```
