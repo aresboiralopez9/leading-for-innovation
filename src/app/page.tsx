@@ -26,12 +26,14 @@ export default function HomePage() {
               {cms.heroBadgeText}
             </div>
 
-            <h1 className="max-w-4xl text-4xl font-semibold leading-[1.02] tracking-tight text-ink md:text-5xl lg:text-6xl">
+            <h1 className="max-w-5xl text-4xl font-semibold leading-[1.02] tracking-tight text-ink md:text-5xl lg:text-7xl">
               {cms.heroHeadline}
-              <span className="block text-lfi-blue">{cms.heroHeadlineAccent}</span>
+              <span className="block text-lfi-green">
+                {cms.heroHeadlineAccent}
+              </span>
             </h1>
 
-            <p className="mt-6 max-w-2xl text-base leading-7 text-ink/75 md:text-lg">
+            <p className="mt-6 max-w-2xl text-base leading-7 text-ink md:text-lg">
               {cms.heroSubtext}
             </p>
 
@@ -73,10 +75,16 @@ export default function HomePage() {
                     href={card.href}
                     className="block rounded-2xl bg-lfi-white p-4 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
                   >
-                    <p className={`text-sm font-semibold ${card.colorClass || 'text-lfi-blue'}`}>
+                    <p
+                      className={`text-sm font-semibold ${
+                        card.colorClass || 'text-lfi-blue'
+                      }`}
+                    >
                       {card.label}
                     </p>
-                    <p className="mt-1 text-sm text-ink/70">{card.description}</p>
+                    <p className="mt-1 text-sm text-ink/70">
+                      {card.description}
+                    </p>
                   </Link>
                 ))}
               </div>
@@ -98,7 +106,10 @@ export default function HomePage() {
               </h2>
             </div>
 
-            <Link href="/blog" className="text-sm font-semibold text-lfi-blue hover:underline">
+            <Link
+              href="/blog"
+              className="text-sm font-semibold text-lfi-blue hover:underline"
+            >
               View all posts
             </Link>
           </div>
@@ -158,7 +169,9 @@ export default function HomePage() {
               <Link
                 key={`${type.label}-${type.href}`}
                 href={type.href}
-                className={`rounded-[1.5rem] border p-5 transition hover:translate-y-[-2px] hover:shadow-lg ${type.className || 'border-ink/10 bg-lfi-white'}`}
+                className={`rounded-[1.5rem] border p-5 transition hover:translate-y-[-2px] hover:shadow-lg ${
+                  type.className || 'border-ink/10 bg-lfi-white'
+                }`}
               >
                 <h3 className="text-xl font-semibold">{type.label}</h3>
                 <p className="mt-3 text-sm leading-6 text-ink/70">
@@ -258,7 +271,9 @@ export default function HomePage() {
                       <span>{readingTimeLabel}</span>
                     </div>
 
-                    <h3 className="mt-3 text-xl font-semibold">{post.title}</h3>
+                    <h3 className="mt-3 text-xl font-semibold">
+                      {post.title}
+                    </h3>
 
                     <p className="mt-2 text-sm leading-6 text-lfi-white/75">
                       {post.excerpt}
