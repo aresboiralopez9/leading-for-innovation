@@ -2,20 +2,20 @@
 heroBadgeText: Research to practice
 heroHeadline: 'Innovation, Unpacked.'
 heroHeadlineAccent: Evidence-based insights for leaders.
-heroSubtext: 'There is no shortage of information on creativity and innovation, but it rarely reaches the leaders who need it. We close that gap.'
+heroSubtext: There is no shortage of research on creativity and innovation. It rarely reaches the leaders who need it. We close that gap.
 heroPrimaryButtonText: Start reading
 heroPrimaryButtonHref: /blog
 heroSecondaryButtonText: Our Mission
 heroSecondaryButtonHref: /about
 startHereLabel: Start here
-startHereHeading: 'Opinionated, practical, and evidence-based takes on how creativity and innovation actually work.'
+startHereHeading: 'Straightforward, practical takes on how creativity and innovation actually work.'
 startHereCards:
   - label: Develop Creative Thinkers
     description: 'Help people generate, evaluate, and develop better ideas.'
     href: /blog?topics=Creative%20Thinking
     colorClass: text-lfi-blue
   - label: Lead Innovative Teams
-    description: 'Create the conditions where ideas are shared, challenges, and implemented.'
+    description: Create the conditions where ideas are shared and implemented.
     href: /blog?topics=Team%20Creativity
     colorClass: text-lfi-green
   - label: Shape an Innovative Culture
