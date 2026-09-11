@@ -15,6 +15,7 @@ export interface PostMeta {
   tags: string[];
   readingTime: number;
   featured: boolean;
+  featuredImage: string;
   linkedInUrl: string;
   author: string;
   companionSlug: string;
@@ -43,7 +44,9 @@ function getPostFilePath(slug: string): string | null {
 
 function normalizeTags(tags: unknown): string[] {
   if (!tags) return [];
-  if (Array.isArray(tags)) return tags.filter((tag): tag is string => typeof tag === 'string');
+  if (Array.isArray(tags)) {
+    return tags.filter((tag): tag is string => typeof tag === 'string');
+  }
   if (typeof tags === 'string') return [tags];
   return [];
 }
@@ -52,6 +55,11 @@ function normalizeDate(date: unknown): string {
   if (!date) return '';
   if (date instanceof Date) return date.toISOString();
   return String(date);
+}
+
+function normalizeFeaturedImage(image: unknown): string {
+  if (!image) return '';
+  return String(image);
 }
 
 export function getAllPostSlugs(): string[] {
@@ -80,6 +88,7 @@ export function getPostMeta(slug: string): PostMeta | null {
       tags: normalizeTags(data.tags),
       readingTime: calculateReadingTime(content),
       featured: Boolean(data.featured),
+      featuredImage: normalizeFeaturedImage(data.featuredImage),
       linkedInUrl: String(data.linkedInUrl || ''),
       author: String(data.author || ''),
       companionSlug: String(data.companionSlug || ''),
@@ -139,6 +148,7 @@ export async function getPost(slug: string): Promise<Post | null> {
       tags: normalizeTags(data.tags),
       readingTime: calculateReadingTime(content),
       featured: Boolean(data.featured),
+      featuredImage: normalizeFeaturedImage(data.featuredImage),
       linkedInUrl: String(data.linkedInUrl || ''),
       author: String(data.author || ''),
       companionSlug: String(data.companionSlug || ''),
