@@ -8,7 +8,7 @@ heroPrimaryButtonHref: /blog
 heroSecondaryButtonText: Our Mission
 heroSecondaryButtonHref: /about
 startHereLabel: Start here
-startHereHeading: 'Straightforward, practical takes on how creativity and innovation actually work.'
+startHereHeading: 'Straightforward, practical takes on how creativity and innovation work.'
 startHereCards:
   - label: Develop Creative Thinkers
     description: 'Help people generate, evaluate, and develop better ideas.'
