@@ -15,7 +15,7 @@ startHereCards:
     href: /blog?topics=Creative%20Thinking
     colorClass: text-lfi-blue
   - label: Lead Innovative Teams
-    description: Create the conditions where ideas are shared and implemented.
+    description: Create conditions where ideas are shared and implemented.
     href: /blog?topics=Team%20Creativity
     colorClass: text-lfi-green
   - label: Shape an Innovative Culture
