@@ -19,7 +19,7 @@ startHereCards:
     href: /blog?topics=Team%20Creativity
     colorClass: text-lfi-green
   - label: Shape an Innovative Culture
-    description: 'Build habits, systems, and incentives that help innovation thrive.'
+    description: Build systems and incentives that help innovation thrive.
     href: /blog?topic=Culture%20&%20Climate
     colorClass: text-lfi-blue
 featuredSectionLabel: Featured posts
