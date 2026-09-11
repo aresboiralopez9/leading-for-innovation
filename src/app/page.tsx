@@ -26,7 +26,7 @@ export default function HomePage() {
               {cms.heroBadgeText}
             </div>
 
-            <h1 className="max-w-5xl text-4xl font-semibold leading-[1.02] tracking-tight text-ink md:text-5xl lg:text-7xl">
+            <h1 className="max-w-5xl text-4xl font-semibold leading-[1.02] tracking-tight text-ink md:text-5xl lg:text-[64px]">
               {cms.heroHeadline}
               <span className="block text-lfi-green">
                 {cms.heroHeadlineAccent}
