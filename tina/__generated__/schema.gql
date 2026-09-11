@@ -108,6 +108,7 @@ union DocumentNode = Post | Author | HomePage | AboutPage | SiteSettings | Newsl
 type Post implements Node & Document {
   title: String!
   excerpt: String!
+  featuredImage: String
   date: String!
   category: String!
   tags: [String]
@@ -122,6 +123,13 @@ type Post implements Node & Document {
 }
 
 input StringFilter {
+  startsWith: String
+  eq: String
+  exists: Boolean
+  in: [String]
+}
+
+input ImageFilter {
   startsWith: String
   eq: String
   exists: Boolean
@@ -150,6 +158,7 @@ input RichTextFilter {
 input PostFilter {
   title: StringFilter
   excerpt: StringFilter
+  featuredImage: ImageFilter
   date: DatetimeFilter
   category: StringFilter
   tags: StringFilter
@@ -183,13 +192,6 @@ type Author implements Node & Document {
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
-}
-
-input ImageFilter {
-  startsWith: String
-  eq: String
-  exists: Boolean
-  in: [String]
 }
 
 input AuthorFilter {
@@ -522,6 +524,7 @@ input DocumentMutation {
 input PostMutation {
   title: String
   excerpt: String
+  featuredImage: String
   date: String
   category: String
   tags: [String]

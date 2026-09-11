@@ -2,6 +2,7 @@ fragment PostParts on Post {
   __typename
   title
   excerpt
+  featuredImage
   date
   category
   tags

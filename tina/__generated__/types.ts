@@ -277,6 +277,7 @@ export type Post = Node & Document & {
   __typename?: 'Post';
   title: Scalars['String']['output'];
   excerpt: Scalars['String']['output'];
+  featuredImage?: Maybe<Scalars['String']['output']>;
   date: Scalars['String']['output'];
   category: Scalars['String']['output'];
   tags?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
@@ -291,6 +292,13 @@ export type Post = Node & Document & {
 };
 
 export type StringFilter = {
+  startsWith?: InputMaybe<Scalars['String']['input']>;
+  eq?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type ImageFilter = {
   startsWith?: InputMaybe<Scalars['String']['input']>;
   eq?: InputMaybe<Scalars['String']['input']>;
   exists?: InputMaybe<Scalars['Boolean']['input']>;
@@ -319,6 +327,7 @@ export type RichTextFilter = {
 export type PostFilter = {
   title?: InputMaybe<StringFilter>;
   excerpt?: InputMaybe<StringFilter>;
+  featuredImage?: InputMaybe<ImageFilter>;
   date?: InputMaybe<DatetimeFilter>;
   category?: InputMaybe<StringFilter>;
   tags?: InputMaybe<StringFilter>;
@@ -355,13 +364,6 @@ export type Author = Node & Document & {
   id: Scalars['ID']['output'];
   _sys: SystemInfo;
   _values: Scalars['JSON']['output'];
-};
-
-export type ImageFilter = {
-  startsWith?: InputMaybe<Scalars['String']['input']>;
-  eq?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 export type AuthorFilter = {
@@ -832,6 +834,7 @@ export type DocumentMutation = {
 export type PostMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
   excerpt?: InputMaybe<Scalars['String']['input']>;
+  featuredImage?: InputMaybe<Scalars['String']['input']>;
   date?: InputMaybe<Scalars['String']['input']>;
   category?: InputMaybe<Scalars['String']['input']>;
   tags?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
@@ -949,7 +952,7 @@ export type FooterMutation = {
   builtByLine?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type PostPartsFragment = { __typename: 'Post', title: string, excerpt: string, date: string, category: string, tags?: Array<string | null> | null, author?: string | null, companionSlug?: string | null, linkedInUrl?: string | null, featured?: boolean | null, body?: any | null };
+export type PostPartsFragment = { __typename: 'Post', title: string, excerpt: string, featuredImage?: string | null, date: string, category: string, tags?: Array<string | null> | null, author?: string | null, companionSlug?: string | null, linkedInUrl?: string | null, featured?: boolean | null, body?: any | null };
 
 export type AuthorPartsFragment = { __typename: 'Author', name: string, role?: string | null, initials?: string | null, color?: string | null, photo?: string | null, linkedInUrl?: string | null, bio?: string | null, body?: any | null };
 
@@ -968,7 +971,7 @@ export type PostQueryVariables = Exact<{
 }>;
 
 
-export type PostQuery = { __typename?: 'Query', post: { __typename: 'Post', id: string, title: string, excerpt: string, date: string, category: string, tags?: Array<string | null> | null, author?: string | null, companionSlug?: string | null, linkedInUrl?: string | null, featured?: boolean | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type PostQuery = { __typename?: 'Query', post: { __typename: 'Post', id: string, title: string, excerpt: string, featuredImage?: string | null, date: string, category: string, tags?: Array<string | null> | null, author?: string | null, companionSlug?: string | null, linkedInUrl?: string | null, featured?: boolean | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
 export type PostConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -980,7 +983,7 @@ export type PostConnectionQueryVariables = Exact<{
 }>;
 
 
-export type PostConnectionQuery = { __typename?: 'Query', postConnection: { __typename?: 'PostConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'PostConnectionEdges', cursor: string, node?: { __typename: 'Post', id: string, title: string, excerpt: string, date: string, category: string, tags?: Array<string | null> | null, author?: string | null, companionSlug?: string | null, linkedInUrl?: string | null, featured?: boolean | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type PostConnectionQuery = { __typename?: 'Query', postConnection: { __typename?: 'PostConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'PostConnectionEdges', cursor: string, node?: { __typename: 'Post', id: string, title: string, excerpt: string, featuredImage?: string | null, date: string, category: string, tags?: Array<string | null> | null, author?: string | null, companionSlug?: string | null, linkedInUrl?: string | null, featured?: boolean | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export type AuthorQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -1101,6 +1104,7 @@ export const PostPartsFragmentDoc = gql`
   __typename
   title
   excerpt
+  featuredImage
   date
   category
   tags
@@ -1718,7 +1722,7 @@ export const ExperimentalGetTinaClient = () =>
   getSdk(
     generateRequester(
       createClient({
-        url: "https://content.tinajs.io/2.3/content/fac6595b-2e7b-4153-a09f-dbaf61a38144/github/main",
+        url: "http://localhost:4001/graphql",
         queries,
       })
     )
