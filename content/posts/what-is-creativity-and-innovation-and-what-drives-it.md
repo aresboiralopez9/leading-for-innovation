@@ -1,6 +1,7 @@
 ---
 title: From Ideas to Innovation
 excerpt: 'This blog post explains the difference between creativity and innovation and why that distinction matters for leaders. It shows how creative thinking can be strengthened through a clear process and how teams, leadership, and organizational climate shape whether ideas become real innovation.'
+featuredImage: '/uploads/ChatGPT%20Image%20Sep%2010,%202026,%2004_09_09%20PM.png'
 date: 2026-08-18T22:31:53.872Z
 category: Research to Practice
 tags:
@@ -59,7 +60,7 @@ Here is the catch. A strong creative idea is the foundation, but it is only the 
 
 Team dynamics influence whether people feel safe enough to share their ideas in the first place (e.g., [Reiter-Palmon, Wigert & de Vreede, 2012](https://www.sciencedirect.com/science/chapter/edited-volume/abs/pii/B9780123747143000136)). If employees expect criticism, dismissal, or embarrassment, many ideas will never be voiced ([Sacramento et al., 2023](https://onlinelibrary.wiley.com/doi/full/10.1111/jpim.12699)). Leadership matters just as much (e.g., [van Kinppenberg, 201](https://www.elgaronline.com/edcollchap/edcoll/9781784715458/9781784715458.00027.xml)7). Will you dismiss an idea because it feels risky or unfamiliar? Or will you help refine it, champion to senior leadership, remove obstacles, and secure the resources needed to test it? Organizational culture and climate also play an essential role (e.g., [Hunter, Bedell & Mumford, 2007](https://www.tandfonline.com/doi/abs/10.1080/10400410709336883)). Does the organization actually reward innovation, or just talk about valuing it? Does it prioritize hiring and developing creative, cognitively diverse people? Does it pay attention to changes in its environment so it can stay ahead rather than constantly reacting?
 
-Each of these questions deserves its own deep dive and yes, we will explore them in future posts. If there is a particular topic you’re interested in, whether it is being more creative, fostering creativity within teams, leading innovation, building supportive cultures, or improving idea evaluation, let us know by sending an email to leadingforinnovation\@gmail.com.
+Each of these questions deserves its own deep dive and yes, we will explore them in future posts. If there is a particular topic you’re interested in, whether it is being more creative, fostering creativity within teams, leading innovation, building supportive cultures, or improving idea evaluation, let us know by sending an email to [leadingforinnovation@gmail.com](mailto:leadingforinnovation@gmail.com).
 
 ## One Final Thought
 
