@@ -21,7 +21,7 @@ We don't always choose our best ideas. In fact, some of the ideas with the great
 
 History gives us plenty of examples. In 1876, an internal Western Union memo stated that the telephone had “too many shortcomings to be seriously considered as a means of communication”. In 1903, British politician Scott-Montague reportedly said, “I do not believe the introduction of motor-cars will ever affect the riding of horses” ([van Wulfen, 2016](https://www.linkedin.com/pulse/10-great-ideas-were-originally-rejected-how-prevent-gijs-van-wulfen/)). J.K. Rowling’s first Harry Potter manuscript was rejected by multiple publishers, and the potential of personal computers was not immediately obvious to everyone at IBM ([Licuanan et al., 2007](https://openurl.ebsco.com/EPDB%3Agcd%3A1%3A21027841/detailv2?sid=ebsco%3Aplink%3Acrawler-gcd\&id=ebsco%3Agcd%3A24656321\&crl=c\&jrnl=00220175\&link_origin=scholar.google.com)).
 
-I am not saying that every idea we reject is secretly a great one. We reject plenty of bad ideas each day, and often for very good reasons.
+Now, I am not saying that every idea we reject is secretly a great one. We reject plenty of bad ideas each day, and often for very good reasons.
 
 But history and research suggest that we may also be letting some genuinely promising ideas fall through the cracks.
 
