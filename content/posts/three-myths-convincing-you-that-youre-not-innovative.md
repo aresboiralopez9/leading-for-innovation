@@ -1,7 +1,7 @@
 ---
 title: Three Myths Convincing You That You're Not Innovative
 excerpt: 'Decades of research contradict three common beliefs about creativity: that it arrives as a flash of insight, that it belongs to a certain kind of person, and that it only counts when it is disruptive. This post unpacks what the evidence actually shows and what it means for how you see your own work and the work of the people around you.'
-featuredImage: ''
+featuredImage: /uploads/Designer.png
 date: 2026-09-01T12:14:15.307Z
 category: Myth Buster
 tags: []
