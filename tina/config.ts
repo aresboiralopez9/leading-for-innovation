@@ -48,6 +48,7 @@ export default defineConfig({
         label: "Blog Posts",
         path: "content/posts",
         format: "md",
+
         defaultItem: () => ({
           date: new Date().toISOString(),
           featured: false,
@@ -57,7 +58,18 @@ export default defineConfig({
           linkedInUrl: "",
           author: "",
           companionSlug: "",
+          translations: {
+            spanish: {
+              title: "",
+              excerpt: "",
+            },
+            catalan: {
+              title: "",
+              excerpt: "",
+            },
+          },
         }),
+
         ui: {
           filename: {
             readonly: false,
@@ -73,34 +85,41 @@ export default defineConfig({
             },
           },
         },
+
         fields: [
           {
             type: "string",
             name: "title",
-            label: "Title",
+            label: "English Title",
             isTitle: true,
             required: true,
           },
+
           {
             type: "string",
             name: "excerpt",
-            label: "Excerpt",
-            description: "A one-sentence summary shown on post cards and in SEO.",
+            label: "English Excerpt",
+            description:
+              "A one-sentence summary shown on post cards and in SEO.",
             required: true,
             ui: { component: "textarea" },
           },
+
           {
             type: "image",
             name: "featuredImage",
             label: "Featured Image",
-            description: "Main image displayed at the top of the blog post.",
+            description:
+              "Main image displayed at the top of the blog post.",
           },
+
           {
             type: "datetime",
             name: "date",
             label: "Publish Date",
             required: true,
           },
+
           {
             type: "string",
             name: "category",
@@ -109,6 +128,7 @@ export default defineConfig({
             required: true,
             options: postCategories,
           },
+
           {
             type: "string",
             name: "tags",
@@ -117,34 +137,97 @@ export default defineConfig({
               "Add topic labels freely. Examples: Foundations, Process, Conditions, AI.",
             list: true,
           },
+
           {
             type: "string",
             name: "author",
             label: "Author ID",
-            description: "Use the author file name, such as ares or sam.",
+            description:
+              "Use the author file name, such as ares or sam.",
           },
+
           {
             type: "string",
             name: "companionSlug",
             label: "Companion Post Slug",
-            description: "Optional. Use the slug of a companion post.",
+            description:
+              "Optional. Use the slug of a companion post.",
           },
+
           {
             type: "string",
             name: "linkedInUrl",
             label: "LinkedIn Post URL",
-            description: "Paste the URL for the LinkedIn version of this post.",
+            description:
+              "Paste the URL for the LinkedIn version of this post.",
           },
+
           {
             type: "boolean",
             name: "featured",
             label: "Featured Post",
           },
+
           {
             type: "rich-text",
             name: "body",
-            label: "Content",
+            label: "English Content",
             isBody: true,
+          },
+
+          {
+            type: "object",
+            name: "translations",
+            label: "Translations",
+            fields: [
+              {
+                type: "object",
+                name: "spanish",
+                label: "Spanish",
+                fields: [
+                  {
+                    type: "string",
+                    name: "title",
+                    label: "Spanish Title",
+                  },
+                  {
+                    type: "string",
+                    name: "excerpt",
+                    label: "Spanish Excerpt",
+                    ui: { component: "textarea" },
+                  },
+                  {
+                    type: "rich-text",
+                    name: "body",
+                    label: "Spanish Content",
+                  },
+                ],
+              },
+
+              {
+                type: "object",
+                name: "catalan",
+                label: "Catalan",
+                fields: [
+                  {
+                    type: "string",
+                    name: "title",
+                    label: "Catalan Title",
+                  },
+                  {
+                    type: "string",
+                    name: "excerpt",
+                    label: "Catalan Excerpt",
+                    ui: { component: "textarea" },
+                  },
+                  {
+                    type: "rich-text",
+                    name: "body",
+                    label: "Catalan Content",
+                  },
+                ],
+              },
+            ],
           },
         ],
       },
@@ -154,6 +237,7 @@ export default defineConfig({
         label: "Authors",
         path: "content/authors",
         format: "md",
+
         defaultItem: () => ({
           role: "Co-founder",
           initials: "",
@@ -162,6 +246,7 @@ export default defineConfig({
           linkedInUrl: "",
           bio: "",
         }),
+
         ui: {
           filename: {
             readonly: false,
@@ -177,6 +262,7 @@ export default defineConfig({
             },
           },
         },
+
         fields: [
           {
             type: "string",
@@ -215,14 +301,16 @@ export default defineConfig({
             type: "string",
             name: "bio",
             label: "Short Bio",
-            description: "Used on homepage, about cards, and bylines.",
+            description:
+              "Used on homepage, about cards, and bylines.",
             ui: { component: "textarea" },
           },
           {
             type: "rich-text",
             name: "body",
             label: "Full Bio",
-            description: "Used on the individual founder page.",
+            description:
+              "Used on the individual founder page.",
             isBody: true,
           },
         ],
@@ -234,10 +322,24 @@ export default defineConfig({
         path: "content/pages",
         match: { include: "home" },
         format: "md",
-        ui: { allowedActions: { create: false, delete: false } },
+        ui: {
+          allowedActions: {
+            create: false,
+            delete: false,
+          },
+        },
+
         fields: [
-          { type: "string", name: "heroBadgeText", label: "Hero Badge Text" },
-          { type: "string", name: "heroHeadline", label: "Hero Headline" },
+          {
+            type: "string",
+            name: "heroBadgeText",
+            label: "Hero Badge Text",
+          },
+          {
+            type: "string",
+            name: "heroHeadline",
+            label: "Hero Headline",
+          },
           {
             type: "string",
             name: "heroHeadlineAccent",
@@ -285,16 +387,28 @@ export default defineConfig({
             name: "startHereCards",
             label: "Start Here Cards",
             list: true,
-            ui: { itemProps: (item) => ({ label: item?.label }) },
+            ui: {
+              itemProps: (item) => ({
+                label: item?.label,
+              }),
+            },
             fields: [
-              { type: "string", name: "label", label: "Label" },
+              {
+                type: "string",
+                name: "label",
+                label: "Label",
+              },
               {
                 type: "string",
                 name: "description",
                 label: "Description",
                 ui: { component: "textarea" },
               },
-              { type: "string", name: "href", label: "Link" },
+              {
+                type: "string",
+                name: "href",
+                label: "Link",
+              },
               {
                 type: "string",
                 name: "colorClass",
@@ -329,16 +443,28 @@ export default defineConfig({
             name: "postTypeCards",
             label: "Post Type Cards",
             list: true,
-            ui: { itemProps: (item) => ({ label: item?.label }) },
+            ui: {
+              itemProps: (item) => ({
+                label: item?.label,
+              }),
+            },
             fields: [
-              { type: "string", name: "label", label: "Label" },
+              {
+                type: "string",
+                name: "label",
+                label: "Label",
+              },
               {
                 type: "string",
                 name: "description",
                 label: "Description",
                 ui: { component: "textarea" },
               },
-              { type: "string", name: "href", label: "Link" },
+              {
+                type: "string",
+                name: "href",
+                label: "Link",
+              },
               {
                 type: "string",
                 name: "className",
@@ -418,17 +544,35 @@ export default defineConfig({
         path: "content/pages",
         match: { include: "about" },
         format: "md",
-        ui: { allowedActions: { create: false, delete: false } },
+        ui: {
+          allowedActions: {
+            create: false,
+            delete: false,
+          },
+        },
+
         fields: [
-          { type: "string", name: "seoTitle", label: "SEO Title" },
+          {
+            type: "string",
+            name: "seoTitle",
+            label: "SEO Title",
+          },
           {
             type: "string",
             name: "seoDescription",
             label: "SEO Description",
             ui: { component: "textarea" },
           },
-          { type: "string", name: "sectionLabel", label: "Section Label" },
-          { type: "string", name: "headline", label: "Headline" },
+          {
+            type: "string",
+            name: "sectionLabel",
+            label: "Section Label",
+          },
+          {
+            type: "string",
+            name: "headline",
+            label: "Headline",
+          },
           {
             type: "string",
             name: "headlineAccent",
@@ -491,10 +635,24 @@ export default defineConfig({
         path: "content/globals",
         match: { include: "settings" },
         format: "md",
-        ui: { allowedActions: { create: false, delete: false } },
+        ui: {
+          allowedActions: {
+            create: false,
+            delete: false,
+          },
+        },
+
         fields: [
-          { type: "string", name: "siteName", label: "Site Name" },
-          { type: "string", name: "siteTagline", label: "Site Tagline" },
+          {
+            type: "string",
+            name: "siteName",
+            label: "Site Name",
+          },
+          {
+            type: "string",
+            name: "siteTagline",
+            label: "Site Tagline",
+          },
           {
             type: "string",
             name: "linkedInUrl",
@@ -510,10 +668,22 @@ export default defineConfig({
             name: "navItems",
             label: "Navigation Items",
             list: true,
-            ui: { itemProps: (item) => ({ label: item?.label }) },
+            ui: {
+              itemProps: (item) => ({
+                label: item?.label,
+              }),
+            },
             fields: [
-              { type: "string", name: "label", label: "Label" },
-              { type: "string", name: "href", label: "URL or Path" },
+              {
+                type: "string",
+                name: "label",
+                label: "Label",
+              },
+              {
+                type: "string",
+                name: "href",
+                label: "URL or Path",
+              },
             ],
           },
           {
@@ -536,10 +706,24 @@ export default defineConfig({
         path: "content/globals",
         match: { include: "newsletter" },
         format: "md",
-        ui: { allowedActions: { create: false, delete: false } },
+        ui: {
+          allowedActions: {
+            create: false,
+            delete: false,
+          },
+        },
+
         fields: [
-          { type: "string", name: "badgeText", label: "Badge Text" },
-          { type: "string", name: "headline", label: "Headline" },
+          {
+            type: "string",
+            name: "badgeText",
+            label: "Badge Text",
+          },
+          {
+            type: "string",
+            name: "headline",
+            label: "Headline",
+          },
           {
             type: "string",
             name: "subtext",
@@ -575,7 +759,13 @@ export default defineConfig({
         path: "content/globals",
         match: { include: "footer" },
         format: "md",
-        ui: { allowedActions: { create: false, delete: false } },
+        ui: {
+          allowedActions: {
+            create: false,
+            delete: false,
+          },
+        },
+
         fields: [
           {
             type: "string",
