@@ -12,6 +12,72 @@ interface Props {
   params: { slug: string }
 }
 
+type Language = 'en' | 'es' | 'ca'
+
+function getLanguageFromSlug(slug: string): Language {
+  if (slug.endsWith('-es')) return 'es'
+  if (slug.endsWith('-ca')) return 'ca'
+  return 'en'
+}
+
+function getBaseSlug(slug: string): string {
+  if (slug.endsWith('-es') || slug.endsWith('-ca')) {
+    return slug.slice(0, -3)
+  }
+
+  return slug
+}
+
+function getTranslationSlug(slug: string, language: Language): string {
+  const baseSlug = getBaseSlug(slug)
+
+  if (language === 'en') return baseSlug
+
+  return `${baseSlug}-${language}`
+}
+
+function LanguageToggle({ slug }: { slug: string }) {
+  const currentLanguage = getLanguageFromSlug(slug)
+
+  const languages = [
+    { key: 'en' as const, label: 'English' },
+    { key: 'es' as const, label: 'Español' },
+    { key: 'ca' as const, label: 'Català' },
+  ]
+
+  return (
+    <div className="flex items-center gap-1 text-sm">
+      {languages.map((language, index) => {
+        const translationSlug = getTranslationSlug(slug, language.key)
+        const isCurrent = language.key === currentLanguage
+
+        return (
+          <div key={language.key} className="flex items-center">
+            {index > 0 && (
+              <span className="mx-2 text-gray-300 dark:text-gray-700">
+                |
+              </span>
+            )}
+
+            {isCurrent ? (
+              <span className="font-semibold text-lfi-green">
+                {language.label}
+              </span>
+            ) : (
+              <Link
+                href={`/blog/${translationSlug}`}
+                className="text-ink-muted dark:text-gray-500 hover:text-lfi-green dark:hover:text-lfi-green transition-colors"
+              >
+                {language.label}
+              </Link>
+            )}
+          </div>
+        )
+      })}
+    </div>
+  )
+}
+
 export async function generateStaticParams() {
   return getAllPostSlugs().map((slug) => ({ slug }))
 }
@@ -77,6 +143,11 @@ export default async function PostPage({ params }: Props) {
               <Byline authorId={post.author} size="md" />
             </div>
           )}
+
+          {/* Language Toggle */}
+          <div className="mb-6">
+            <LanguageToggle slug={params.slug} />
+          </div>
 
           {/* Meta bar */}
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2 py-4 border-y border-gray-200 dark:border-gray-800 text-sm text-ink-muted dark:text-gray-400">
@@ -149,7 +220,7 @@ export default async function PostPage({ params }: Props) {
 
           <a
             href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
-              `https://yourblog.com/blog/${post.slug}`
+              `https://leadingforinnovation.com/blog/${post.slug}`
             )}`}
             target="_blank"
             rel="noopener noreferrer"
