@@ -8,7 +8,7 @@ tags: []
 author: Ares
 companionSlug: Ares
 linkedInUrl: ''
-featured: true
+featured: false
 ---
 
 History has shown us that even very smart people can struggle to recognize the potential of a great idea. Research suggests there are several reasons why we struggle to recognize great ideas when we see them.
