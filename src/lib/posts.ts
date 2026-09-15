@@ -44,10 +44,13 @@ function getPostFilePath(slug: string): string | null {
 
 function normalizeTags(tags: unknown): string[] {
   if (!tags) return [];
+
   if (Array.isArray(tags)) {
     return tags.filter((tag): tag is string => typeof tag === 'string');
   }
+
   if (typeof tags === 'string') return [tags];
+
   return [];
 }
 
@@ -62,6 +65,26 @@ function normalizeFeaturedImage(image: unknown): string {
   return String(image);
 }
 
+/**
+ * Translation files use the suffix:
+ *   -es for Spanish
+ *   -ca for Catalan
+ *
+ * Example:
+ *   my-post.md
+ *   my-post-es.md
+ *   my-post-ca.md
+ */
+function isTranslationSlug(slug: string): boolean {
+  return slug.endsWith('-es') || slug.endsWith('-ca');
+}
+
+/**
+ * Returns every post slug, including translated versions.
+ *
+ * This is used by generateStaticParams() so Next.js
+ * generates pages for English, Spanish, and Catalan posts.
+ */
 export function getAllPostSlugs(): string[] {
   if (!fs.existsSync(postsDirectory)) return [];
 
@@ -69,6 +92,16 @@ export function getAllPostSlugs(): string[] {
     .readdirSync(postsDirectory)
     .filter((file) => file.endsWith('.md') || file.endsWith('.mdx'))
     .map((file) => file.replace(/\.mdx?$/, ''));
+}
+
+/**
+ * Returns only canonical English post slugs.
+ *
+ * These are the posts that should appear in the blog index,
+ * featured posts, category pages, tags, etc.
+ */
+function getCanonicalPostSlugs(): string[] {
+  return getAllPostSlugs().filter((slug) => !isTranslationSlug(slug));
 }
 
 export function getPostMeta(slug: string): PostMeta | null {
@@ -99,7 +132,7 @@ export function getPostMeta(slug: string): PostMeta | null {
 }
 
 export function getAllPosts(): PostMeta[] {
-  const posts = getAllPostSlugs()
+  const posts = getCanonicalPostSlugs()
     .map((slug) => getPostMeta(slug))
     .filter((post): post is PostMeta => post !== null);
 
@@ -136,7 +169,11 @@ export async function getPost(slug: string): Promise<Post | null> {
 
     const raw = fs.readFileSync(filePath, 'utf8');
     const { data, content } = matter(raw);
-    const processed = await remark().use(html).process(content);
+
+    const processed = await remark()
+      .use(html)
+      .process(content);
+
     const contentHtml = processed.toString();
 
     return {
