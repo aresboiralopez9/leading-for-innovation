@@ -62,10 +62,12 @@ export default defineConfig({
             spanish: {
               title: "",
               excerpt: "",
+              body: "",
             },
             catalan: {
               title: "",
               excerpt: "",
+              body: "",
             },
           },
         }),
@@ -190,16 +192,25 @@ export default defineConfig({
                     name: "title",
                     label: "Spanish Title",
                   },
+
                   {
                     type: "string",
                     name: "excerpt",
                     label: "Spanish Excerpt",
-                    ui: { component: "textarea" },
+                    ui: {
+                      component: "textarea",
+                    },
                   },
+
                   {
-                    type: "rich-text",
+                    type: "string",
                     name: "body",
                     label: "Spanish Content",
+                    ui: {
+                      component: "textarea",
+                    },
+                    description:
+                      "Enter the Spanish article in Markdown. Basic formatting such as headings, bold, italics, links, and lists is supported.",
                   },
                 ],
               },
@@ -214,16 +225,25 @@ export default defineConfig({
                     name: "title",
                     label: "Catalan Title",
                   },
+
                   {
                     type: "string",
                     name: "excerpt",
                     label: "Catalan Excerpt",
-                    ui: { component: "textarea" },
+                    ui: {
+                      component: "textarea",
+                    },
                   },
+
                   {
-                    type: "rich-text",
+                    type: "string",
                     name: "body",
                     label: "Catalan Content",
+                    ui: {
+                      component: "textarea",
+                    },
+                    description:
+                      "Enter the Catalan article in Markdown. Basic formatting such as headings, bold, italics, links, and lists is supported.",
                   },
                 ],
               },
@@ -271,40 +291,49 @@ export default defineConfig({
             isTitle: true,
             required: true,
           },
+
           {
             type: "string",
             name: "role",
             label: "Role",
           },
+
           {
             type: "string",
             name: "initials",
             label: "Initials",
           },
+
           {
             type: "string",
             name: "color",
             label: "Color",
             options: colorOptions,
           },
+
           {
             type: "image",
             name: "photo",
             label: "Photo",
           },
+
           {
             type: "string",
             name: "linkedInUrl",
             label: "LinkedIn URL",
           },
+
           {
             type: "string",
             name: "bio",
             label: "Short Bio",
             description:
               "Used on homepage, about cards, and bylines.",
-            ui: { component: "textarea" },
+            ui: {
+              component: "textarea",
+            },
           },
+
           {
             type: "rich-text",
             name: "body",
@@ -335,53 +364,67 @@ export default defineConfig({
             name: "heroBadgeText",
             label: "Hero Badge Text",
           },
+
           {
             type: "string",
             name: "heroHeadline",
             label: "Hero Headline",
           },
+
           {
             type: "string",
             name: "heroHeadlineAccent",
             label: "Hero Headline Accent",
           },
+
           {
             type: "string",
             name: "heroSubtext",
             label: "Hero Subtext",
-            ui: { component: "textarea" },
+            ui: {
+              component: "textarea",
+            },
           },
+
           {
             type: "string",
             name: "heroPrimaryButtonText",
             label: "Primary Button Text",
           },
+
           {
             type: "string",
             name: "heroPrimaryButtonHref",
             label: "Primary Button Link",
           },
+
           {
             type: "string",
             name: "heroSecondaryButtonText",
             label: "Secondary Button Text",
           },
+
           {
             type: "string",
             name: "heroSecondaryButtonHref",
             label: "Secondary Button Link",
           },
+
           {
             type: "string",
             name: "startHereLabel",
             label: "Start Here Label",
           },
+
           {
             type: "string",
             name: "startHereHeading",
             label: "Start Here Heading",
-            ui: { component: "textarea" },
+            ui: {
+              component: "textarea",
+            },
           },
+
           {
             type: "object",
             name: "startHereCards",
@@ -402,7 +445,9 @@ export default defineConfig({
                 type: "string",
                 name: "description",
                 label: "Description",
-                ui: { component: "textarea" },
+                ui: {
+                  component: "textarea",
+                },
               },
               {
                 type: "string",
@@ -418,26 +463,31 @@ export default defineConfig({
               },
             ],
           },
+
           {
             type: "string",
             name: "featuredSectionLabel",
             label: "Featured Section Label",
           },
+
           {
             type: "string",
             name: "featuredSectionHeading",
             label: "Featured Section Heading",
           },
+
           {
             type: "string",
             name: "postTypesSectionLabel",
             label: "Post Types Section Label",
           },
+
           {
             type: "string",
             name: "postTypesSectionHeading",
             label: "Post Types Section Heading",
           },
+
           {
             type: "object",
             name: "postTypeCards",
@@ -458,7 +508,9 @@ export default defineConfig({
                 type: "string",
                 name: "description",
                 label: "Description",
-                ui: { component: "textarea" },
+                ui: {
+                  component: "textarea",
+                },
               },
               {
                 type: "string",
@@ -472,64 +524,82 @@ export default defineConfig({
               },
             ],
           },
+
           {
             type: "string",
             name: "foundersSectionLabel",
             label: "Founders Section Label",
           },
+
           {
             type: "string",
             name: "foundersSectionHeading",
             label: "Founders Section Heading",
           },
+
           {
             type: "string",
             name: "foundersSectionText",
             label: "Founders Section Text",
-            ui: { component: "textarea" },
+            ui: {
+              component: "textarea",
+            },
           },
+
           {
             type: "string",
             name: "foundersButtonText",
             label: "Founders Button Text",
           },
+
           {
             type: "string",
             name: "foundersButtonHref",
             label: "Founders Button Link",
           },
+
           {
             type: "string",
             name: "latestSectionLabel",
             label: "Latest Posts Section Label",
           },
+
           {
             type: "string",
             name: "latestSectionHeading",
             label: "Latest Posts Section Heading",
           },
+
           {
             type: "string",
             name: "latestSectionText",
             label: "Latest Posts Section Text",
-            ui: { component: "textarea" },
+            ui: {
+              component: "textarea",
+            },
           },
+
           {
             type: "string",
             name: "followSectionLabel",
             label: "Follow Section Label",
           },
+
           {
             type: "string",
             name: "followSectionHeading",
             label: "Follow Section Heading",
           },
+
           {
             type: "string",
             name: "followSectionText",
             label: "Follow Section Text",
-            ui: { component: "textarea" },
+            ui: {
+              component: "textarea",
+            },
           },
+
           {
             type: "string",
             name: "followButtonText",
@@ -557,69 +627,88 @@ export default defineConfig({
             name: "seoTitle",
             label: "SEO Title",
           },
+
           {
             type: "string",
             name: "seoDescription",
             label: "SEO Description",
-            ui: { component: "textarea" },
+            ui: {
+              component: "textarea",
+            },
           },
+
           {
             type: "string",
             name: "sectionLabel",
             label: "Section Label",
           },
+
           {
             type: "string",
             name: "headline",
             label: "Headline",
           },
+
           {
             type: "string",
             name: "headlineAccent",
             label: "Headline Accent",
           },
+
           {
             type: "string",
             name: "intro",
             label: "Intro Paragraph",
-            ui: { component: "textarea" },
+            ui: {
+              component: "textarea",
+            },
           },
+
           {
             type: "string",
             name: "pointOfViewLabel",
             label: "Point of View Label",
           },
+
           {
             type: "string",
             name: "pointOfViewText",
             label: "Point of View Text",
-            ui: { component: "textarea" },
+            ui: {
+              component: "textarea",
+            },
           },
+
           {
             type: "string",
             name: "primaryButtonText",
             label: "Primary Button Text",
           },
+
           {
             type: "string",
             name: "primaryButtonHref",
             label: "Primary Button Link",
           },
+
           {
             type: "string",
             name: "secondaryButtonText",
             label: "Secondary Button Text",
           },
+
           {
             type: "string",
             name: "peopleSectionLabel",
             label: "People Section Label",
           },
+
           {
             type: "string",
             name: "peopleSectionHeading",
             label: "People Section Heading",
           },
+
           {
             type: "rich-text",
             name: "body",
@@ -648,21 +737,25 @@ export default defineConfig({
             name: "siteName",
             label: "Site Name",
           },
+
           {
             type: "string",
             name: "siteTagline",
             label: "Site Tagline",
           },
+
           {
             type: "string",
             name: "linkedInUrl",
             label: "Company LinkedIn URL",
           },
+
           {
             type: "boolean",
             name: "betaBadge",
             label: "Show Beta badge in header?",
           },
+
           {
             type: "object",
             name: "navItems",
@@ -679,6 +772,7 @@ export default defineConfig({
                 name: "label",
                 label: "Label",
               },
+
               {
                 type: "string",
                 name: "href",
@@ -686,16 +780,20 @@ export default defineConfig({
               },
             ],
           },
+
           {
             type: "string",
             name: "siteMetaTitle",
             label: "Default Meta Title",
           },
+
           {
             type: "string",
             name: "siteMetaDescription",
             label: "Default Meta Description",
-            ui: { component: "textarea" },
+            ui: {
+              component: "textarea",
+            },
           },
         ],
       },
@@ -719,32 +817,40 @@ export default defineConfig({
             name: "badgeText",
             label: "Badge Text",
           },
+
           {
             type: "string",
             name: "headline",
             label: "Headline",
           },
+
           {
             type: "string",
             name: "subtext",
             label: "Subtext",
-            ui: { component: "textarea" },
+            ui: {
+              component: "textarea",
+            },
           },
+
           {
             type: "string",
             name: "emailPlaceholder",
             label: "Email Input Placeholder",
           },
+
           {
             type: "string",
             name: "buttonText",
             label: "Submit Button Text",
           },
+
           {
             type: "string",
             name: "successMessage",
             label: "Success Message",
           },
+
           {
             type: "string",
             name: "linkedInNudge",
@@ -771,29 +877,38 @@ export default defineConfig({
             type: "string",
             name: "brandTagline",
             label: "Brand Tagline",
-            ui: { component: "textarea" },
+            ui: {
+              component: "textarea",
+            },
           },
+
           {
             type: "string",
             name: "staySectionLabel",
             label: "Stay Section Label",
           },
+
           {
             type: "string",
             name: "staySectionText",
             label: "Stay Section Text",
-            ui: { component: "textarea" },
+            ui: {
+              component: "textarea",
+            },
           },
+
           {
             type: "string",
             name: "linkedInButtonText",
             label: "LinkedIn Button Text",
           },
+
           {
             type: "string",
             name: "copyrightSuffix",
             label: "Copyright Suffix",
           },
+
           {
             type: "string",
             name: "builtByLine",
