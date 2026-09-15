@@ -1,7 +1,11 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
-import { getPost, getAllPostSlugs } from '@/lib/posts'
+import {
+  getPost,
+  getAllPostSlugs,
+  type PostLanguage,
+} from '@/lib/posts'
 import { formatDate } from '@/lib/utils'
 import { NewsletterCTAWrapper } from '@/components/NewsletterCTAWrapper'
 import { Byline } from '@/components/Byline'
@@ -9,50 +13,71 @@ import { CompanionPiece } from '@/components/CompanionPiece'
 import type { Metadata } from 'next'
 
 interface Props {
-  params: { slug: string }
+  params: {
+    slug: string
+  }
+  searchParams?: {
+    lang?: string
+  }
 }
 
-type Language = 'en' | 'es' | 'ca'
-
-function getLanguageFromSlug(slug: string): Language {
-  if (slug.endsWith('-es')) return 'es'
-  if (slug.endsWith('-ca')) return 'ca'
+function getLanguage(
+  value?: string
+): PostLanguage {
+  if (value === 'es') return 'es'
+  if (value === 'ca') return 'ca'
   return 'en'
 }
 
-function getBaseSlug(slug: string): string {
-  if (slug.endsWith('-es') || slug.endsWith('-ca')) {
-    return slug.slice(0, -3)
-  }
-
-  return slug
-}
-
-function getTranslationSlug(slug: string, language: Language): string {
-  const baseSlug = getBaseSlug(slug)
-
-  if (language === 'en') return baseSlug
-
-  return `${baseSlug}-${language}`
-}
-
-function LanguageToggle({ slug }: { slug: string }) {
-  const currentLanguage = getLanguageFromSlug(slug)
-
+function LanguageToggle({
+  slug,
+  currentLanguage,
+  hasSpanish,
+  hasCatalan,
+}: {
+  slug: string
+  currentLanguage: PostLanguage
+  hasSpanish: boolean
+  hasCatalan: boolean
+}) {
   const languages = [
-    { key: 'en' as const, label: 'English' },
-    { key: 'es' as const, label: 'Español' },
-    { key: 'ca' as const, label: 'Català' },
+    {
+      key: 'en' as const,
+      label: 'English',
+      available: true,
+    },
+    {
+      key: 'es' as const,
+      label: 'Español',
+      available: hasSpanish,
+    },
+    {
+      key: 'ca' as const,
+      label: 'Català',
+      available: hasCatalan,
+    },
   ]
 
   return (
     <div className="flex items-center gap-1 text-sm">
       {languages.map((language, index) => {
-        const translationSlug = getTranslationSlug(slug, language.key)
-        const isCurrent = language.key === currentLanguage
+        if (!language.available) {
+          return null
+        }
+
+        const isCurrent =
+          language.key === currentLanguage
+
+        const href =
+          language.key === 'en'
+            ? `/blog/${slug}`
+            : `/blog/${slug}?lang=${language.key}`
 
         return (
-          <div key={language.key} className="flex items-center">
+          <div
+            key={language.key}
+            className="flex items-center"
+          >
             {index > 0 && (
               <span className="mx-2 text-gray-300 dark:text-gray-700">
                 |
@@ -65,7 +90,7 @@ function LanguageToggle({ slug }: { slug: string }) {
               </span>
             ) : (
               <Link
-                href={`/blog/${translationSlug}`}
+                href={href}
                 className="text-ink-muted dark:text-gray-500 hover:text-lfi-green dark:hover:text-lfi-green transition-colors"
               >
                 {language.label}
@@ -79,11 +104,23 @@ function LanguageToggle({ slug }: { slug: string }) {
 }
 
 export async function generateStaticParams() {
-  return getAllPostSlugs().map((slug) => ({ slug }))
+  return getAllPostSlugs().map(
+    (slug) => ({ slug })
+  )
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const post = await getPost(params.slug)
+export async function generateMetadata({
+  params,
+  searchParams,
+}: Props): Promise<Metadata> {
+  const language = getLanguage(
+    searchParams?.lang
+  )
+
+  const post = await getPost(
+    params.slug,
+    language
+  )
 
   if (!post) return {}
 
@@ -93,10 +130,26 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-export default async function PostPage({ params }: Props) {
-  const post = await getPost(params.slug)
+export default async function PostPage({
+  params,
+  searchParams,
+}: Props) {
+  const language = getLanguage(
+    searchParams?.lang
+  )
+
+  const post = await getPost(
+    params.slug,
+    language
+  )
 
   if (!post) notFound()
+
+  const hasSpanish =
+    !!post.translations?.spanish
+
+  const hasCatalan =
+    !!post.translations?.catalan
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12">
@@ -110,14 +163,18 @@ export default async function PostPage({ params }: Props) {
           >
             Home
           </Link>
+
           <span>/</span>
+
           <Link
             href="/blog"
             className="hover:text-ink dark:hover:text-white transition-colors"
           >
             Blog
           </Link>
+
           <span>/</span>
+
           <span className="text-ink-muted dark:text-gray-400 truncate">
             {post.title}
           </span>
@@ -126,7 +183,9 @@ export default async function PostPage({ params }: Props) {
         {/* Post header */}
         <header className="mb-10">
           <div className="mb-5 flex flex-wrap items-center gap-2">
-            <span className="category-badge">{post.category}</span>
+            <span className="category-badge">
+              {post.category}
+            </span>
           </div>
 
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-ink dark:text-white leading-[1.1] mb-5">
@@ -140,33 +199,58 @@ export default async function PostPage({ params }: Props) {
           {/* Byline */}
           {post.author && (
             <div className="mb-6">
-              <Byline authorId={post.author} size="md" />
+              <Byline
+                authorId={post.author}
+                size="md"
+              />
             </div>
           )}
 
           {/* Language Toggle */}
-          <div className="mb-6">
-            <LanguageToggle slug={params.slug} />
-          </div>
+          {(hasSpanish || hasCatalan) && (
+            <div className="mb-6">
+              <LanguageToggle
+                slug={post.slug}
+                currentLanguage={
+                  language
+                }
+                hasSpanish={
+                  hasSpanish
+                }
+                hasCatalan={
+                  hasCatalan
+                }
+              />
+            </div>
+          )}
 
           {/* Meta bar */}
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2 py-4 border-y border-gray-200 dark:border-gray-800 text-sm text-ink-muted dark:text-gray-400">
             <div className="flex items-center gap-1.5">
               <CalendarIcon />
-              <time dateTime={post.date}>{formatDate(post.date)}</time>
+              <time dateTime={post.date}>
+                {formatDate(post.date)}
+              </time>
             </div>
 
             <div className="flex items-center gap-1.5">
               <ClockIcon />
-              <span>{post.readingTime} min read</span>
+              <span>
+                {post.readingTime} min read
+              </span>
             </div>
 
             <div className="flex flex-wrap gap-1.5 mt-1">
-              {post.tags.map((tag) => (
-                <span key={tag} className="tag-pill">
-                  {tag}
-                </span>
-              ))}
+              {post.tags.map(
+                (tag) => (
+                  <span
+                    key={tag}
+                    className="tag-pill"
+                  >
+                    {tag}
+                  </span>
+                )
+              )}
             </div>
           </div>
         </header>
@@ -176,7 +260,9 @@ export default async function PostPage({ params }: Props) {
           <div className="mb-12 overflow-hidden rounded-2xl">
             <div className="relative aspect-[16/8.5] w-full">
               <Image
-                src={post.featuredImage}
+                src={
+                  post.featuredImage
+                }
                 alt={post.title}
                 fill
                 priority
@@ -199,12 +285,19 @@ export default async function PostPage({ params }: Props) {
             prose-strong:text-ink dark:prose-strong:text-white
             prose-code:text-brand-600 dark:prose-code:text-brand-300
             prose-a:text-brand-600 dark:prose-a:text-brand-400"
-          dangerouslySetInnerHTML={{ __html: post.contentHtml }}
+          dangerouslySetInnerHTML={{
+            __html:
+              post.contentHtml,
+          }}
         />
 
         {/* Companion piece */}
         {post.companionSlug && (
-          <CompanionPiece slug={post.companionSlug} />
+          <CompanionPiece
+            slug={
+              post.companionSlug
+            }
+          />
         )}
 
         {/* Share / CTA strip */}
@@ -213,6 +306,7 @@ export default async function PostPage({ params }: Props) {
             <p className="text-sm font-semibold text-ink dark:text-white mb-1">
               Found this useful?
             </p>
+
             <p className="text-xs text-ink-muted dark:text-gray-400">
               Share it with your team or follow for more.
             </p>
@@ -247,10 +341,32 @@ function CalendarIcon() {
       stroke="currentColor"
       strokeWidth="2"
     >
-      <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-      <line x1="16" y1="2" x2="16" y2="6" />
-      <line x1="8" y1="2" x2="8" y2="6" />
-      <line x1="3" y1="10" x2="21" y2="10" />
+      <rect
+        x="3"
+        y="4"
+        width="18"
+        height="18"
+        rx="2"
+        ry="2"
+      />
+      <line
+        x1="16"
+        y1="2"
+        x2="16"
+        y2="6"
+      />
+      <line
+        x1="8"
+        y1="2"
+        x2="8"
+        y2="6"
+      />
+      <line
+        x1="3"
+        y1="10"
+        x2="21"
+        y2="10"
+      />
     </svg>
   )
 }
@@ -265,7 +381,11 @@ function ClockIcon() {
       stroke="currentColor"
       strokeWidth="2"
     >
-      <circle cx="12" cy="12" r="10" />
+      <circle
+        cx="12"
+        cy="12"
+        r="10"
+      />
       <polyline points="12 6 12 12 16 14" />
     </svg>
   )
