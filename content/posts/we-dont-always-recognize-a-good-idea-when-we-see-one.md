@@ -5,8 +5,8 @@ featuredImage: ''
 date: 2026-09-16T01:06:06.775Z
 category: Hot Takes
 tags: []
-author: Ares
-companionSlug: Ares
+author: ares
+companionSlug: ''
 linkedInUrl: ''
 featured: false
 ---
