@@ -13,7 +13,7 @@ featured: false
 
 History has shown us that even very smart people can struggle to recognize the potential of a great idea. Research suggests there are several reasons why we struggle to recognize great ideas when we see them.
 
-Now picture yourself at your desk, considering ideas for solving a complex problem. Some have been brought to you by your employees. Others you’ve thought of yourself. Now you have to make a judgment: Which ideas should be rejected? Which need revision? Which are worth testing or pursuing? And among the promising ones, which deserve your time and attention?
+Picture yourself at your desk, considering ideas for solving a complex problem. Some have been brought to you by your employees. Others you’ve thought of yourself. Now you have to make a judgment: Which ideas should be rejected? Which need revision? Which are worth testing or pursuing? And among the promising ones, which deserve your time and attention?
 
 ***Think we’re good at spotting the best ideas? We’re pretty bad at it.***
 
