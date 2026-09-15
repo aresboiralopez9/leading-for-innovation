@@ -50,7 +50,7 @@ export default defineConfig({
         format: "md",
 
         defaultItem: () => ({
-          date: new Date().toISOString(),
+          date: "2026-01-01T00:00:00.000Z",
           featured: false,
           featuredImage: "",
           tags: [],
@@ -58,18 +58,6 @@ export default defineConfig({
           linkedInUrl: "",
           author: "",
           companionSlug: "",
-          translations: {
-            spanish: {
-              title: "",
-              excerpt: "",
-              body: "",
-            },
-            catalan: {
-              title: "",
-              excerpt: "",
-              body: "",
-            },
-          },
         }),
 
         ui: {
@@ -104,7 +92,9 @@ export default defineConfig({
             description:
               "A one-sentence summary shown on post cards and in SEO.",
             required: true,
-            ui: { component: "textarea" },
+            ui: {
+              component: "textarea",
+            },
           },
 
           {
@@ -178,76 +168,55 @@ export default defineConfig({
           },
 
           {
-            type: "object",
-            name: "translations",
-            label: "Translations",
-            fields: [
-              {
-                type: "object",
-                name: "spanish",
-                label: "Spanish",
-                fields: [
-                  {
-                    type: "string",
-                    name: "title",
-                    label: "Spanish Title",
-                  },
+            type: "string",
+            name: "spanishTitle",
+            label: "Spanish Title",
+          },
 
-                  {
-                    type: "string",
-                    name: "excerpt",
-                    label: "Spanish Excerpt",
-                    ui: {
-                      component: "textarea",
-                    },
-                  },
+          {
+            type: "string",
+            name: "spanishExcerpt",
+            label: "Spanish Excerpt",
+            ui: {
+              component: "textarea",
+            },
+          },
 
-                  {
-                    type: "string",
-                    name: "body",
-                    label: "Spanish Content",
-                    ui: {
-                      component: "textarea",
-                    },
-                    description:
-                      "Enter the Spanish article in Markdown. Basic formatting such as headings, bold, italics, links, and lists is supported.",
-                  },
-                ],
-              },
+          {
+            type: "string",
+            name: "spanishContent",
+            label: "Spanish Content",
+            ui: {
+              component: "textarea",
+            },
+            description:
+              "Enter the Spanish article in Markdown.",
+          },
 
-              {
-                type: "object",
-                name: "catalan",
-                label: "Catalan",
-                fields: [
-                  {
-                    type: "string",
-                    name: "title",
-                    label: "Catalan Title",
-                  },
+          {
+            type: "string",
+            name: "catalanTitle",
+            label: "Catalan Title",
+          },
 
-                  {
-                    type: "string",
-                    name: "excerpt",
-                    label: "Catalan Excerpt",
-                    ui: {
-                      component: "textarea",
-                    },
-                  },
+          {
+            type: "string",
+            name: "catalanExcerpt",
+            label: "Catalan Excerpt",
+            ui: {
+              component: "textarea",
+            },
+          },
 
-                  {
-                    type: "string",
-                    name: "body",
-                    label: "Catalan Content",
-                    ui: {
-                      component: "textarea",
-                    },
-                    description:
-                      "Enter the Catalan article in Markdown. Basic formatting such as headings, bold, italics, links, and lists is supported.",
-                  },
-                ],
-              },
-            ],
+          {
+            type: "string",
+            name: "catalanContent",
+            label: "Catalan Content",
+            ui: {
+              component: "textarea",
+            },
+            description:
+              "Enter the Catalan article in Markdown.",
           },
         ],
       },
@@ -349,8 +318,11 @@ export default defineConfig({
         name: "homePage",
         label: "Home Page",
         path: "content/pages",
-        match: { include: "home" },
+        match: {
+          include: "home",
+        },
         format: "md",
+
         ui: {
           allowedActions: {
             create: false,
@@ -430,17 +402,14 @@ export default defineConfig({
             name: "startHereCards",
             label: "Start Here Cards",
             list: true,
-            ui: {
-              itemProps: (item) => ({
-                label: item?.label,
-              }),
-            },
+
             fields: [
               {
                 type: "string",
                 name: "label",
                 label: "Label",
               },
+
               {
                 type: "string",
                 name: "description",
@@ -449,17 +418,17 @@ export default defineConfig({
                   component: "textarea",
                 },
               },
+
               {
                 type: "string",
                 name: "href",
                 label: "Link",
               },
+
               {
                 type: "string",
                 name: "colorClass",
                 label: "Text Color Class",
-                description:
-                  "Example: text-lfi-blue or text-lfi-green.",
               },
             ],
           },
@@ -493,17 +462,14 @@ export default defineConfig({
             name: "postTypeCards",
             label: "Post Type Cards",
             list: true,
-            ui: {
-              itemProps: (item) => ({
-                label: item?.label,
-              }),
-            },
+
             fields: [
               {
                 type: "string",
                 name: "label",
                 label: "Label",
               },
+
               {
                 type: "string",
                 name: "description",
@@ -512,11 +478,13 @@ export default defineConfig({
                   component: "textarea",
                 },
               },
+
               {
                 type: "string",
                 name: "href",
                 label: "Link",
               },
+
               {
                 type: "string",
                 name: "className",
@@ -612,8 +580,11 @@ export default defineConfig({
         name: "aboutPage",
         label: "About Page",
         path: "content/pages",
-        match: { include: "about" },
+        match: {
+          include: "about",
+        },
         format: "md",
+
         ui: {
           allowedActions: {
             create: false,
@@ -722,8 +693,11 @@ export default defineConfig({
         name: "siteSettings",
         label: "Site Settings",
         path: "content/globals",
-        match: { include: "settings" },
+        match: {
+          include: "settings",
+        },
         format: "md",
+
         ui: {
           allowedActions: {
             create: false,
@@ -761,11 +735,7 @@ export default defineConfig({
             name: "navItems",
             label: "Navigation Items",
             list: true,
-            ui: {
-              itemProps: (item) => ({
-                label: item?.label,
-              }),
-            },
+
             fields: [
               {
                 type: "string",
@@ -802,8 +772,11 @@ export default defineConfig({
         name: "newsletterCTA",
         label: "Newsletter CTA",
         path: "content/globals",
-        match: { include: "newsletter" },
+        match: {
+          include: "newsletter",
+        },
         format: "md",
+
         ui: {
           allowedActions: {
             create: false,
@@ -863,8 +836,11 @@ export default defineConfig({
         name: "footer",
         label: "Footer",
         path: "content/globals",
-        match: { include: "footer" },
+        match: {
+          include: "footer",
+        },
         format: "md",
+
         ui: {
           allowedActions: {
             create: false,
