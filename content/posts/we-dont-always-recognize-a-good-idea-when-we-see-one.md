@@ -1,7 +1,7 @@
 ---
 title: We Don’t Always Recognize a Good Idea When We See One
 excerpt: 'We think we’re pretty good at spotting great ideas, but research suggests otherwise. The most novel ideas can be the easiest to dismiss, especially when they’re still rough and uncertain. This post presents five ways to avoid killing a promising idea before it has a chance to prove itself.'
-featuredImage: ''
+featuredImage: /uploads/Designer (1).png
 date: 2026-09-16T01:06:06.775Z
 category: Hot Takes
 tags: []
