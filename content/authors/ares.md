@@ -3,7 +3,7 @@ name: Ares
 role: Co-founder
 initials: A
 color: bg-lfi-blue
-photo: /uploads/authors/ares.jpg
+photo: /uploads/DSC_8783.jpg
 linkedInUrl: 'https://www.linkedin.com/in/aresboiralopez/'
 bio: 'Ares Boira Lopez, Ph.D., is an Industrial Organizational Psychologist and Assistant Research Professor at the University of Nebraska whose work applies I-O psychology, creativity and innovation, and artificial intelligence to counterterrorism and national security. Her research examines how AI shapes prosocial and malevolent creativity, how adversaries innovate, and how the national security workforce can adapt to evolving threats. She is also cofounder of Leading for Innovation and is passionate about using science to address societal challenges and strengthen the fight against terrorism.'
 ---
