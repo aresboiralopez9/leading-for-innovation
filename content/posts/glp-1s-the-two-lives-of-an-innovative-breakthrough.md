@@ -1,7 +1,7 @@
 ---
 title: 'GLP-1s: The Two Lives of an Innovative Breakthrough'
 excerpt: 'Innovations have lives, and the most talked-about drug class in the world has already lived two. This post traces how GLP-1s were born through three different creative routes, how success redirected that same capacity toward defending the win, and why the difference shapes competition, timing, and access.'
-featuredImage: ''
+featuredImage: /uploads/GLP 1 Innovation Post Image.png
 date: 2026-09-29T23:00:00.000Z
 category: Innovation Spotlight
 tags: []
