@@ -1,8 +1,8 @@
 ---
 title: 'It''s Not the Clock: What Actually Shapes Creativity Under Pressure'
 excerpt: 'Deadlines feel like they make or break creative work, but decades of research suggest pressure on its own says surprisingly little about how creative we will be. What matters more are the conditions around it, and how we can shape them for ourselves and our teams.'
-featuredImage: ''
-date: 2026-01-01T00:00:00.000Z
+featuredImage: /uploads/Time Pressure to Creative Breakthrough.png
+date: 2026-10-27T23:00:00.000Z
 category: Research to Practice
 tags: []
 author: sam
