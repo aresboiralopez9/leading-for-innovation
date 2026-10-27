@@ -8,7 +8,7 @@ tags: []
 author: sam
 companionSlug: ''
 linkedInUrl: ''
-featured: true
+featured: false
 ---
 
 Picture a team meeting where someone floats the question everyone dreads: "We need some fresh ideas here. Who's got something?" Watch what happens. A few people glance at the one colleague with the reputation for being creative. Everyone else looks at their laptops. Later, in the hallway, someone will say it out loud: "I'm just not creative." **Maybe you've said it yourself. Maybe you believe it.**
