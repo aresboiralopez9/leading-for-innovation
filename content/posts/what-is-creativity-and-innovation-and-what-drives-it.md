@@ -9,7 +9,7 @@ tags:
   - Process
 author: ares
 linkedInUrl: ''
-featured: true
+featured: false
 spanishTitle: De las ideas a la innovación
 ---
 
