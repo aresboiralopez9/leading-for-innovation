@@ -11,6 +11,56 @@ author: ares
 linkedInUrl: ''
 featured: false
 spanishTitle: De las ideas a la innovación
+spanishExcerpt: |-
+  No es casualidad que empresas como Alphabet, Microsoft, Apple, Amazon, Capital One, JPMorgan Chase y NVIDIA aparezcan tanto en la lista Forbes' America's Best Companies (Schwarz y Newman, 2025) como en la de Fortune's Most Innovative Companies (Fortune Media IP Limited, 2026). La creatividad y la innovación están directamente relacionadas con el crecimiento de las ventas, la ventaja competitiva y la supervivencia a largo plazo. Las organizaciones que mejoran continuamente sus productos, servicios y formas de trabajar tienen muchas menos probabilidades de quedarse obsoletas (Acar et al., 2019; Reiter-Palmon y Dredge, 2021).
+
+  Esto no resulta especialmente sorprendente. Sin embargo, merece la pena preguntarse qué significa realmente ser creativo, qué significa ser innovador y qué papel desempeña la creatividad en todo esto. Estas palabras aparecen constantemente en documentos estratégicos, presentaciones de liderazgo, descripciones de puestos de trabajo y declaraciones de misión. Se han vuelto tan habituales que, a menudo, funcionan más como palabras de moda que como conceptos claramente definidos. Sin embargo, comprender la diferencia es importante, especialmente para quienes dirigen equipos y tienen la responsabilidad de mejorar su forma de trabajar, tomar mejores decisiones sobre las ideas creativas y fortalecer su propio pensamiento creativo.
+
+  La creatividad y la innovación no son lo mismo
+
+  La investigación en psicología lleva décadas tratando de responder estas cuestiones (p. ej., Hunter et al., 2013; Mumford y England, 2022). No se limita a definir la creatividad y la innovación. También explica qué impulsa cada una de ellas y qué hace falta para transformar una idea inicial en un nuevo producto, servicio o proceso. Eso es precisamente lo que queremos analizar aquí: qué son estos conceptos, en qué se diferencian y por qué comprender ambos puede ayudar a quienes dirigen equipos a pensar de forma más creativa y, al mismo tiempo, desarrollar equipos más innovadores.
+
+  La creatividad consiste en generar ideas novedosas y útiles (Amabile, 1988). Uno de los errores más comunes es pensar que la creatividad consiste en producir locuras. No es así. La creatividad es originalidad con un propósito.
+
+  La innovación es lo que ocurre después. Consiste en implementar con éxito ideas creativas y convertirlas en productos, servicios, procesos u otros resultados significativos para la organización. Que esto llegue a suceder depende no solo de la calidad y originalidad de la propia idea, sino también de las condiciones que la rodean (Mumford, Bedell-Avers y Hunter, 2008).
+
+  Dónde comienza la innovación
+
+  Toda innovación comienza con una idea. Comprender cómo se generan las ideas creativas ofrece a quienes lideran equipos formas prácticas de mejorar la innovación incluso antes de que comience su implementación. En lugar de limitarte a esperar que tus empleados propongan mejores ideas, puedes ayudarles a definir problemas, recopilar mejor información, fomentar distintas formas de pensar, facilitar una evaluación reflexiva de las ideas y crear un entorno en el que sea más probable que surjan ideas sólidas (Hunter y Cushenbery, 2012). Y, algo igual de importante, puedes aplicar estos mismos conocimientos para mejorar tu propia forma de pensar. Tú también resuelves problemas complejos, interpretas información ambigua, evalúas alternativas y decides qué ideas merecen atención. En este sentido, la creatividad no es solo algo que debas fomentar en los demás. También es algo que necesitas practicar tú mismo.
+
+  Los modelos de procesos cognitivos muestran que la creatividad no es magia ni un destello espontáneo de inspiración. Las personas recurren a  información, los conocimientos especializados y sus experiencias para desarrollar ideas que sean tanto novedosas como útiles. Como cualquier otro proceso, la creatividad puede comprenderse, desarrollarse y fomentarse de manera más eficaz (Puccio et al., 2018; Scott, Leritz y Mumford, 2004). Aunque hay mucho de lo que hablar (y lo haremos en futuros artículos), la ciencia sugiere que el pensamiento creativo suele implicar las siguientes etapas (Mumford et al., 1991):
+
+  Definir el problema
+  El pensamiento creativo comienza identificando y definiendo problemas que merecen ser resueltos (Reiter-Palmon y Robinson, 2009). Ayuda a tus empleados a aclarar cuáles son los problemas más importantes en lugar de precipitarse a buscar soluciones (Rietzschel, Nijstad y Stroebe, 2014). Una mejor definición del problema suele dar lugar a mejores ideas.
+
+  Recopilar información
+  Las ideas creativas se construyen a partir del conocimiento y la experiencia. Cuanto más amplia y diversa sea la información disponible, mejor será la materia prima para desarrollar ideas enriquecedoras (Kohn et al., 2011). Puedes mejorar este proceso exponiendo a los equipos a diferentes perspectivas, clientes y conocimientos especializados (Boira-Lopez y Connelly, 2026), así como ampliando deliberadamente lo que lees, las personas con las que hablas y los puntos de vista que tienes en cuenta.
+
+  Generar ideas alternativas
+  Las personas crean soluciones novedosas combinando conocimientos existentes de nuevas maneras (Scott, Lonergan y Mumford, 2005). Fomentar la generación de múltiples ideas antes de seleccionar una suele conducir a mejores resultados (Puccio y Cabra, 2012). Deja espacio para la exploración antes de orientar a los equipos hacia una solución concreta y resiste la tentación de conformarte demasiado pronto con la primera respuesta que te resulte cómoda.
+
+  Evaluar las ideas
+  Las ideas creativas se perfeccionan mediante una evaluación reflexiva que utiliza criterios como la originalidad, la utilidad, la viabilidad y el valor estratégico (Watts, 2025). Facilita comentarios constructivos basados en criterios claros y evita limitar involuntariamente la creatividad evaluando las ideas demasiado pronto o con excesiva dureza.
+
+  Seleccionar y poner a prueba la idea más sólida
+  Una vez perfeccionada una idea, el siguiente paso consiste en probarla a pequeña escala antes de implementarla de forma más amplia (Baer, 2012). Fomenta la experimentación de bajo coste y el aprendizaje a partir de los primeros resultados. No se trata únicamente de proteger al equipo. También se trata de ayudarte a adoptar una forma de pensar más iterativa y menos basada en el todo o nada.
+
+  Supervisar y perfeccionar
+  El trabajo creativo es iterativo (Sawyer, 2021). Los comentarios recibidos y la nueva información suelen conducir a mejoras adicionales, en lugar de a una solución definitiva (Tolkamp et al., 2025). Refuerza este proceso tratando la iteración como un avance en lugar de un fracaso y proporcionando a los equipos el tiempo y la seguridad psicológica necesarios para mejorar sus ideas con el tiempo.
+
+  La idea es solo el principio
+  Pero aquí está la cuestión. Una buena idea creativa es la base, pero no deja de ser eso: la base. Incluso las ideas excelentes pueden desaparecer silenciosamente en la bandeja de entrada de un supervisor o en una carpeta de proyectos a la que nadie presta atención. Créeme, lo he vivido más de una vez. Aquí es donde tu papel se vuelve fundamental.
+
+  Las dinámicas de equipo influyen en que las personas se sientan lo suficientemente seguras como para compartir sus ideas desde el principio (p. ej., Reiter-Palmon, Wigert y de Vreede, 2012). Si los empleados esperan recibir críticas, que sus ideas sean descartadas o pasar vergüenza, muchas de ellas nunca llegarán a expresarse (Sacramento et al., 2023). El liderazgo es igual de importante (p. ej., van Knippenberg, 2017). ¿Descartarás una idea porque te parece arriesgada o poco familiar? ¿O ayudarás a perfeccionarla, la defenderás ante la alta dirección, eliminarás obstáculos y conseguirás los recursos necesarios para ponerla a prueba? La cultura y el clima organizacional también desempeñan un papel esencial (p. ej., Hunter, Bedell y Mumford, 2007). ¿La organización recompensa realmente la innovación o simplemente habla de lo mucho que la valora? ¿Da prioridad a contratar y desarrollar personas creativas y con diversidad cognitiva? ¿Presta atención a los cambios de su entorno para poder anticiparse en lugar de reaccionar constantemente?
+
+  Cada una de estas preguntas merece un análisis en profundidad y, sí, las exploraremos en futuras publicaciones. Si hay algún tema que te interese especialmente, ya sea cómo ser más creativo, fomentar la creatividad en los equipos, liderar la innovación, construir culturas que la favorezcan o mejorar la evaluación de ideas, háznoslo saber escribiéndonos a leadingforinnovation@gmail.com.
+
+  Una última reflexión
+  La creatividad y la innovación no son lo mismo. La creatividad es una condición necesaria para la innovación, pero es solo el principio. La innovación depende de lo que sucede después de generar una idea. Que esa idea se convierta en un mejor producto, servicio o proceso depende en gran medida del entorno que se construya a su alrededor.
+
+  Quienes lideran equipos desempeñan un papel fundamental en la creación de ese entorno. Al fomentar la generación de ideas, facilitar una evaluación reflexiva, defender las ideas prometedoras y ayudar a los equipos a conseguir los recursos necesarios para experimentar y mejorar, transforman la creatividad de momentos aislados en innovación sostenida. Pero eso es solo una parte de la historia. Esos mismos conocimientos también ayudan a quienes dirigen equipos a convertirse en mejores pensadores creativos. Mejoran su capacidad para definir problemas, generar alternativas, evaluar posibilidades y tomar decisiones en situaciones de incertidumbre.
+
+  Los líderes más eficaces no se limitan a fomentar la creatividad en los demás. Comprenden suficientemente bien cómo funciona la creatividad como para aplicarla a su propia forma de pensar y construir sistemas, equipos y culturas capaces de transformar las ideas en innovación.
 ---
 
 It’s no coincidence that companies like Alphabet, Microsoft, Apple, Amazon, Capital One, JPMorgan Chase, and NVIDIA show up on both **Forbes' America's Best Companies** ([Schwarz & Newman, 2025](https://www.forbes.com/lists/best-companies/)) and **Fortune's Most Innovative Companies** ([Fortune Media IP Limited, 2026](https://fortune.com/ranking/americas-most-innovative-companies/)). Creativity and innovation are directly tied to sales growth, competitive advantage, and long-term survival. Organizations that continuously improve their products, services, and ways of working are far less likely to become obsolete ([Acar et al., 2019](https://journals.sagepub.com/doi/abs/10.1177/0149206318805832); [Reiter-Palmon & Dredge, 2021](https://books.google.es/books?hl=en\&lr=\&id=4h1QEAAAQBAJ\&oi=fnd\&pg=PA460\&dq=long-term+survival+and+innovation+Reiter+Palmon\&ots=vKXlCh408O\&sig=DbUoR5mzGgmpIMSdW8tyZKKvolM#v=onepage\&q\&f=false)).
