@@ -11,7 +11,8 @@ author: ares
 linkedInUrl: ''
 featured: false
 spanishTitle: De las ideas a la innovación
-spanishExcerpt: |-
+spanishExcerpt: 'Este artículo explica la diferencia entre creatividad e innovación y por qué es importante que quienes lideran equipos comprendan esta distinción. Muestra cómo se puede fortalecer el pensamiento creativo mediante un proceso estructurado y cómo los equipos, el liderazgo y el clima organizacional influyen en que las ideas lleguen a convertirse en innovaciones.'
+spanishContent: |-
   No es casualidad que empresas como Alphabet, Microsoft, Apple, Amazon, Capital One, JPMorgan Chase y NVIDIA aparezcan tanto en la lista Forbes' America's Best Companies (Schwarz y Newman, 2025) como en la de Fortune's Most Innovative Companies (Fortune Media IP Limited, 2026). La creatividad y la innovación están directamente relacionadas con el crecimiento de las ventas, la ventaja competitiva y la supervivencia a largo plazo. Las organizaciones que mejoran continuamente sus productos, servicios y formas de trabajar tienen muchas menos probabilidades de quedarse obsoletas (Acar et al., 2019; Reiter-Palmon y Dredge, 2021).
 
   Esto no resulta especialmente sorprendente. Sin embargo, merece la pena preguntarse qué significa realmente ser creativo, qué significa ser innovador y qué papel desempeña la creatividad en todo esto. Estas palabras aparecen constantemente en documentos estratégicos, presentaciones de liderazgo, descripciones de puestos de trabajo y declaraciones de misión. Se han vuelto tan habituales que, a menudo, funcionan más como palabras de moda que como conceptos claramente definidos. Sin embargo, comprender la diferencia es importante, especialmente para quienes dirigen equipos y tienen la responsabilidad de mejorar su forma de trabajar, tomar mejores decisiones sobre las ideas creativas y fortalecer su propio pensamiento creativo.
