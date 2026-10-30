@@ -1,128 +1,63 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
-import {
-  getPost,
-  getAllPostSlugs,
-  type PostLanguage,
-} from '@/lib/posts'
+import { getPost, getAllPostSlugs } from '@/lib/posts'
 import { formatDate } from '@/lib/utils'
 import { NewsletterCTAWrapper } from '@/components/NewsletterCTAWrapper'
 import { Byline } from '@/components/Byline'
 import { CompanionPiece } from '@/components/CompanionPiece'
+import { remark } from 'remark'
+import html from 'remark-html'
 import type { Metadata } from 'next'
 
 interface Props {
   params: {
     slug: string
   }
+
   searchParams?: {
     lang?: string
   }
 }
 
-function getLanguage(
-  value?: string
-): PostLanguage {
-  if (value === 'es') return 'es'
-  if (value === 'ca') return 'ca'
-  return 'en'
-}
-
-function LanguageToggle({
-  slug,
-  currentLanguage,
-  hasSpanish,
-  hasCatalan,
-}: {
-  slug: string
-  currentLanguage: PostLanguage
-  hasSpanish: boolean
-  hasCatalan: boolean
-}) {
-  const languages = [
-    {
-      key: 'en' as const,
-      label: 'English',
-      available: true,
-    },
-    {
-      key: 'es' as const,
-      label: 'Español',
-      available: hasSpanish,
-    },
-    {
-      key: 'ca' as const,
-      label: 'Català',
-      available: hasCatalan,
-    },
-  ]
-
-  return (
-    <div className="flex items-center gap-1 text-sm">
-      {languages.map((language, index) => {
-        if (!language.available) {
-          return null
-        }
-
-        const isCurrent =
-          language.key === currentLanguage
-
-        const href =
-          language.key === 'en'
-            ? `/blog/${slug}`
-            : `/blog/${slug}?lang=${language.key}`
-
-        return (
-          <div
-            key={language.key}
-            className="flex items-center"
-          >
-            {index > 0 && (
-              <span className="mx-2 text-gray-300 dark:text-gray-700">
-                |
-              </span>
-            )}
-
-            {isCurrent ? (
-              <span className="font-semibold text-lfi-green">
-                {language.label}
-              </span>
-            ) : (
-              <Link
-                href={href}
-                className="text-ink-muted dark:text-gray-500 hover:text-lfi-green dark:hover:text-lfi-green transition-colors"
-              >
-                {language.label}
-              </Link>
-            )}
-          </div>
-        )
-      })}
-    </div>
-  )
-}
+type Language = 'en' | 'es' | 'ca'
 
 export async function generateStaticParams() {
-  return getAllPostSlugs().map(
-    (slug) => ({ slug })
-  )
+  return getAllPostSlugs().map((slug) => ({
+    slug,
+  }))
+}
+
+function getLanguage(lang?: string): Language {
+  if (lang === 'es') return 'es'
+  if (lang === 'ca') return 'ca'
+
+  return 'en'
 }
 
 export async function generateMetadata({
   params,
   searchParams,
 }: Props): Promise<Metadata> {
-  const language = getLanguage(
-    searchParams?.lang
-  )
-
-  const post = await getPost(
-    params.slug,
-    language
-  )
+  const post = await getPost(params.slug)
 
   if (!post) return {}
+
+  const language = getLanguage(searchParams?.lang)
+
+  if (language === 'es' && post.spanishTitle) {
+    return {
+      title: post.spanishTitle,
+      description: post.spanishExcerpt || post.excerpt,
+    }
+  }
+
+  if (language === 'ca' && post.catalanTitle) {
+    return {
+      title: post.catalanTitle,
+      description: post.catalanExcerpt || post.excerpt,
+    }
+  }
 
   return {
     title: post.title,
@@ -134,22 +69,57 @@ export default async function PostPage({
   params,
   searchParams,
 }: Props) {
-  const language = getLanguage(
-    searchParams?.lang
-  )
-
-  const post = await getPost(
-    params.slug,
-    language
-  )
+  const post = await getPost(params.slug)
 
   if (!post) notFound()
 
+  const requestedLanguage = getLanguage(searchParams?.lang)
+
   const hasSpanish =
-    !!post.translations?.spanish
+    Boolean(post.spanishTitle) &&
+    Boolean(post.spanishContent)
 
   const hasCatalan =
-    !!post.translations?.catalan
+    Boolean(post.catalanTitle) &&
+    Boolean(post.catalanContent)
+
+  const language: Language =
+    requestedLanguage === 'es' && hasSpanish
+      ? 'es'
+      : requestedLanguage === 'ca' && hasCatalan
+        ? 'ca'
+        : 'en'
+
+  let title = post.title
+  let excerpt = post.excerpt
+  let contentHtml = post.contentHtml
+  let readingTime = post.readingTime
+
+  if (language === 'es') {
+    title = post.spanishTitle
+    excerpt = post.spanishExcerpt || post.excerpt
+
+    const processed = await remark()
+      .use(html)
+      .process(post.spanishContent)
+
+    contentHtml = processed.toString()
+
+    readingTime = calculateReadingTime(post.spanishContent)
+  }
+
+  if (language === 'ca') {
+    title = post.catalanTitle
+    excerpt = post.catalanExcerpt || post.excerpt
+
+    const processed = await remark()
+      .use(html)
+      .process(post.catalanContent)
+
+    contentHtml = processed.toString()
+
+    readingTime = calculateReadingTime(post.catalanContent)
+  }
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12">
@@ -176,12 +146,55 @@ export default async function PostPage({
           <span>/</span>
 
           <span className="text-ink-muted dark:text-gray-400 truncate">
-            {post.title}
+            {title}
           </span>
         </nav>
 
+        {/* Language selector */}
+        {(hasSpanish || hasCatalan) && (
+          <div className="mb-8 flex items-center gap-2">
+            <Link
+              href={`/blog/${post.slug}`}
+              className={`px-4 py-2 rounded-full text-sm font-semibold transition-colors ${
+                language === 'en'
+                  ? 'bg-lfi-blue text-white'
+                  : 'bg-gray-100 text-ink-muted hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300'
+              }`}
+            >
+              English
+            </Link>
+
+            {hasSpanish && (
+              <Link
+                href={`/blog/${post.slug}?lang=es`}
+                className={`px-4 py-2 rounded-full text-sm font-semibold transition-colors ${
+                  language === 'es'
+                    ? 'bg-lfi-blue text-white'
+                    : 'bg-gray-100 text-ink-muted hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300'
+                }`}
+              >
+                Español
+              </Link>
+            )}
+
+            {hasCatalan && (
+              <Link
+                href={`/blog/${post.slug}?lang=ca`}
+                className={`px-4 py-2 rounded-full text-sm font-semibold transition-colors ${
+                  language === 'ca'
+                    ? 'bg-lfi-blue text-white'
+                    : 'bg-gray-100 text-ink-muted hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300'
+                }`}
+              >
+                Català
+              </Link>
+            )}
+          </div>
+        )}
+
         {/* Post header */}
         <header className="mb-10">
+
           <div className="mb-5 flex flex-wrap items-center gap-2">
             <span className="category-badge">
               {post.category}
@@ -189,14 +202,13 @@ export default async function PostPage({
           </div>
 
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-ink dark:text-white leading-[1.1] mb-5">
-            {post.title}
+            {title}
           </h1>
 
           <p className="text-lg text-ink-muted dark:text-gray-400 leading-relaxed mb-6">
-            {post.excerpt}
+            {excerpt}
           </p>
 
-          {/* Byline */}
           {post.author && (
             <div className="mb-6">
               <Byline
@@ -206,28 +218,11 @@ export default async function PostPage({
             </div>
           )}
 
-          {/* Language Toggle */}
-          {(hasSpanish || hasCatalan) && (
-            <div className="mb-6">
-              <LanguageToggle
-                slug={post.slug}
-                currentLanguage={
-                  language
-                }
-                hasSpanish={
-                  hasSpanish
-                }
-                hasCatalan={
-                  hasCatalan
-                }
-              />
-            </div>
-          )}
-
-          {/* Meta bar */}
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2 py-4 border-y border-gray-200 dark:border-gray-800 text-sm text-ink-muted dark:text-gray-400">
+
             <div className="flex items-center gap-1.5">
               <CalendarIcon />
+
               <time dateTime={post.date}>
                 {formatDate(post.date)}
               </time>
@@ -235,23 +230,23 @@ export default async function PostPage({
 
             <div className="flex items-center gap-1.5">
               <ClockIcon />
+
               <span>
-                {post.readingTime} min read
+                {readingTime} min read
               </span>
             </div>
 
             <div className="flex flex-wrap gap-1.5 mt-1">
-              {post.tags.map(
-                (tag) => (
-                  <span
-                    key={tag}
-                    className="tag-pill"
-                  >
-                    {tag}
-                  </span>
-                )
-              )}
+              {post.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="tag-pill"
+                >
+                  {tag}
+                </span>
+              ))}
             </div>
+
           </div>
         </header>
 
@@ -259,16 +254,16 @@ export default async function PostPage({
         {post.featuredImage && (
           <div className="mb-12 overflow-hidden rounded-2xl">
             <div className="relative aspect-[16/8.5] w-full">
+
               <Image
-                src={
-                  post.featuredImage
-                }
-                alt={post.title}
+                src={post.featuredImage}
+                alt={title}
                 fill
                 priority
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 672px"
               />
+
             </div>
           </div>
         )}
@@ -286,22 +281,20 @@ export default async function PostPage({
             prose-code:text-brand-600 dark:prose-code:text-brand-300
             prose-a:text-brand-600 dark:prose-a:text-brand-400"
           dangerouslySetInnerHTML={{
-            __html:
-              post.contentHtml,
+            __html: contentHtml,
           }}
         />
 
         {/* Companion piece */}
         {post.companionSlug && (
           <CompanionPiece
-            slug={
-              post.companionSlug
-            }
+            slug={post.companionSlug}
           />
         )}
 
         {/* Share / CTA strip */}
         <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800 flex flex-col sm:flex-row items-start sm:items-center gap-4 justify-between">
+
           <div>
             <p className="text-sm font-semibold text-ink dark:text-white mb-1">
               Found this useful?
@@ -322,12 +315,28 @@ export default async function PostPage({
           >
             Share on LinkedIn
           </a>
+
         </div>
+
       </div>
 
-      {/* Newsletter CTA */}
       <NewsletterCTAWrapper />
+
     </div>
+  )
+}
+
+function calculateReadingTime(content: string): number {
+  const wordsPerMinute = 250
+
+  const words = content
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean)
+
+  return Math.max(
+    1,
+    Math.ceil(words.length / wordsPerMinute)
   )
 }
 
@@ -349,18 +358,21 @@ function CalendarIcon() {
         rx="2"
         ry="2"
       />
+
       <line
         x1="16"
         y1="2"
         x2="16"
         y2="6"
       />
+
       <line
         x1="8"
         y1="2"
         x2="8"
         y2="6"
       />
+
       <line
         x1="3"
         y1="10"
@@ -386,6 +398,7 @@ function ClockIcon() {
         cy="12"
         r="10"
       />
+
       <polyline points="12 6 12 12 16 14" />
     </svg>
   )
