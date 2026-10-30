@@ -6,6 +6,8 @@ import html from 'remark-html';
 
 const postsDirectory = path.join(process.cwd(), 'content', 'posts');
 
+export type PostLanguage = 'en' | 'es' | 'ca';
+
 export interface PostMeta {
   slug: string;
   title: string;
@@ -37,6 +39,7 @@ export interface Post extends PostMeta {
 function calculateReadingTime(content: string): number {
   const wordsPerMinute = 250;
   const words = content.trim().split(/\s+/).filter(Boolean);
+
   return Math.max(1, Math.ceil(words.length / wordsPerMinute));
 }
 
@@ -57,7 +60,9 @@ function normalizeTags(tags: unknown): string[] {
     return tags.filter((tag): tag is string => typeof tag === 'string');
   }
 
-  if (typeof tags === 'string') return [tags];
+  if (typeof tags === 'string') {
+    return [tags];
+  }
 
   return [];
 }
@@ -65,7 +70,9 @@ function normalizeTags(tags: unknown): string[] {
 function normalizeDate(date: unknown): string {
   if (!date) return '';
 
-  if (date instanceof Date) return date.toISOString();
+  if (date instanceof Date) {
+    return date.toISOString();
+  }
 
   return String(date);
 }
@@ -83,7 +90,9 @@ function normalizeString(value: unknown): string {
 }
 
 export function getAllPostSlugs(): string[] {
-  if (!fs.existsSync(postsDirectory)) return [];
+  if (!fs.existsSync(postsDirectory)) {
+    return [];
+  }
 
   return fs
     .readdirSync(postsDirectory)
@@ -95,7 +104,9 @@ export function getPostMeta(slug: string): PostMeta | null {
   try {
     const filePath = getPostFilePath(slug);
 
-    if (!filePath) return null;
+    if (!filePath) {
+      return null;
+    }
 
     const raw = fs.readFileSync(filePath, 'utf8');
     const { data, content } = matter(raw);
@@ -158,7 +169,9 @@ export function getAllTags(): string[] {
 }
 
 export function getCompanionPost(post: PostMeta): PostMeta | null {
-  if (!post.companionSlug) return null;
+  if (!post.companionSlug) {
+    return null;
+  }
 
   return getPostMeta(post.companionSlug);
 }
@@ -167,7 +180,9 @@ export async function getPost(slug: string): Promise<Post | null> {
   try {
     const filePath = getPostFilePath(slug);
 
-    if (!filePath) return null;
+    if (!filePath) {
+      return null;
+    }
 
     const raw = fs.readFileSync(filePath, 'utf8');
     const { data, content } = matter(raw);
