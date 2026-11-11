@@ -8,7 +8,9 @@ tags: []
 author: sam
 companionSlug: ''
 linkedInUrl: ''
-featured: true
+featured: false
+spanishContent: ''
+catalanContent: ''
 ---
 
 You haven't been able to escape them. GLP-1s are in the award-show monologues and the tabloid speculations, in the pharmacy shortage notices and the earnings headlines. You probably know someone taking one to manage diabetes, and someone else taking one to lose weight. By mid-2026, 11 percent of American adults were using a GLP-1 for weight loss, nearly four times the share from two years earlier ([Witters, 2026](https://news.gallup.com/poll/712157/glp-usage-reaches-new-high.aspx)). The two best-known brands brought their maker roughly 26 billion dollars in a single year ([Walt, 2025](https://fortune.com/2025/03/31/ozempic-wegovy-novo-nordisk-nvidia/)).
