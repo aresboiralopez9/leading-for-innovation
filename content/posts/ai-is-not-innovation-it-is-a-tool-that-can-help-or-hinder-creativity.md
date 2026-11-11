@@ -10,7 +10,9 @@ tags:
 author: ares
 companionSlug: ''
 linkedInUrl: ''
-featured: true
+featured: false
+spanishContent: ''
+catalanContent: ''
 ---
 
 Think about the internet. When it first showed up at work, there was plenty of resistance and no shortage of concern about whether it belonged there. Today, how many of us do our jobs entirely without it? Nobody asks whether you use the internet at work anymore. The question that matters is what you do with it.
