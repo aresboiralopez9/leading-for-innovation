@@ -183,14 +183,9 @@ export default defineConfig({
           },
 
           {
-            type: "string",
+            type: "rich-text",
             name: "spanishContent",
             label: "Spanish Content",
-            ui: {
-              component: "textarea",
-            },
-            description:
-              "Enter the Spanish article in Markdown.",
           },
 
           {
@@ -209,14 +204,9 @@ export default defineConfig({
           },
 
           {
-            type: "string",
+            type: "rich-text",
             name: "catalanContent",
             label: "Catalan Content",
-            ui: {
-              component: "textarea",
-            },
-            description:
-              "Enter the Catalan article in Markdown.",
           },
         ],
       },
