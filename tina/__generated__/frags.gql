@@ -11,6 +11,12 @@ fragment PostParts on Post {
   linkedInUrl
   featured
   body
+  spanishTitle
+  spanishExcerpt
+  spanishContent
+  catalanTitle
+  catalanExcerpt
+  catalanContent
 }
 
 fragment AuthorParts on Author {

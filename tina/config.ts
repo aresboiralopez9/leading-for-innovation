@@ -48,8 +48,9 @@ export default defineConfig({
         label: "Blog Posts",
         path: "content/posts",
         format: "md",
+
         defaultItem: () => ({
-          date: new Date().toISOString(),
+          date: "2026-01-01T00:00:00.000Z",
           featured: false,
           featuredImage: "",
           tags: [],
@@ -58,6 +59,7 @@ export default defineConfig({
           author: "",
           companionSlug: "",
         }),
+
         ui: {
           filename: {
             readonly: false,
@@ -73,34 +75,43 @@ export default defineConfig({
             },
           },
         },
+
         fields: [
           {
             type: "string",
             name: "title",
-            label: "Title",
+            label: "English Title",
             isTitle: true,
             required: true,
           },
+
           {
             type: "string",
             name: "excerpt",
-            label: "Excerpt",
-            description: "A one-sentence summary shown on post cards and in SEO.",
+            label: "English Excerpt",
+            description:
+              "A one-sentence summary shown on post cards and in SEO.",
             required: true,
-            ui: { component: "textarea" },
+            ui: {
+              component: "textarea",
+            },
           },
+
           {
             type: "image",
             name: "featuredImage",
             label: "Featured Image",
-            description: "Main image displayed at the top of the blog post.",
+            description:
+              "Main image displayed at the top of the blog post.",
           },
+
           {
             type: "datetime",
             name: "date",
             label: "Publish Date",
             required: true,
           },
+
           {
             type: "string",
             name: "category",
@@ -109,6 +120,7 @@ export default defineConfig({
             required: true,
             options: postCategories,
           },
+
           {
             type: "string",
             name: "tags",
@@ -117,34 +129,94 @@ export default defineConfig({
               "Add topic labels freely. Examples: Foundations, Process, Conditions, AI.",
             list: true,
           },
+
           {
             type: "string",
             name: "author",
             label: "Author ID",
-            description: "Use the author file name, such as ares or sam.",
+            description:
+              "Use the author file name, such as ares or sam.",
           },
+
           {
             type: "string",
             name: "companionSlug",
             label: "Companion Post Slug",
-            description: "Optional. Use the slug of a companion post.",
+            description:
+              "Optional. Use the slug of a companion post.",
           },
+
           {
             type: "string",
             name: "linkedInUrl",
             label: "LinkedIn Post URL",
-            description: "Paste the URL for the LinkedIn version of this post.",
+            description:
+              "Paste the URL for the LinkedIn version of this post.",
           },
+
           {
             type: "boolean",
             name: "featured",
             label: "Featured Post",
           },
+
           {
             type: "rich-text",
             name: "body",
-            label: "Content",
+            label: "English Content",
             isBody: true,
+          },
+
+          {
+            type: "string",
+            name: "spanishTitle",
+            label: "Spanish Title",
+          },
+
+          {
+            type: "string",
+            name: "spanishExcerpt",
+            label: "Spanish Excerpt",
+            ui: {
+              component: "textarea",
+            },
+          },
+
+          {
+            type: "string",
+            name: "spanishContent",
+            label: "Spanish Content",
+            ui: {
+              component: "textarea",
+            },
+            description:
+              "Enter the Spanish article in Markdown.",
+          },
+
+          {
+            type: "string",
+            name: "catalanTitle",
+            label: "Catalan Title",
+          },
+
+          {
+            type: "string",
+            name: "catalanExcerpt",
+            label: "Catalan Excerpt",
+            ui: {
+              component: "textarea",
+            },
+          },
+
+          {
+            type: "string",
+            name: "catalanContent",
+            label: "Catalan Content",
+            ui: {
+              component: "textarea",
+            },
+            description:
+              "Enter the Catalan article in Markdown.",
           },
         ],
       },
@@ -154,6 +226,7 @@ export default defineConfig({
         label: "Authors",
         path: "content/authors",
         format: "md",
+
         defaultItem: () => ({
           role: "Co-founder",
           initials: "",
@@ -162,6 +235,7 @@ export default defineConfig({
           linkedInUrl: "",
           bio: "",
         }),
+
         ui: {
           filename: {
             readonly: false,
@@ -177,6 +251,7 @@ export default defineConfig({
             },
           },
         },
+
         fields: [
           {
             type: "string",
@@ -185,44 +260,55 @@ export default defineConfig({
             isTitle: true,
             required: true,
           },
+
           {
             type: "string",
             name: "role",
             label: "Role",
           },
+
           {
             type: "string",
             name: "initials",
             label: "Initials",
           },
+
           {
             type: "string",
             name: "color",
             label: "Color",
             options: colorOptions,
           },
+
           {
             type: "image",
             name: "photo",
             label: "Photo",
           },
+
           {
             type: "string",
             name: "linkedInUrl",
             label: "LinkedIn URL",
           },
+
           {
             type: "string",
             name: "bio",
             label: "Short Bio",
-            description: "Used on homepage, about cards, and bylines.",
-            ui: { component: "textarea" },
+            description:
+              "Used on homepage, about cards, and bylines.",
+            ui: {
+              component: "textarea",
+            },
           },
+
           {
             type: "rich-text",
             name: "body",
             label: "Full Bio",
-            description: "Used on the individual founder page.",
+            description:
+              "Used on the individual founder page.",
             isBody: true,
           },
         ],
@@ -232,113 +318,173 @@ export default defineConfig({
         name: "homePage",
         label: "Home Page",
         path: "content/pages",
-        match: { include: "home" },
+        match: {
+          include: "home",
+        },
         format: "md",
-        ui: { allowedActions: { create: false, delete: false } },
+
+        ui: {
+          allowedActions: {
+            create: false,
+            delete: false,
+          },
+        },
+
         fields: [
-          { type: "string", name: "heroBadgeText", label: "Hero Badge Text" },
-          { type: "string", name: "heroHeadline", label: "Hero Headline" },
+          {
+            type: "string",
+            name: "heroBadgeText",
+            label: "Hero Badge Text",
+          },
+
+          {
+            type: "string",
+            name: "heroHeadline",
+            label: "Hero Headline",
+          },
+
           {
             type: "string",
             name: "heroHeadlineAccent",
             label: "Hero Headline Accent",
           },
+
           {
             type: "string",
             name: "heroSubtext",
             label: "Hero Subtext",
-            ui: { component: "textarea" },
+            ui: {
+              component: "textarea",
+            },
           },
+
           {
             type: "string",
             name: "heroPrimaryButtonText",
             label: "Primary Button Text",
           },
+
           {
             type: "string",
             name: "heroPrimaryButtonHref",
             label: "Primary Button Link",
           },
+
           {
             type: "string",
             name: "heroSecondaryButtonText",
             label: "Secondary Button Text",
           },
+
           {
             type: "string",
             name: "heroSecondaryButtonHref",
             label: "Secondary Button Link",
           },
+
           {
             type: "string",
             name: "startHereLabel",
             label: "Start Here Label",
           },
+
           {
             type: "string",
             name: "startHereHeading",
             label: "Start Here Heading",
-            ui: { component: "textarea" },
+            ui: {
+              component: "textarea",
+            },
           },
+
           {
             type: "object",
             name: "startHereCards",
             label: "Start Here Cards",
             list: true,
-            ui: { itemProps: (item) => ({ label: item?.label }) },
+
             fields: [
-              { type: "string", name: "label", label: "Label" },
+              {
+                type: "string",
+                name: "label",
+                label: "Label",
+              },
+
               {
                 type: "string",
                 name: "description",
                 label: "Description",
-                ui: { component: "textarea" },
+                ui: {
+                  component: "textarea",
+                },
               },
-              { type: "string", name: "href", label: "Link" },
+
+              {
+                type: "string",
+                name: "href",
+                label: "Link",
+              },
+
               {
                 type: "string",
                 name: "colorClass",
                 label: "Text Color Class",
-                description:
-                  "Example: text-lfi-blue or text-lfi-green.",
               },
             ],
           },
+
           {
             type: "string",
             name: "featuredSectionLabel",
             label: "Featured Section Label",
           },
+
           {
             type: "string",
             name: "featuredSectionHeading",
             label: "Featured Section Heading",
           },
+
           {
             type: "string",
             name: "postTypesSectionLabel",
             label: "Post Types Section Label",
           },
+
           {
             type: "string",
             name: "postTypesSectionHeading",
             label: "Post Types Section Heading",
           },
+
           {
             type: "object",
             name: "postTypeCards",
             label: "Post Type Cards",
             list: true,
-            ui: { itemProps: (item) => ({ label: item?.label }) },
+
             fields: [
-              { type: "string", name: "label", label: "Label" },
+              {
+                type: "string",
+                name: "label",
+                label: "Label",
+              },
+
               {
                 type: "string",
                 name: "description",
                 label: "Description",
-                ui: { component: "textarea" },
+                ui: {
+                  component: "textarea",
+                },
               },
-              { type: "string", name: "href", label: "Link" },
+
+              {
+                type: "string",
+                name: "href",
+                label: "Link",
+              },
+
               {
                 type: "string",
                 name: "className",
@@ -346,64 +492,82 @@ export default defineConfig({
               },
             ],
           },
+
           {
             type: "string",
             name: "foundersSectionLabel",
             label: "Founders Section Label",
           },
+
           {
             type: "string",
             name: "foundersSectionHeading",
             label: "Founders Section Heading",
           },
+
           {
             type: "string",
             name: "foundersSectionText",
             label: "Founders Section Text",
-            ui: { component: "textarea" },
+            ui: {
+              component: "textarea",
+            },
           },
+
           {
             type: "string",
             name: "foundersButtonText",
             label: "Founders Button Text",
           },
+
           {
             type: "string",
             name: "foundersButtonHref",
             label: "Founders Button Link",
           },
+
           {
             type: "string",
             name: "latestSectionLabel",
             label: "Latest Posts Section Label",
           },
+
           {
             type: "string",
             name: "latestSectionHeading",
             label: "Latest Posts Section Heading",
           },
+
           {
             type: "string",
             name: "latestSectionText",
             label: "Latest Posts Section Text",
-            ui: { component: "textarea" },
+            ui: {
+              component: "textarea",
+            },
           },
+
           {
             type: "string",
             name: "followSectionLabel",
             label: "Follow Section Label",
           },
+
           {
             type: "string",
             name: "followSectionHeading",
             label: "Follow Section Heading",
           },
+
           {
             type: "string",
             name: "followSectionText",
             label: "Follow Section Text",
-            ui: { component: "textarea" },
+            ui: {
+              component: "textarea",
+            },
           },
+
           {
             type: "string",
             name: "followButtonText",
@@ -416,66 +580,106 @@ export default defineConfig({
         name: "aboutPage",
         label: "About Page",
         path: "content/pages",
-        match: { include: "about" },
+        match: {
+          include: "about",
+        },
         format: "md",
-        ui: { allowedActions: { create: false, delete: false } },
+
+        ui: {
+          allowedActions: {
+            create: false,
+            delete: false,
+          },
+        },
+
         fields: [
-          { type: "string", name: "seoTitle", label: "SEO Title" },
+          {
+            type: "string",
+            name: "seoTitle",
+            label: "SEO Title",
+          },
+
           {
             type: "string",
             name: "seoDescription",
             label: "SEO Description",
-            ui: { component: "textarea" },
+            ui: {
+              component: "textarea",
+            },
           },
-          { type: "string", name: "sectionLabel", label: "Section Label" },
-          { type: "string", name: "headline", label: "Headline" },
+
+          {
+            type: "string",
+            name: "sectionLabel",
+            label: "Section Label",
+          },
+
+          {
+            type: "string",
+            name: "headline",
+            label: "Headline",
+          },
+
           {
             type: "string",
             name: "headlineAccent",
             label: "Headline Accent",
           },
+
           {
             type: "string",
             name: "intro",
             label: "Intro Paragraph",
-            ui: { component: "textarea" },
+            ui: {
+              component: "textarea",
+            },
           },
+
           {
             type: "string",
             name: "pointOfViewLabel",
             label: "Point of View Label",
           },
+
           {
             type: "string",
             name: "pointOfViewText",
             label: "Point of View Text",
-            ui: { component: "textarea" },
+            ui: {
+              component: "textarea",
+            },
           },
+
           {
             type: "string",
             name: "primaryButtonText",
             label: "Primary Button Text",
           },
+
           {
             type: "string",
             name: "primaryButtonHref",
             label: "Primary Button Link",
           },
+
           {
             type: "string",
             name: "secondaryButtonText",
             label: "Secondary Button Text",
           },
+
           {
             type: "string",
             name: "peopleSectionLabel",
             label: "People Section Label",
           },
+
           {
             type: "string",
             name: "peopleSectionHeading",
             label: "People Section Heading",
           },
+
           {
             type: "rich-text",
             name: "body",
@@ -489,43 +693,77 @@ export default defineConfig({
         name: "siteSettings",
         label: "Site Settings",
         path: "content/globals",
-        match: { include: "settings" },
+        match: {
+          include: "settings",
+        },
         format: "md",
-        ui: { allowedActions: { create: false, delete: false } },
+
+        ui: {
+          allowedActions: {
+            create: false,
+            delete: false,
+          },
+        },
+
         fields: [
-          { type: "string", name: "siteName", label: "Site Name" },
-          { type: "string", name: "siteTagline", label: "Site Tagline" },
+          {
+            type: "string",
+            name: "siteName",
+            label: "Site Name",
+          },
+
+          {
+            type: "string",
+            name: "siteTagline",
+            label: "Site Tagline",
+          },
+
           {
             type: "string",
             name: "linkedInUrl",
             label: "Company LinkedIn URL",
           },
+
           {
             type: "boolean",
             name: "betaBadge",
             label: "Show Beta badge in header?",
           },
+
           {
             type: "object",
             name: "navItems",
             label: "Navigation Items",
             list: true,
-            ui: { itemProps: (item) => ({ label: item?.label }) },
+
             fields: [
-              { type: "string", name: "label", label: "Label" },
-              { type: "string", name: "href", label: "URL or Path" },
+              {
+                type: "string",
+                name: "label",
+                label: "Label",
+              },
+
+              {
+                type: "string",
+                name: "href",
+                label: "URL or Path",
+              },
             ],
           },
+
           {
             type: "string",
             name: "siteMetaTitle",
             label: "Default Meta Title",
           },
+
           {
             type: "string",
             name: "siteMetaDescription",
             label: "Default Meta Description",
-            ui: { component: "textarea" },
+            ui: {
+              component: "textarea",
+            },
           },
         ],
       },
@@ -534,33 +772,58 @@ export default defineConfig({
         name: "newsletterCTA",
         label: "Newsletter CTA",
         path: "content/globals",
-        match: { include: "newsletter" },
+        match: {
+          include: "newsletter",
+        },
         format: "md",
-        ui: { allowedActions: { create: false, delete: false } },
+
+        ui: {
+          allowedActions: {
+            create: false,
+            delete: false,
+          },
+        },
+
         fields: [
-          { type: "string", name: "badgeText", label: "Badge Text" },
-          { type: "string", name: "headline", label: "Headline" },
+          {
+            type: "string",
+            name: "badgeText",
+            label: "Badge Text",
+          },
+
+          {
+            type: "string",
+            name: "headline",
+            label: "Headline",
+          },
+
           {
             type: "string",
             name: "subtext",
             label: "Subtext",
-            ui: { component: "textarea" },
+            ui: {
+              component: "textarea",
+            },
           },
+
           {
             type: "string",
             name: "emailPlaceholder",
             label: "Email Input Placeholder",
           },
+
           {
             type: "string",
             name: "buttonText",
             label: "Submit Button Text",
           },
+
           {
             type: "string",
             name: "successMessage",
             label: "Success Message",
           },
+
           {
             type: "string",
             name: "linkedInNudge",
@@ -573,37 +836,55 @@ export default defineConfig({
         name: "footer",
         label: "Footer",
         path: "content/globals",
-        match: { include: "footer" },
+        match: {
+          include: "footer",
+        },
         format: "md",
-        ui: { allowedActions: { create: false, delete: false } },
+
+        ui: {
+          allowedActions: {
+            create: false,
+            delete: false,
+          },
+        },
+
         fields: [
           {
             type: "string",
             name: "brandTagline",
             label: "Brand Tagline",
-            ui: { component: "textarea" },
+            ui: {
+              component: "textarea",
+            },
           },
+
           {
             type: "string",
             name: "staySectionLabel",
             label: "Stay Section Label",
           },
+
           {
             type: "string",
             name: "staySectionText",
             label: "Stay Section Text",
-            ui: { component: "textarea" },
+            ui: {
+              component: "textarea",
+            },
           },
+
           {
             type: "string",
             name: "linkedInButtonText",
             label: "LinkedIn Button Text",
           },
+
           {
             type: "string",
             name: "copyrightSuffix",
             label: "Copyright Suffix",
           },
+
           {
             type: "string",
             name: "builtByLine",

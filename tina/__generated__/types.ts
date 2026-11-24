@@ -7,13 +7,13 @@
     })
     return str
   }
-  export type Maybe<T> = T | null;
-export type InputMaybe<T> = Maybe<T>;
-export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
-export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
+  import type { TinaMarkdownContent } from 'tinacms/dist/rich-text';
+/** Internal type. DO NOT USE DIRECTLY. */
+type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+/** Internal type. DO NOT USE DIRECTLY. */
 export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
+export type Maybe<T> = T | null;
+export type InputMaybe<T> = Maybe<T>;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: { input: string; output: string; }
@@ -24,6 +24,8 @@ export type Scalars = {
   /** References another document, used as a foreign key */
   Reference: { input: any; output: any; }
   JSON: { input: any; output: any; }
+  /** A rich-text document, renderable by TinaMarkdown */
+  RichText: { input: TinaMarkdownContent; output: TinaMarkdownContent; }
 };
 
 export type SystemInfo = {
@@ -285,7 +287,13 @@ export type Post = Node & Document & {
   companionSlug?: Maybe<Scalars['String']['output']>;
   linkedInUrl?: Maybe<Scalars['String']['output']>;
   featured?: Maybe<Scalars['Boolean']['output']>;
-  body?: Maybe<Scalars['JSON']['output']>;
+  body?: Maybe<Scalars['RichText']['output']>;
+  spanishTitle?: Maybe<Scalars['String']['output']>;
+  spanishExcerpt?: Maybe<Scalars['String']['output']>;
+  spanishContent?: Maybe<Scalars['String']['output']>;
+  catalanTitle?: Maybe<Scalars['String']['output']>;
+  catalanExcerpt?: Maybe<Scalars['String']['output']>;
+  catalanContent?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
   _sys: SystemInfo;
   _values: Scalars['JSON']['output'];
@@ -336,6 +344,12 @@ export type PostFilter = {
   linkedInUrl?: InputMaybe<StringFilter>;
   featured?: InputMaybe<BooleanFilter>;
   body?: InputMaybe<RichTextFilter>;
+  spanishTitle?: InputMaybe<StringFilter>;
+  spanishExcerpt?: InputMaybe<StringFilter>;
+  spanishContent?: InputMaybe<StringFilter>;
+  catalanTitle?: InputMaybe<StringFilter>;
+  catalanExcerpt?: InputMaybe<StringFilter>;
+  catalanContent?: InputMaybe<StringFilter>;
 };
 
 export type PostConnectionEdges = {
@@ -360,7 +374,7 @@ export type Author = Node & Document & {
   photo?: Maybe<Scalars['String']['output']>;
   linkedInUrl?: Maybe<Scalars['String']['output']>;
   bio?: Maybe<Scalars['String']['output']>;
-  body?: Maybe<Scalars['JSON']['output']>;
+  body?: Maybe<Scalars['RichText']['output']>;
   id: Scalars['ID']['output'];
   _sys: SystemInfo;
   _values: Scalars['JSON']['output'];
@@ -514,7 +528,7 @@ export type AboutPage = Node & Document & {
   secondaryButtonText?: Maybe<Scalars['String']['output']>;
   peopleSectionLabel?: Maybe<Scalars['String']['output']>;
   peopleSectionHeading?: Maybe<Scalars['String']['output']>;
-  body?: Maybe<Scalars['JSON']['output']>;
+  body?: Maybe<Scalars['RichText']['output']>;
   id: Scalars['ID']['output'];
   _sys: SystemInfo;
   _values: Scalars['JSON']['output'];
@@ -842,7 +856,13 @@ export type PostMutation = {
   companionSlug?: InputMaybe<Scalars['String']['input']>;
   linkedInUrl?: InputMaybe<Scalars['String']['input']>;
   featured?: InputMaybe<Scalars['Boolean']['input']>;
-  body?: InputMaybe<Scalars['JSON']['input']>;
+  body?: InputMaybe<Scalars['RichText']['input']>;
+  spanishTitle?: InputMaybe<Scalars['String']['input']>;
+  spanishExcerpt?: InputMaybe<Scalars['String']['input']>;
+  spanishContent?: InputMaybe<Scalars['String']['input']>;
+  catalanTitle?: InputMaybe<Scalars['String']['input']>;
+  catalanExcerpt?: InputMaybe<Scalars['String']['input']>;
+  catalanContent?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type AuthorMutation = {
@@ -853,7 +873,7 @@ export type AuthorMutation = {
   photo?: InputMaybe<Scalars['String']['input']>;
   linkedInUrl?: InputMaybe<Scalars['String']['input']>;
   bio?: InputMaybe<Scalars['String']['input']>;
-  body?: InputMaybe<Scalars['JSON']['input']>;
+  body?: InputMaybe<Scalars['RichText']['input']>;
 };
 
 export type HomePageStartHereCardsMutation = {
@@ -915,7 +935,7 @@ export type AboutPageMutation = {
   secondaryButtonText?: InputMaybe<Scalars['String']['input']>;
   peopleSectionLabel?: InputMaybe<Scalars['String']['input']>;
   peopleSectionHeading?: InputMaybe<Scalars['String']['input']>;
-  body?: InputMaybe<Scalars['JSON']['input']>;
+  body?: InputMaybe<Scalars['RichText']['input']>;
 };
 
 export type SiteSettingsNavItemsMutation = {
@@ -952,152 +972,312 @@ export type FooterMutation = {
   builtByLine?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type PostPartsFragment = { __typename: 'Post', title: string, excerpt: string, featuredImage?: string | null, date: string, category: string, tags?: Array<string | null> | null, author?: string | null, companionSlug?: string | null, linkedInUrl?: string | null, featured?: boolean | null, body?: any | null };
+export type StringFilter = {
+  startsWith?: string | null | undefined;
+  eq?: string | null | undefined;
+  exists?: boolean | null | undefined;
+  in?: Array<string | null | undefined> | null | undefined;
+};
 
-export type AuthorPartsFragment = { __typename: 'Author', name: string, role?: string | null, initials?: string | null, color?: string | null, photo?: string | null, linkedInUrl?: string | null, bio?: string | null, body?: any | null };
+export type ImageFilter = {
+  startsWith?: string | null | undefined;
+  eq?: string | null | undefined;
+  exists?: boolean | null | undefined;
+  in?: Array<string | null | undefined> | null | undefined;
+};
 
-export type HomePagePartsFragment = { __typename: 'HomePage', heroBadgeText?: string | null, heroHeadline?: string | null, heroHeadlineAccent?: string | null, heroSubtext?: string | null, heroPrimaryButtonText?: string | null, heroPrimaryButtonHref?: string | null, heroSecondaryButtonText?: string | null, heroSecondaryButtonHref?: string | null, startHereLabel?: string | null, startHereHeading?: string | null, featuredSectionLabel?: string | null, featuredSectionHeading?: string | null, postTypesSectionLabel?: string | null, postTypesSectionHeading?: string | null, foundersSectionLabel?: string | null, foundersSectionHeading?: string | null, foundersSectionText?: string | null, foundersButtonText?: string | null, foundersButtonHref?: string | null, latestSectionLabel?: string | null, latestSectionHeading?: string | null, latestSectionText?: string | null, followSectionLabel?: string | null, followSectionHeading?: string | null, followSectionText?: string | null, followButtonText?: string | null, startHereCards?: Array<{ __typename: 'HomePageStartHereCards', label?: string | null, description?: string | null, href?: string | null, colorClass?: string | null } | null> | null, postTypeCards?: Array<{ __typename: 'HomePagePostTypeCards', label?: string | null, description?: string | null, href?: string | null, className?: string | null } | null> | null };
+export type DatetimeFilter = {
+  after?: string | null | undefined;
+  before?: string | null | undefined;
+  eq?: string | null | undefined;
+  exists?: boolean | null | undefined;
+  in?: Array<string | null | undefined> | null | undefined;
+};
 
-export type AboutPagePartsFragment = { __typename: 'AboutPage', seoTitle?: string | null, seoDescription?: string | null, sectionLabel?: string | null, headline?: string | null, headlineAccent?: string | null, intro?: string | null, pointOfViewLabel?: string | null, pointOfViewText?: string | null, primaryButtonText?: string | null, primaryButtonHref?: string | null, secondaryButtonText?: string | null, peopleSectionLabel?: string | null, peopleSectionHeading?: string | null, body?: any | null };
+export type BooleanFilter = {
+  eq?: boolean | null | undefined;
+  exists?: boolean | null | undefined;
+};
 
-export type SiteSettingsPartsFragment = { __typename: 'SiteSettings', siteName?: string | null, siteTagline?: string | null, linkedInUrl?: string | null, betaBadge?: boolean | null, siteMetaTitle?: string | null, siteMetaDescription?: string | null, navItems?: Array<{ __typename: 'SiteSettingsNavItems', label?: string | null, href?: string | null } | null> | null };
+export type RichTextFilter = {
+  startsWith?: string | null | undefined;
+  eq?: string | null | undefined;
+  exists?: boolean | null | undefined;
+};
 
-export type NewsletterCtaPartsFragment = { __typename: 'NewsletterCTA', badgeText?: string | null, headline?: string | null, subtext?: string | null, emailPlaceholder?: string | null, buttonText?: string | null, successMessage?: string | null, linkedInNudge?: string | null };
+export type PostFilter = {
+  title?: StringFilter | null | undefined;
+  excerpt?: StringFilter | null | undefined;
+  featuredImage?: ImageFilter | null | undefined;
+  date?: DatetimeFilter | null | undefined;
+  category?: StringFilter | null | undefined;
+  tags?: StringFilter | null | undefined;
+  author?: StringFilter | null | undefined;
+  companionSlug?: StringFilter | null | undefined;
+  linkedInUrl?: StringFilter | null | undefined;
+  featured?: BooleanFilter | null | undefined;
+  body?: RichTextFilter | null | undefined;
+  spanishTitle?: StringFilter | null | undefined;
+  spanishExcerpt?: StringFilter | null | undefined;
+  spanishContent?: StringFilter | null | undefined;
+  catalanTitle?: StringFilter | null | undefined;
+  catalanExcerpt?: StringFilter | null | undefined;
+  catalanContent?: StringFilter | null | undefined;
+};
 
-export type FooterPartsFragment = { __typename: 'Footer', brandTagline?: string | null, staySectionLabel?: string | null, staySectionText?: string | null, linkedInButtonText?: string | null, copyrightSuffix?: string | null, builtByLine?: string | null };
+export type AuthorFilter = {
+  name?: StringFilter | null | undefined;
+  role?: StringFilter | null | undefined;
+  initials?: StringFilter | null | undefined;
+  color?: StringFilter | null | undefined;
+  photo?: ImageFilter | null | undefined;
+  linkedInUrl?: StringFilter | null | undefined;
+  bio?: StringFilter | null | undefined;
+  body?: RichTextFilter | null | undefined;
+};
+
+export type HomePageStartHereCardsFilter = {
+  label?: StringFilter | null | undefined;
+  description?: StringFilter | null | undefined;
+  href?: StringFilter | null | undefined;
+  colorClass?: StringFilter | null | undefined;
+};
+
+export type HomePagePostTypeCardsFilter = {
+  label?: StringFilter | null | undefined;
+  description?: StringFilter | null | undefined;
+  href?: StringFilter | null | undefined;
+  className?: StringFilter | null | undefined;
+};
+
+export type HomePageFilter = {
+  heroBadgeText?: StringFilter | null | undefined;
+  heroHeadline?: StringFilter | null | undefined;
+  heroHeadlineAccent?: StringFilter | null | undefined;
+  heroSubtext?: StringFilter | null | undefined;
+  heroPrimaryButtonText?: StringFilter | null | undefined;
+  heroPrimaryButtonHref?: StringFilter | null | undefined;
+  heroSecondaryButtonText?: StringFilter | null | undefined;
+  heroSecondaryButtonHref?: StringFilter | null | undefined;
+  startHereLabel?: StringFilter | null | undefined;
+  startHereHeading?: StringFilter | null | undefined;
+  startHereCards?: HomePageStartHereCardsFilter | null | undefined;
+  featuredSectionLabel?: StringFilter | null | undefined;
+  featuredSectionHeading?: StringFilter | null | undefined;
+  postTypesSectionLabel?: StringFilter | null | undefined;
+  postTypesSectionHeading?: StringFilter | null | undefined;
+  postTypeCards?: HomePagePostTypeCardsFilter | null | undefined;
+  foundersSectionLabel?: StringFilter | null | undefined;
+  foundersSectionHeading?: StringFilter | null | undefined;
+  foundersSectionText?: StringFilter | null | undefined;
+  foundersButtonText?: StringFilter | null | undefined;
+  foundersButtonHref?: StringFilter | null | undefined;
+  latestSectionLabel?: StringFilter | null | undefined;
+  latestSectionHeading?: StringFilter | null | undefined;
+  latestSectionText?: StringFilter | null | undefined;
+  followSectionLabel?: StringFilter | null | undefined;
+  followSectionHeading?: StringFilter | null | undefined;
+  followSectionText?: StringFilter | null | undefined;
+  followButtonText?: StringFilter | null | undefined;
+};
+
+export type AboutPageFilter = {
+  seoTitle?: StringFilter | null | undefined;
+  seoDescription?: StringFilter | null | undefined;
+  sectionLabel?: StringFilter | null | undefined;
+  headline?: StringFilter | null | undefined;
+  headlineAccent?: StringFilter | null | undefined;
+  intro?: StringFilter | null | undefined;
+  pointOfViewLabel?: StringFilter | null | undefined;
+  pointOfViewText?: StringFilter | null | undefined;
+  primaryButtonText?: StringFilter | null | undefined;
+  primaryButtonHref?: StringFilter | null | undefined;
+  secondaryButtonText?: StringFilter | null | undefined;
+  peopleSectionLabel?: StringFilter | null | undefined;
+  peopleSectionHeading?: StringFilter | null | undefined;
+  body?: RichTextFilter | null | undefined;
+};
+
+export type SiteSettingsNavItemsFilter = {
+  label?: StringFilter | null | undefined;
+  href?: StringFilter | null | undefined;
+};
+
+export type SiteSettingsFilter = {
+  siteName?: StringFilter | null | undefined;
+  siteTagline?: StringFilter | null | undefined;
+  linkedInUrl?: StringFilter | null | undefined;
+  betaBadge?: BooleanFilter | null | undefined;
+  navItems?: SiteSettingsNavItemsFilter | null | undefined;
+  siteMetaTitle?: StringFilter | null | undefined;
+  siteMetaDescription?: StringFilter | null | undefined;
+};
+
+export type NewsletterCtaFilter = {
+  badgeText?: StringFilter | null | undefined;
+  headline?: StringFilter | null | undefined;
+  subtext?: StringFilter | null | undefined;
+  emailPlaceholder?: StringFilter | null | undefined;
+  buttonText?: StringFilter | null | undefined;
+  successMessage?: StringFilter | null | undefined;
+  linkedInNudge?: StringFilter | null | undefined;
+};
+
+export type FooterFilter = {
+  brandTagline?: StringFilter | null | undefined;
+  staySectionLabel?: StringFilter | null | undefined;
+  staySectionText?: StringFilter | null | undefined;
+  linkedInButtonText?: StringFilter | null | undefined;
+  copyrightSuffix?: StringFilter | null | undefined;
+  builtByLine?: StringFilter | null | undefined;
+};
+
+export type PostPartsFragment = { __typename: 'Post', title: string, excerpt: string, featuredImage: string | null, date: string, category: string, tags: Array<string | null> | null, author: string | null, companionSlug: string | null, linkedInUrl: string | null, featured: boolean | null, body: TinaMarkdownContent | null, spanishTitle: string | null, spanishExcerpt: string | null, spanishContent: string | null, catalanTitle: string | null, catalanExcerpt: string | null, catalanContent: string | null };
+
+export type AuthorPartsFragment = { __typename: 'Author', name: string, role: string | null, initials: string | null, color: string | null, photo: string | null, linkedInUrl: string | null, bio: string | null, body: TinaMarkdownContent | null };
+
+export type HomePagePartsFragment = { __typename: 'HomePage', heroBadgeText: string | null, heroHeadline: string | null, heroHeadlineAccent: string | null, heroSubtext: string | null, heroPrimaryButtonText: string | null, heroPrimaryButtonHref: string | null, heroSecondaryButtonText: string | null, heroSecondaryButtonHref: string | null, startHereLabel: string | null, startHereHeading: string | null, featuredSectionLabel: string | null, featuredSectionHeading: string | null, postTypesSectionLabel: string | null, postTypesSectionHeading: string | null, foundersSectionLabel: string | null, foundersSectionHeading: string | null, foundersSectionText: string | null, foundersButtonText: string | null, foundersButtonHref: string | null, latestSectionLabel: string | null, latestSectionHeading: string | null, latestSectionText: string | null, followSectionLabel: string | null, followSectionHeading: string | null, followSectionText: string | null, followButtonText: string | null, startHereCards: Array<{ __typename: 'HomePageStartHereCards', label: string | null, description: string | null, href: string | null, colorClass: string | null } | null> | null, postTypeCards: Array<{ __typename: 'HomePagePostTypeCards', label: string | null, description: string | null, href: string | null, className: string | null } | null> | null };
+
+export type AboutPagePartsFragment = { __typename: 'AboutPage', seoTitle: string | null, seoDescription: string | null, sectionLabel: string | null, headline: string | null, headlineAccent: string | null, intro: string | null, pointOfViewLabel: string | null, pointOfViewText: string | null, primaryButtonText: string | null, primaryButtonHref: string | null, secondaryButtonText: string | null, peopleSectionLabel: string | null, peopleSectionHeading: string | null, body: TinaMarkdownContent | null };
+
+export type SiteSettingsPartsFragment = { __typename: 'SiteSettings', siteName: string | null, siteTagline: string | null, linkedInUrl: string | null, betaBadge: boolean | null, siteMetaTitle: string | null, siteMetaDescription: string | null, navItems: Array<{ __typename: 'SiteSettingsNavItems', label: string | null, href: string | null } | null> | null };
+
+export type NewsletterCtaPartsFragment = { __typename: 'NewsletterCTA', badgeText: string | null, headline: string | null, subtext: string | null, emailPlaceholder: string | null, buttonText: string | null, successMessage: string | null, linkedInNudge: string | null };
+
+export type FooterPartsFragment = { __typename: 'Footer', brandTagline: string | null, staySectionLabel: string | null, staySectionText: string | null, linkedInButtonText: string | null, copyrightSuffix: string | null, builtByLine: string | null };
 
 export type PostQueryVariables = Exact<{
-  relativePath: Scalars['String']['input'];
+  relativePath: string;
 }>;
 
 
-export type PostQuery = { __typename?: 'Query', post: { __typename: 'Post', id: string, title: string, excerpt: string, featuredImage?: string | null, date: string, category: string, tags?: Array<string | null> | null, author?: string | null, companionSlug?: string | null, linkedInUrl?: string | null, featured?: boolean | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type PostQuery = { post: { __typename: 'Post', id: string, title: string, excerpt: string, featuredImage: string | null, date: string, category: string, tags: Array<string | null> | null, author: string | null, companionSlug: string | null, linkedInUrl: string | null, featured: boolean | null, body: TinaMarkdownContent | null, spanishTitle: string | null, spanishExcerpt: string | null, spanishContent: string | null, catalanTitle: string | null, catalanExcerpt: string | null, catalanContent: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
 export type PostConnectionQueryVariables = Exact<{
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<PostFilter>;
+  before?: string | null | undefined;
+  after?: string | null | undefined;
+  first?: number | null | undefined;
+  last?: number | null | undefined;
+  sort?: string | null | undefined;
+  filter?: PostFilter | null | undefined;
 }>;
 
 
-export type PostConnectionQuery = { __typename?: 'Query', postConnection: { __typename?: 'PostConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'PostConnectionEdges', cursor: string, node?: { __typename: 'Post', id: string, title: string, excerpt: string, featuredImage?: string | null, date: string, category: string, tags?: Array<string | null> | null, author?: string | null, companionSlug?: string | null, linkedInUrl?: string | null, featured?: boolean | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type PostConnectionQuery = { postConnection: { totalCount: number, pageInfo: { hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges: Array<{ cursor: string, node: { __typename: 'Post', id: string, title: string, excerpt: string, featuredImage: string | null, date: string, category: string, tags: Array<string | null> | null, author: string | null, companionSlug: string | null, linkedInUrl: string | null, featured: boolean | null, body: TinaMarkdownContent | null, spanishTitle: string | null, spanishExcerpt: string | null, spanishContent: string | null, catalanTitle: string | null, catalanExcerpt: string | null, catalanContent: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export type AuthorQueryVariables = Exact<{
-  relativePath: Scalars['String']['input'];
+  relativePath: string;
 }>;
 
 
-export type AuthorQuery = { __typename?: 'Query', author: { __typename: 'Author', id: string, name: string, role?: string | null, initials?: string | null, color?: string | null, photo?: string | null, linkedInUrl?: string | null, bio?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type AuthorQuery = { author: { __typename: 'Author', id: string, name: string, role: string | null, initials: string | null, color: string | null, photo: string | null, linkedInUrl: string | null, bio: string | null, body: TinaMarkdownContent | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
 export type AuthorConnectionQueryVariables = Exact<{
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<AuthorFilter>;
+  before?: string | null | undefined;
+  after?: string | null | undefined;
+  first?: number | null | undefined;
+  last?: number | null | undefined;
+  sort?: string | null | undefined;
+  filter?: AuthorFilter | null | undefined;
 }>;
 
 
-export type AuthorConnectionQuery = { __typename?: 'Query', authorConnection: { __typename?: 'AuthorConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'AuthorConnectionEdges', cursor: string, node?: { __typename: 'Author', id: string, name: string, role?: string | null, initials?: string | null, color?: string | null, photo?: string | null, linkedInUrl?: string | null, bio?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type AuthorConnectionQuery = { authorConnection: { totalCount: number, pageInfo: { hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges: Array<{ cursor: string, node: { __typename: 'Author', id: string, name: string, role: string | null, initials: string | null, color: string | null, photo: string | null, linkedInUrl: string | null, bio: string | null, body: TinaMarkdownContent | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export type HomePageQueryVariables = Exact<{
-  relativePath: Scalars['String']['input'];
+  relativePath: string;
 }>;
 
 
-export type HomePageQuery = { __typename?: 'Query', homePage: { __typename: 'HomePage', id: string, heroBadgeText?: string | null, heroHeadline?: string | null, heroHeadlineAccent?: string | null, heroSubtext?: string | null, heroPrimaryButtonText?: string | null, heroPrimaryButtonHref?: string | null, heroSecondaryButtonText?: string | null, heroSecondaryButtonHref?: string | null, startHereLabel?: string | null, startHereHeading?: string | null, featuredSectionLabel?: string | null, featuredSectionHeading?: string | null, postTypesSectionLabel?: string | null, postTypesSectionHeading?: string | null, foundersSectionLabel?: string | null, foundersSectionHeading?: string | null, foundersSectionText?: string | null, foundersButtonText?: string | null, foundersButtonHref?: string | null, latestSectionLabel?: string | null, latestSectionHeading?: string | null, latestSectionText?: string | null, followSectionLabel?: string | null, followSectionHeading?: string | null, followSectionText?: string | null, followButtonText?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, startHereCards?: Array<{ __typename: 'HomePageStartHereCards', label?: string | null, description?: string | null, href?: string | null, colorClass?: string | null } | null> | null, postTypeCards?: Array<{ __typename: 'HomePagePostTypeCards', label?: string | null, description?: string | null, href?: string | null, className?: string | null } | null> | null } };
+export type HomePageQuery = { homePage: { __typename: 'HomePage', id: string, heroBadgeText: string | null, heroHeadline: string | null, heroHeadlineAccent: string | null, heroSubtext: string | null, heroPrimaryButtonText: string | null, heroPrimaryButtonHref: string | null, heroSecondaryButtonText: string | null, heroSecondaryButtonHref: string | null, startHereLabel: string | null, startHereHeading: string | null, featuredSectionLabel: string | null, featuredSectionHeading: string | null, postTypesSectionLabel: string | null, postTypesSectionHeading: string | null, foundersSectionLabel: string | null, foundersSectionHeading: string | null, foundersSectionText: string | null, foundersButtonText: string | null, foundersButtonHref: string | null, latestSectionLabel: string | null, latestSectionHeading: string | null, latestSectionText: string | null, followSectionLabel: string | null, followSectionHeading: string | null, followSectionText: string | null, followButtonText: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, startHereCards: Array<{ __typename: 'HomePageStartHereCards', label: string | null, description: string | null, href: string | null, colorClass: string | null } | null> | null, postTypeCards: Array<{ __typename: 'HomePagePostTypeCards', label: string | null, description: string | null, href: string | null, className: string | null } | null> | null } };
 
 export type HomePageConnectionQueryVariables = Exact<{
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<HomePageFilter>;
+  before?: string | null | undefined;
+  after?: string | null | undefined;
+  first?: number | null | undefined;
+  last?: number | null | undefined;
+  sort?: string | null | undefined;
+  filter?: HomePageFilter | null | undefined;
 }>;
 
 
-export type HomePageConnectionQuery = { __typename?: 'Query', homePageConnection: { __typename?: 'HomePageConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'HomePageConnectionEdges', cursor: string, node?: { __typename: 'HomePage', id: string, heroBadgeText?: string | null, heroHeadline?: string | null, heroHeadlineAccent?: string | null, heroSubtext?: string | null, heroPrimaryButtonText?: string | null, heroPrimaryButtonHref?: string | null, heroSecondaryButtonText?: string | null, heroSecondaryButtonHref?: string | null, startHereLabel?: string | null, startHereHeading?: string | null, featuredSectionLabel?: string | null, featuredSectionHeading?: string | null, postTypesSectionLabel?: string | null, postTypesSectionHeading?: string | null, foundersSectionLabel?: string | null, foundersSectionHeading?: string | null, foundersSectionText?: string | null, foundersButtonText?: string | null, foundersButtonHref?: string | null, latestSectionLabel?: string | null, latestSectionHeading?: string | null, latestSectionText?: string | null, followSectionLabel?: string | null, followSectionHeading?: string | null, followSectionText?: string | null, followButtonText?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, startHereCards?: Array<{ __typename: 'HomePageStartHereCards', label?: string | null, description?: string | null, href?: string | null, colorClass?: string | null } | null> | null, postTypeCards?: Array<{ __typename: 'HomePagePostTypeCards', label?: string | null, description?: string | null, href?: string | null, className?: string | null } | null> | null } | null } | null> | null } };
+export type HomePageConnectionQuery = { homePageConnection: { totalCount: number, pageInfo: { hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges: Array<{ cursor: string, node: { __typename: 'HomePage', id: string, heroBadgeText: string | null, heroHeadline: string | null, heroHeadlineAccent: string | null, heroSubtext: string | null, heroPrimaryButtonText: string | null, heroPrimaryButtonHref: string | null, heroSecondaryButtonText: string | null, heroSecondaryButtonHref: string | null, startHereLabel: string | null, startHereHeading: string | null, featuredSectionLabel: string | null, featuredSectionHeading: string | null, postTypesSectionLabel: string | null, postTypesSectionHeading: string | null, foundersSectionLabel: string | null, foundersSectionHeading: string | null, foundersSectionText: string | null, foundersButtonText: string | null, foundersButtonHref: string | null, latestSectionLabel: string | null, latestSectionHeading: string | null, latestSectionText: string | null, followSectionLabel: string | null, followSectionHeading: string | null, followSectionText: string | null, followButtonText: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, startHereCards: Array<{ __typename: 'HomePageStartHereCards', label: string | null, description: string | null, href: string | null, colorClass: string | null } | null> | null, postTypeCards: Array<{ __typename: 'HomePagePostTypeCards', label: string | null, description: string | null, href: string | null, className: string | null } | null> | null } | null } | null> | null } };
 
 export type AboutPageQueryVariables = Exact<{
-  relativePath: Scalars['String']['input'];
+  relativePath: string;
 }>;
 
 
-export type AboutPageQuery = { __typename?: 'Query', aboutPage: { __typename: 'AboutPage', id: string, seoTitle?: string | null, seoDescription?: string | null, sectionLabel?: string | null, headline?: string | null, headlineAccent?: string | null, intro?: string | null, pointOfViewLabel?: string | null, pointOfViewText?: string | null, primaryButtonText?: string | null, primaryButtonHref?: string | null, secondaryButtonText?: string | null, peopleSectionLabel?: string | null, peopleSectionHeading?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type AboutPageQuery = { aboutPage: { __typename: 'AboutPage', id: string, seoTitle: string | null, seoDescription: string | null, sectionLabel: string | null, headline: string | null, headlineAccent: string | null, intro: string | null, pointOfViewLabel: string | null, pointOfViewText: string | null, primaryButtonText: string | null, primaryButtonHref: string | null, secondaryButtonText: string | null, peopleSectionLabel: string | null, peopleSectionHeading: string | null, body: TinaMarkdownContent | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
 export type AboutPageConnectionQueryVariables = Exact<{
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<AboutPageFilter>;
+  before?: string | null | undefined;
+  after?: string | null | undefined;
+  first?: number | null | undefined;
+  last?: number | null | undefined;
+  sort?: string | null | undefined;
+  filter?: AboutPageFilter | null | undefined;
 }>;
 
 
-export type AboutPageConnectionQuery = { __typename?: 'Query', aboutPageConnection: { __typename?: 'AboutPageConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'AboutPageConnectionEdges', cursor: string, node?: { __typename: 'AboutPage', id: string, seoTitle?: string | null, seoDescription?: string | null, sectionLabel?: string | null, headline?: string | null, headlineAccent?: string | null, intro?: string | null, pointOfViewLabel?: string | null, pointOfViewText?: string | null, primaryButtonText?: string | null, primaryButtonHref?: string | null, secondaryButtonText?: string | null, peopleSectionLabel?: string | null, peopleSectionHeading?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type AboutPageConnectionQuery = { aboutPageConnection: { totalCount: number, pageInfo: { hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges: Array<{ cursor: string, node: { __typename: 'AboutPage', id: string, seoTitle: string | null, seoDescription: string | null, sectionLabel: string | null, headline: string | null, headlineAccent: string | null, intro: string | null, pointOfViewLabel: string | null, pointOfViewText: string | null, primaryButtonText: string | null, primaryButtonHref: string | null, secondaryButtonText: string | null, peopleSectionLabel: string | null, peopleSectionHeading: string | null, body: TinaMarkdownContent | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export type SiteSettingsQueryVariables = Exact<{
-  relativePath: Scalars['String']['input'];
+  relativePath: string;
 }>;
 
 
-export type SiteSettingsQuery = { __typename?: 'Query', siteSettings: { __typename: 'SiteSettings', id: string, siteName?: string | null, siteTagline?: string | null, linkedInUrl?: string | null, betaBadge?: boolean | null, siteMetaTitle?: string | null, siteMetaDescription?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, navItems?: Array<{ __typename: 'SiteSettingsNavItems', label?: string | null, href?: string | null } | null> | null } };
+export type SiteSettingsQuery = { siteSettings: { __typename: 'SiteSettings', id: string, siteName: string | null, siteTagline: string | null, linkedInUrl: string | null, betaBadge: boolean | null, siteMetaTitle: string | null, siteMetaDescription: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, navItems: Array<{ __typename: 'SiteSettingsNavItems', label: string | null, href: string | null } | null> | null } };
 
 export type SiteSettingsConnectionQueryVariables = Exact<{
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<SiteSettingsFilter>;
+  before?: string | null | undefined;
+  after?: string | null | undefined;
+  first?: number | null | undefined;
+  last?: number | null | undefined;
+  sort?: string | null | undefined;
+  filter?: SiteSettingsFilter | null | undefined;
 }>;
 
 
-export type SiteSettingsConnectionQuery = { __typename?: 'Query', siteSettingsConnection: { __typename?: 'SiteSettingsConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'SiteSettingsConnectionEdges', cursor: string, node?: { __typename: 'SiteSettings', id: string, siteName?: string | null, siteTagline?: string | null, linkedInUrl?: string | null, betaBadge?: boolean | null, siteMetaTitle?: string | null, siteMetaDescription?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, navItems?: Array<{ __typename: 'SiteSettingsNavItems', label?: string | null, href?: string | null } | null> | null } | null } | null> | null } };
+export type SiteSettingsConnectionQuery = { siteSettingsConnection: { totalCount: number, pageInfo: { hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges: Array<{ cursor: string, node: { __typename: 'SiteSettings', id: string, siteName: string | null, siteTagline: string | null, linkedInUrl: string | null, betaBadge: boolean | null, siteMetaTitle: string | null, siteMetaDescription: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, navItems: Array<{ __typename: 'SiteSettingsNavItems', label: string | null, href: string | null } | null> | null } | null } | null> | null } };
 
 export type NewsletterCtaQueryVariables = Exact<{
-  relativePath: Scalars['String']['input'];
+  relativePath: string;
 }>;
 
 
-export type NewsletterCtaQuery = { __typename?: 'Query', newsletterCTA: { __typename: 'NewsletterCTA', id: string, badgeText?: string | null, headline?: string | null, subtext?: string | null, emailPlaceholder?: string | null, buttonText?: string | null, successMessage?: string | null, linkedInNudge?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type NewsletterCtaQuery = { newsletterCTA: { __typename: 'NewsletterCTA', id: string, badgeText: string | null, headline: string | null, subtext: string | null, emailPlaceholder: string | null, buttonText: string | null, successMessage: string | null, linkedInNudge: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
 export type NewsletterCtaConnectionQueryVariables = Exact<{
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<NewsletterCtaFilter>;
+  before?: string | null | undefined;
+  after?: string | null | undefined;
+  first?: number | null | undefined;
+  last?: number | null | undefined;
+  sort?: string | null | undefined;
+  filter?: NewsletterCtaFilter | null | undefined;
 }>;
 
 
-export type NewsletterCtaConnectionQuery = { __typename?: 'Query', newsletterCTAConnection: { __typename?: 'NewsletterCTAConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'NewsletterCTAConnectionEdges', cursor: string, node?: { __typename: 'NewsletterCTA', id: string, badgeText?: string | null, headline?: string | null, subtext?: string | null, emailPlaceholder?: string | null, buttonText?: string | null, successMessage?: string | null, linkedInNudge?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type NewsletterCtaConnectionQuery = { newsletterCTAConnection: { totalCount: number, pageInfo: { hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges: Array<{ cursor: string, node: { __typename: 'NewsletterCTA', id: string, badgeText: string | null, headline: string | null, subtext: string | null, emailPlaceholder: string | null, buttonText: string | null, successMessage: string | null, linkedInNudge: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export type FooterQueryVariables = Exact<{
-  relativePath: Scalars['String']['input'];
+  relativePath: string;
 }>;
 
 
-export type FooterQuery = { __typename?: 'Query', footer: { __typename: 'Footer', id: string, brandTagline?: string | null, staySectionLabel?: string | null, staySectionText?: string | null, linkedInButtonText?: string | null, copyrightSuffix?: string | null, builtByLine?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type FooterQuery = { footer: { __typename: 'Footer', id: string, brandTagline: string | null, staySectionLabel: string | null, staySectionText: string | null, linkedInButtonText: string | null, copyrightSuffix: string | null, builtByLine: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
 export type FooterConnectionQueryVariables = Exact<{
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<FooterFilter>;
+  before?: string | null | undefined;
+  after?: string | null | undefined;
+  first?: number | null | undefined;
+  last?: number | null | undefined;
+  sort?: string | null | undefined;
+  filter?: FooterFilter | null | undefined;
 }>;
 
 
-export type FooterConnectionQuery = { __typename?: 'Query', footerConnection: { __typename?: 'FooterConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'FooterConnectionEdges', cursor: string, node?: { __typename: 'Footer', id: string, brandTagline?: string | null, staySectionLabel?: string | null, staySectionText?: string | null, linkedInButtonText?: string | null, copyrightSuffix?: string | null, builtByLine?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type FooterConnectionQuery = { footerConnection: { totalCount: number, pageInfo: { hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges: Array<{ cursor: string, node: { __typename: 'Footer', id: string, brandTagline: string | null, staySectionLabel: string | null, staySectionText: string | null, linkedInButtonText: string | null, copyrightSuffix: string | null, builtByLine: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export const PostPartsFragmentDoc = gql`
     fragment PostParts on Post {
@@ -1113,6 +1293,12 @@ export const PostPartsFragmentDoc = gql`
   linkedInUrl
   featured
   body
+  spanishTitle
+  spanishExcerpt
+  spanishContent
+  catalanTitle
+  catalanExcerpt
+  catalanContent
 }
     `;
 export const AuthorPartsFragmentDoc = gql`
@@ -1722,7 +1908,7 @@ export const ExperimentalGetTinaClient = () =>
   getSdk(
     generateRequester(
       createClient({
-        url: "http://localhost:4001/graphql",
+        url: "https://content.tinajs.io/4.1/content/fac6595b-2e7b-4153-a09f-dbaf61a38144/github/main",
         queries,
       })
     )
@@ -1734,5 +1920,7 @@ export const queries = (
   const requester = generateRequester(client)
   return getSdk(requester)
 }
+
+export type { Exact };
 
   
