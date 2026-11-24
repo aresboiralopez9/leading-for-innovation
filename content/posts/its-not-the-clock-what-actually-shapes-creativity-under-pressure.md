@@ -8,7 +8,9 @@ tags: []
 author: sam
 companionSlug: ''
 linkedInUrl: ''
-featured: true
+featured: false
+spanishContent: ''
+catalanContent: ''
 ---
 
 Most of us know the feeling. The work arrives faster than the time to do it. A new request lands from your boss, a colleague leaves and their projects become yours, or a round of layoffs means the same work spreads across fewer people. Somewhere in all of that, you're still expected to come up with something new, and it can feel like a squeeze.
