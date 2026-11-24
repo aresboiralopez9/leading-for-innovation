@@ -41,7 +41,7 @@ var config_default = defineConfig({
         path: "content/posts",
         format: "md",
         defaultItem: () => ({
-          date: (/* @__PURE__ */ new Date()).toISOString(),
+          date: "2026-01-01T00:00:00.000Z",
           featured: false,
           featuredImage: "",
           tags: [],
@@ -63,17 +63,19 @@ var config_default = defineConfig({
           {
             type: "string",
             name: "title",
-            label: "Title",
+            label: "English Title",
             isTitle: true,
             required: true
           },
           {
             type: "string",
             name: "excerpt",
-            label: "Excerpt",
+            label: "English Excerpt",
             description: "A one-sentence summary shown on post cards and in SEO.",
             required: true,
-            ui: { component: "textarea" }
+            ui: {
+              component: "textarea"
+            }
           },
           {
             type: "image",
@@ -128,8 +130,52 @@ var config_default = defineConfig({
           {
             type: "rich-text",
             name: "body",
-            label: "Content",
+            label: "English Content",
             isBody: true
+          },
+          {
+            type: "string",
+            name: "spanishTitle",
+            label: "Spanish Title"
+          },
+          {
+            type: "string",
+            name: "spanishExcerpt",
+            label: "Spanish Excerpt",
+            ui: {
+              component: "textarea"
+            }
+          },
+          {
+            type: "string",
+            name: "spanishContent",
+            label: "Spanish Content",
+            ui: {
+              component: "textarea"
+            },
+            description: "Enter the Spanish article in Markdown."
+          },
+          {
+            type: "string",
+            name: "catalanTitle",
+            label: "Catalan Title"
+          },
+          {
+            type: "string",
+            name: "catalanExcerpt",
+            label: "Catalan Excerpt",
+            ui: {
+              component: "textarea"
+            }
+          },
+          {
+            type: "string",
+            name: "catalanContent",
+            label: "Catalan Content",
+            ui: {
+              component: "textarea"
+            },
+            description: "Enter the Catalan article in Markdown."
           }
         ]
       },
@@ -194,7 +240,9 @@ var config_default = defineConfig({
             name: "bio",
             label: "Short Bio",
             description: "Used on homepage, about cards, and bylines.",
-            ui: { component: "textarea" }
+            ui: {
+              component: "textarea"
+            }
           },
           {
             type: "rich-text",
@@ -209,12 +257,27 @@ var config_default = defineConfig({
         name: "homePage",
         label: "Home Page",
         path: "content/pages",
-        match: { include: "home" },
+        match: {
+          include: "home"
+        },
         format: "md",
-        ui: { allowedActions: { create: false, delete: false } },
+        ui: {
+          allowedActions: {
+            create: false,
+            delete: false
+          }
+        },
         fields: [
-          { type: "string", name: "heroBadgeText", label: "Hero Badge Text" },
-          { type: "string", name: "heroHeadline", label: "Hero Headline" },
+          {
+            type: "string",
+            name: "heroBadgeText",
+            label: "Hero Badge Text"
+          },
+          {
+            type: "string",
+            name: "heroHeadline",
+            label: "Hero Headline"
+          },
           {
             type: "string",
             name: "heroHeadlineAccent",
@@ -224,7 +287,9 @@ var config_default = defineConfig({
             type: "string",
             name: "heroSubtext",
             label: "Hero Subtext",
-            ui: { component: "textarea" }
+            ui: {
+              component: "textarea"
+            }
           },
           {
             type: "string",
@@ -255,28 +320,38 @@ var config_default = defineConfig({
             type: "string",
             name: "startHereHeading",
             label: "Start Here Heading",
-            ui: { component: "textarea" }
+            ui: {
+              component: "textarea"
+            }
           },
           {
             type: "object",
             name: "startHereCards",
             label: "Start Here Cards",
             list: true,
-            ui: { itemProps: (item) => ({ label: item?.label }) },
             fields: [
-              { type: "string", name: "label", label: "Label" },
+              {
+                type: "string",
+                name: "label",
+                label: "Label"
+              },
               {
                 type: "string",
                 name: "description",
                 label: "Description",
-                ui: { component: "textarea" }
+                ui: {
+                  component: "textarea"
+                }
               },
-              { type: "string", name: "href", label: "Link" },
+              {
+                type: "string",
+                name: "href",
+                label: "Link"
+              },
               {
                 type: "string",
                 name: "colorClass",
-                label: "Text Color Class",
-                description: "Example: text-lfi-blue or text-lfi-green."
+                label: "Text Color Class"
               }
             ]
           },
@@ -305,16 +380,25 @@ var config_default = defineConfig({
             name: "postTypeCards",
             label: "Post Type Cards",
             list: true,
-            ui: { itemProps: (item) => ({ label: item?.label }) },
             fields: [
-              { type: "string", name: "label", label: "Label" },
+              {
+                type: "string",
+                name: "label",
+                label: "Label"
+              },
               {
                 type: "string",
                 name: "description",
                 label: "Description",
-                ui: { component: "textarea" }
+                ui: {
+                  component: "textarea"
+                }
               },
-              { type: "string", name: "href", label: "Link" },
+              {
+                type: "string",
+                name: "href",
+                label: "Link"
+              },
               {
                 type: "string",
                 name: "className",
@@ -336,7 +420,9 @@ var config_default = defineConfig({
             type: "string",
             name: "foundersSectionText",
             label: "Founders Section Text",
-            ui: { component: "textarea" }
+            ui: {
+              component: "textarea"
+            }
           },
           {
             type: "string",
@@ -362,7 +448,9 @@ var config_default = defineConfig({
             type: "string",
             name: "latestSectionText",
             label: "Latest Posts Section Text",
-            ui: { component: "textarea" }
+            ui: {
+              component: "textarea"
+            }
           },
           {
             type: "string",
@@ -378,7 +466,9 @@ var config_default = defineConfig({
             type: "string",
             name: "followSectionText",
             label: "Follow Section Text",
-            ui: { component: "textarea" }
+            ui: {
+              component: "textarea"
+            }
           },
           {
             type: "string",
@@ -391,19 +481,40 @@ var config_default = defineConfig({
         name: "aboutPage",
         label: "About Page",
         path: "content/pages",
-        match: { include: "about" },
+        match: {
+          include: "about"
+        },
         format: "md",
-        ui: { allowedActions: { create: false, delete: false } },
+        ui: {
+          allowedActions: {
+            create: false,
+            delete: false
+          }
+        },
         fields: [
-          { type: "string", name: "seoTitle", label: "SEO Title" },
+          {
+            type: "string",
+            name: "seoTitle",
+            label: "SEO Title"
+          },
           {
             type: "string",
             name: "seoDescription",
             label: "SEO Description",
-            ui: { component: "textarea" }
+            ui: {
+              component: "textarea"
+            }
           },
-          { type: "string", name: "sectionLabel", label: "Section Label" },
-          { type: "string", name: "headline", label: "Headline" },
+          {
+            type: "string",
+            name: "sectionLabel",
+            label: "Section Label"
+          },
+          {
+            type: "string",
+            name: "headline",
+            label: "Headline"
+          },
           {
             type: "string",
             name: "headlineAccent",
@@ -413,7 +524,9 @@ var config_default = defineConfig({
             type: "string",
             name: "intro",
             label: "Intro Paragraph",
-            ui: { component: "textarea" }
+            ui: {
+              component: "textarea"
+            }
           },
           {
             type: "string",
@@ -424,7 +537,9 @@ var config_default = defineConfig({
             type: "string",
             name: "pointOfViewText",
             label: "Point of View Text",
-            ui: { component: "textarea" }
+            ui: {
+              component: "textarea"
+            }
           },
           {
             type: "string",
@@ -463,12 +578,27 @@ var config_default = defineConfig({
         name: "siteSettings",
         label: "Site Settings",
         path: "content/globals",
-        match: { include: "settings" },
+        match: {
+          include: "settings"
+        },
         format: "md",
-        ui: { allowedActions: { create: false, delete: false } },
+        ui: {
+          allowedActions: {
+            create: false,
+            delete: false
+          }
+        },
         fields: [
-          { type: "string", name: "siteName", label: "Site Name" },
-          { type: "string", name: "siteTagline", label: "Site Tagline" },
+          {
+            type: "string",
+            name: "siteName",
+            label: "Site Name"
+          },
+          {
+            type: "string",
+            name: "siteTagline",
+            label: "Site Tagline"
+          },
           {
             type: "string",
             name: "linkedInUrl",
@@ -484,10 +614,17 @@ var config_default = defineConfig({
             name: "navItems",
             label: "Navigation Items",
             list: true,
-            ui: { itemProps: (item) => ({ label: item?.label }) },
             fields: [
-              { type: "string", name: "label", label: "Label" },
-              { type: "string", name: "href", label: "URL or Path" }
+              {
+                type: "string",
+                name: "label",
+                label: "Label"
+              },
+              {
+                type: "string",
+                name: "href",
+                label: "URL or Path"
+              }
             ]
           },
           {
@@ -499,7 +636,9 @@ var config_default = defineConfig({
             type: "string",
             name: "siteMetaDescription",
             label: "Default Meta Description",
-            ui: { component: "textarea" }
+            ui: {
+              component: "textarea"
+            }
           }
         ]
       },
@@ -507,17 +646,34 @@ var config_default = defineConfig({
         name: "newsletterCTA",
         label: "Newsletter CTA",
         path: "content/globals",
-        match: { include: "newsletter" },
+        match: {
+          include: "newsletter"
+        },
         format: "md",
-        ui: { allowedActions: { create: false, delete: false } },
+        ui: {
+          allowedActions: {
+            create: false,
+            delete: false
+          }
+        },
         fields: [
-          { type: "string", name: "badgeText", label: "Badge Text" },
-          { type: "string", name: "headline", label: "Headline" },
+          {
+            type: "string",
+            name: "badgeText",
+            label: "Badge Text"
+          },
+          {
+            type: "string",
+            name: "headline",
+            label: "Headline"
+          },
           {
             type: "string",
             name: "subtext",
             label: "Subtext",
-            ui: { component: "textarea" }
+            ui: {
+              component: "textarea"
+            }
           },
           {
             type: "string",
@@ -545,15 +701,24 @@ var config_default = defineConfig({
         name: "footer",
         label: "Footer",
         path: "content/globals",
-        match: { include: "footer" },
+        match: {
+          include: "footer"
+        },
         format: "md",
-        ui: { allowedActions: { create: false, delete: false } },
+        ui: {
+          allowedActions: {
+            create: false,
+            delete: false
+          }
+        },
         fields: [
           {
             type: "string",
             name: "brandTagline",
             label: "Brand Tagline",
-            ui: { component: "textarea" }
+            ui: {
+              component: "textarea"
+            }
           },
           {
             type: "string",
@@ -564,7 +729,9 @@ var config_default = defineConfig({
             type: "string",
             name: "staySectionText",
             label: "Stay Section Text",
-            ui: { component: "textarea" }
+            ui: {
+              component: "textarea"
+            }
           },
           {
             type: "string",
